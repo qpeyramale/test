@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_workcenter_view" model="ir.ui.view">
+            <field name="name">mrp.workcenter.form.simpac</field>
+            <field name="model">mrp.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_workcenter_view" />
+            <field name="arch" type="xml">
+                <field name="active" position="before">
+                    <field name="product_categ_id"/>
+                </field>
+                <field name="capacity_per_cycle" position="after">
+                    <field name="capacity_per_hour"/>
+                </field>
+                <field name="time_cycle" position="replace">
+                    <field name="time_cycle" digits="(14,3)"/>
+                </field>
+                <field name="costs_cycle" position="after">
+                    <field name="prix_theo_fixe"/>
+                    <field name="prix_theo_variable"/>
+                    <field name="prix_marche_fixe"/>
+                    <field name="prix_marche_variable"/>
+                </field>
+             </field>     
+        </record>
+    </data>
+</openerp>

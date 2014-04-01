@@ -1,0 +1,3135 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data noupdate="1">
+        <record id="mrp_bom_impressionpapier0" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Impression papier</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression papier')]"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Impression papier')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+        <record id="mrp_bom_plaque0" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Plaque</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Plaque')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field model="mrp.bom" name="bom_id" search="[('name', '=', u'Impression papier')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_bom_impressionjetdencresurenveloppes0" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Impression jet d'encre sur enveloppes</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u&quot;Impression jet d'encre sur enveloppes&quot;)]"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u&quot;Impression jet d'encre sur enveloppes&quot;)]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_bom_campagneemail0" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Campagne email</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Campagne email')]"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Campagne email')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+        <record id="mrp_bom_envoi0" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Envoi</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Envoi')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field model="mrp.bom" name="bom_id" search="[('name', '=', u'Campagne email')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_bom_fabricationdunimprim0" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Fabrication d'un imprimé</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u&quot;Fabrication d'un imprim\xe9&quot;)]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+        <record id="mrp_bom_noir0" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Noir</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Noir')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field model="mrp.bom" name="bom_id" search="[('name', '=', u&quot;Fabrication d'un imprim\xe9&quot;)]"/>
+        </record>
+        <record id="mrp_bom_couleur0" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Couleur</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Couleur')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field model="mrp.bom" name="bom_id" search="[('name', '=', u&quot;Fabrication d'un imprim\xe9&quot;)]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_bom_prparationfichierdonnes0" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Préparation fichier données</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Pr\xe9paration fichier donn\xe9es')]"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Pr\xe9paration fichier donn\xe9es')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_bom_impressionenveloppes0" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Impression enveloppes</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression enveloppes')]"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Impression enveloppes')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+        <record id="mrp_bom_plaque1" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Plaque</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Plaque')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field model="mrp.bom" name="bom_id" search="[('name', '=', u'Impression enveloppes')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_bom_plaque2" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Plaque</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Plaque')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="mrp_bom_impressionpapier0"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_bom_noir1" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Noir</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Noir')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="mrp_bom_fabricationdunimprim0"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_bom_couleur1" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Couleur</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Couleur')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="mrp_bom_fabricationdunimprim0"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_bom_plaque3" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Plaque</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Plaque')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="mrp_bom_impressionenveloppes0"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_bom_envoi1" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Envoi</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Envoi')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="mrp_bom_campagneemail0"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_impressionenveloppes0" model="mrp.routing">
+            <field name="name">Impression enveloppes</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+        </record>
+        <record id="mrp_routing_workcenter_offsetcalage0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 1:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression enveloppes')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 1:0')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_offsetcalage1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 2:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression enveloppes')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 2:0')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_offsetcalage2" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 4:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression enveloppes')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 4:0')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_offsetroulage0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Roulage </field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression enveloppes')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Roulage')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_offsetroulagegrandformat0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Roulage grand format</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression enveloppes')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Roulage grand format')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_offsetsortieplaque0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Sortie plaque</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression enveloppes')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Sortie plaque')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_fabricationimprim0" model="mrp.routing">
+            <field name="name">Fabrication imprimé</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+        </record>
+        <record id="mrp_routing_workcenter_fusionsimple0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Fusion simple</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Fusion simple')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_fusionparamtre0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Fusion paramétrée</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Fusion param\xe9tr\xe9e')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_sortiesnumriquesnsrag0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Sorties numériques - n:0 SRA3 &lt;135g</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Sorties num\xe9riques - n:0 SRA3 &lt;135g')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_sortiesnumriquesnsrag1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Sorties numériques - n:0 SRA3 &lt;176g</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Sorties num\xe9riques - n:0 SRA3 &lt;176g')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_sortiesnumriquesnsrag2" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Sorties numériques - n:0 SRA3 &lt;300g</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Sorties num\xe9riques - n:0 SRA3 &lt;300g')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_faconnageperforation0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Faconnage : Perforation</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Faconnage : Perforation')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_faconnagerainage0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Faconnage : Rainage</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Faconnage : Rainage')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_pliagefeuillesa0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Pliage feuilles A4</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Pliage feuilles A4')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_pliagefeuillesagrammagelourd0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Pliage feuilles A4 : Grammage lourd</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Pliage feuilles A4 : Grammage lourd')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_pliagefeuillessra0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Pliage feuilles SRA3</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Pliage feuilles SRA3')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_pliagefeuillessragrammagelourd0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Pliage feuilles SRA3 : Grammage lourd</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Pliage feuilles SRA3 : Grammage lourd')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_coupe0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Coupe</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Fabrication imprim\xe9')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Coupe')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_impressionpapier0" model="mrp.routing">
+            <field name="name">Impression papier</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+        </record>
+        <record id="mrp_routing_workcenter_offsetsortieplaque1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Sortie plaque</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression papier')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Sortie plaque')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_offsetcalage3" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 1:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression papier')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 1:0')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_offsetcalage4" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 2:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression papier')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 2:0')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_offsetcalage5" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 4:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression papier')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 4:0')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_offsetroulagegrandformat1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Roulage grand format</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Impression papier')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Roulage grand format')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_impressionjetdencresurenveloppes0" model="mrp.routing">
+            <field name="name">Impression jet d'encre sur enveloppes</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+        </record>
+        <record id="mrp_routing_workcenter_adressageprparation0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Adressage : Préparation</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u&quot;Impression jet d'encre sur enveloppes&quot;)]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Adressage : Pr\xe9paration')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_impressionjetdencregrandeimage0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Impression jet d'encre grande image</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u&quot;Impression jet d'encre sur enveloppes&quot;)]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u&quot;Impression jet d'encre grande image&quot;)]"/>
+        </record>
+        <record id="mrp_routing_workcenter_impressionjetdencrepetiteimage0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Impression jet d'encre petite image</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u&quot;Impression jet d'encre sur enveloppes&quot;)]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u&quot;Impression jet d'encre petite image&quot;)]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_campagneemail0" model="mrp.routing">
+            <field name="name">Campagne email</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+        </record>
+        <record id="mrp_routing_workcenter_emailmiseenpage0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Email : Mise en page</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Campagne email')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Email : Mise en page')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_emailtestdecampagne0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Email : Test de campagne</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Campagne email')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Email : Test de campagne')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_prparationfichierdonnes0" model="mrp.routing">
+            <field name="name">Préparation fichier données</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+        </record>
+        <record id="mrp_routing_workcenter_dataprparationdonnessimple0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Data : Préparation données simple</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Pr\xe9paration fichier donn\xe9es')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Data : Pr\xe9paration donn\xe9es simple')]"/>
+        </record>
+        <record id="mrp_routing_workcenter_dataprparationdonnescomplexe0" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Data : Préparation données complexe</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="mrp.routing" name="routing_id" search="[('name', '=', u'Pr\xe9paration fichier donn\xe9es')]"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Data : Pr\xe9paration donn\xe9es complexe')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_offsetcalage6" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 1:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionenveloppes0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 1:0')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_offsetcalage7" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 2:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionenveloppes0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 2:0')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_offsetcalage8" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 4:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionenveloppes0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 4:0')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_offsetroulage1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Roulage </field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionenveloppes0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Roulage')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_offsetroulagegrandformat2" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Roulage grand format</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionenveloppes0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Roulage grand format')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_offsetsortieplaque2" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Sortie plaque</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionenveloppes0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Sortie plaque')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_fusionsimple1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Fusion simple</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Fusion simple')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_fusionparamtre1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Fusion paramétrée</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Fusion param\xe9tr\xe9e')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_sortiesnumriquesnsrag3" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Sorties numériques - n:0 SRA3 &lt;135g</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Sorties num\xe9riques - n:0 SRA3 &lt;135g')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_sortiesnumriquesnsrag4" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Sorties numériques - n:0 SRA3 &lt;176g</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Sorties num\xe9riques - n:0 SRA3 &lt;176g')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_sortiesnumriquesnsrag5" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Sorties numériques - n:0 SRA3 &lt;300g</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Sorties num\xe9riques - n:0 SRA3 &lt;300g')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_faconnageperforation1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Faconnage : Perforation</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Faconnage : Perforation')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_faconnagerainage1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Faconnage : Rainage</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Faconnage : Rainage')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_pliagefeuillesa1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Pliage feuilles A4</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Pliage feuilles A4')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_pliagefeuillesagrammagelourd1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Pliage feuilles A4 : Grammage lourd</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Pliage feuilles A4 : Grammage lourd')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_pliagefeuillessra1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Pliage feuilles SRA3</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Pliage feuilles SRA3')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_pliagefeuillessragrammagelourd1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Pliage feuilles SRA3 : Grammage lourd</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Pliage feuilles SRA3 : Grammage lourd')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_coupe1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Coupe</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Coupe')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_offsetsortieplaque3" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Sortie plaque</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionpapier0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Sortie plaque')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_offsetcalage9" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 1:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionpapier0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 1:0')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_offsetcalage10" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 2:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionpapier0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 2:0')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_offsetcalage11" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Calage 4:0</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionpapier0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Calage 4:0')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_offsetroulagegrandformat3" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Offset : Roulage grand format</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionpapier0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Offset : Roulage grand format')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_adressageprparation1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Adressage : Préparation</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionjetdencresurenveloppes0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Adressage : Pr\xe9paration')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_impressionjetdencregrandeimage1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Impression jet d'encre grande image</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionjetdencresurenveloppes0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u&quot;Impression jet d'encre grande image&quot;)]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_impressionjetdencrepetiteimage1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Impression jet d'encre petite image</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_impressionjetdencresurenveloppes0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u&quot;Impression jet d'encre petite image&quot;)]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_emailmiseenpage1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Email : Mise en page</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_campagneemail0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Email : Mise en page')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_emailtestdecampagne1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Email : Test de campagne</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_campagneemail0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Email : Test de campagne')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_dataprparationdonnessimple1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Data : Préparation données simple</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_prparationfichierdonnes0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Data : Pr\xe9paration donn\xe9es simple')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_routing_workcenter_dataprparationdonnescomplexe1" model="mrp.routing.workcenter">
+            <field eval="1.0" name="cycle_nbr"/>
+            <field name="name">Data : Préparation données complexe</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="routing_id" ref="mrp_routing_prparationfichierdonnes0"/>
+            <field model="mrp.workcenter" name="workcenter_id" search="[('name', '=', u'Data : Pr\xe9paration donn\xe9es complexe')]"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_offsetsortieplaque0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Plaques')]"/>
+            <field eval="10.1" name="costs_hour"/>
+            <field eval="1" name="active"/>
+            <field eval="0.1" name="time_cycle"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Offset : Sortie plaque</field>
+            <field eval="1000.0" name="capacity_per_hour"/>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_offsetcalage0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Calage')]"/>
+            <field eval="11.0" name="costs_hour"/>
+            <field eval="1" name="active"/>
+            <field eval="0.125" name="time_cycle"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Offset : Calage 1:0</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_offsetcalage1" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Calage')]"/>
+            <field eval="12.0" name="costs_hour"/>
+            <field eval="1" name="active"/>
+            <field eval="0.25" name="time_cycle"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Offset : Calage 2:0</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_offsetcalage2" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Calage')]"/>
+            <field eval="13.0" name="costs_hour"/>
+            <field eval="1" name="active"/>
+            <field eval="0.5" name="time_cycle"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Offset : Calage 4:0</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_offsetroulage0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Roulage')]"/>
+            <field eval="0.01" name="costs_hour"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Offset : Roulage</field>
+            <field eval="10000.0" name="capacity_per_hour"/>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_offsetroulagegrandformat0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Roulage')]"/>
+            <field eval="15.0" name="costs_hour"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Offset : Roulage grand format</field>
+            <field eval="8000.0" name="capacity_per_hour"/>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_fusionsimple0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Fusion')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Fusion simple</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_fusionparamtre0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Fusion')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Fusion paramétrée</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_coupe0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Massicot')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Coupe</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_sortiesnumriquesnsrag0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Sorties')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Sorties numériques - n:0 SRA3 &lt;135g</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_sortiesnumriquesnsrag1" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Sorties')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Sorties numériques - n:0 SRA3 &lt;176g</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_sortiesnumriquesnsrag2" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Sorties')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Sorties numériques - n:0 SRA3 &lt;300g</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_faconnageperforation0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Finition')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Faconnage : Perforation</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_faconnagerainage0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Finition')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Faconnage : Rainage</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_pliagefeuillesa0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Pliage')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Pliage feuilles A4</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_pliagefeuillesagrammagelourd0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Pliage')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Pliage feuilles A4 : Grammage lourd</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_pliagefeuillessra0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Pliage')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Pliage feuilles SRA3</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_pliagefeuillessragrammagelourd0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Pliage')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Pliage feuilles SRA3 : Grammage lourd</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_adressageprparation0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Adressage')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Adressage : Préparation</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_impressionjetdencregrandeimage0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u&quot;Jet d'encre&quot;)]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Impression jet d'encre grande image</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_impressionjetdencrepetiteimage0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u&quot;Jet d'encre&quot;)]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Impression jet d'encre petite image</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_emailmiseenpage0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Email')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Email : Mise en page</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_emailtestdecampagne0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Email')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Email : Test de campagne</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_dataprparationdonnessimple0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Data')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Data : Préparation données simple</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="mrp_workcenter_dataprparationdonnescomplexe0" model="mrp.workcenter">
+            <field eval="1.0" name="time_efficiency"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field model="product.category" name="product_categ_id" search="[('name', '=', u'Data')]"/>
+            <field eval="1" name="active"/>
+            <field eval="1.0" name="capacity_per_cycle"/>
+            <field name="name">Data : Préparation données complexe</field>
+            <field name="resource_type">material</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_campagneemail0" model="product.product">
+            <field name="supply_method">produce</field>
+            <field eval="1.0" name="list_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">EDI01</field>
+            <field name="name_template">Campagne email</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Editique')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Campagne email</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+        <record id="mrp_bom_campagneemail1" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Campagne email</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field name="routing_id" ref="mrp_routing_campagneemail0"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Campagne email')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+        <record id="mrp_bom_envoi2" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Envoi</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Envoi')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="mrp_bom_campagneemail0"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_prparationfichierdonnes0" model="product.product">
+            <field name="supply_method">produce</field>
+            <field eval="1.0" name="list_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">EDI02</field>
+            <field name="name_template">Préparation fichier données</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">service</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Editique')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Préparation fichier données</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+        <record id="mrp_bom_prparationfichierdonnes1" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Préparation fichier données</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field name="routing_id" ref="mrp_routing_prparationfichierdonnes0"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Pr\xe9paration fichier donn\xe9es')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xafgrs0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field eval="0.6" name="list_price"/>
+            <field eval="0.5" name="standard_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/110x220 AF 80grs</field>
+            <field name="name_template">110x220 AF 80grs</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="1" name="margin_perso"/>
+            <field name="type">product</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 500')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">110x220 AF 80grs</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xafgrs1" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/110x220 AF 90grs</field>
+            <field name="name_template">110x220 AF 90grs</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 500')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">110x220 AF 90grs</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xsfgrs0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/110x220 SF 80grs</field>
+            <field name="name_template">110x220 SF 80grs</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 500')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">110x220 SF 80grs</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xsfgrs1" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/110x220 SF 90grs</field>
+            <field name="name_template">110x220 SF 90grs</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 500')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">110x220 SF 90grs</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xafgrsim0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag1">Meca</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/114x229 AF 80grs : IM</field>
+            <field name="name_template">114x229 AF 80grs : IM</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 1000')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">114x229 AF 80grs : IM</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xsfgrsim0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag1">Meca</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/114x229 SF 80grs : IM</field>
+            <field name="name_template">114x229 SF 80grs : IM</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 1000')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">114x229 SF 80grs : IM</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xafgrs2" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/162x229 AF 80grs</field>
+            <field name="name_template">162x229 AF 80grs</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 500')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">162x229 AF 80grs</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xafgrsim1" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag1">Meca</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/162x229 AF 80grs : IM</field>
+            <field name="name_template">162x229 AF 80grs : IM</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 1000')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">162x229 AF 80grs : IM</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xafgrs3" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/162x229 AF 90grs</field>
+            <field name="name_template">162x229 AF 90grs</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 500')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">162x229 AF 90grs</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xsfgrs2" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/162x229 SF 80grs</field>
+            <field name="name_template">162x229 SF 80grs</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 500')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">162x229 SF 80grs</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xsfgrsim1" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag1">Meca</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/162x229 SF 80grs : IM</field>
+            <field name="name_template">162x229 SF 80grs : IM</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 1000')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">162x229 SF 80grs : IM</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xsfgrs3" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/162x229 SF 90grs</field>
+            <field name="name_template">162x229 SF 90grs</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 500')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">162x229 SF 90grs</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xsfgrs4" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/190x190 SF 135grs</field>
+            <field name="name_template">190x190 SF 135grs</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 1000')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">190x190 SF 135grs</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xafgrs4" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag2">Grandes</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/229x324 AF 90grs</field>
+            <field name="name_template">229x324 AF 90grs</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 250')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">229x324 AF 90grs</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xafgrsim2" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag1">Meca</field>
+            <field name="tag2">Grandes</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/229x324 AF 90grs : IM</field>
+            <field name="name_template">229x324 AF 90grs : IM</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 250')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">229x324 AF 90grs : IM</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xsfgrs5" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag2">Grandes</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/229x324 SF 90grs</field>
+            <field name="name_template">229x324 SF 90grs</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 250')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">229x324 SF 90grs</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_xsfgrsim2" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag1">Meca</field>
+            <field name="tag2">Grandes</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Env/229x324 SF 90grs : IM</field>
+            <field name="name_template">229x324 SF 90grs : IM</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton 250')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">229x324 SF 90grs : IM</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Enveloppe')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_fabricationdunimprim0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field eval="1.0" name="list_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">NUM01</field>
+            <field name="name_template">Fabrication d'un imprimé</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">service</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Atelier num\xe9rique')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Fabrication d'un imprimé</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+        <record id="mrp_bom_fabricationdunimprim1" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Fabrication d'un imprimé</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field name="routing_id" ref="mrp_routing_fabricationimprim0"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u&quot;Fabrication d'un imprim\xe9&quot;)]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+        <record id="mrp_bom_noir2" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Noir</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Noir')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="mrp_bom_fabricationdunimprim0"/>
+        </record>
+        <record id="mrp_bom_couleur2" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Couleur</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Couleur')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="mrp_bom_fabricationdunimprim0"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_impressionenveloppes0" model="product.product">
+            <field name="supply_method">produce</field>
+            <field eval="1.0" name="list_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">OFF01</field>
+            <field name="name_template">Impression enveloppes</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">service</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Atelier Offset')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Impression enveloppes</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="0" name="purchase_ok"/>
+        </record>
+        <record id="mrp_bom_impressionenveloppes1" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Impression enveloppes</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field name="routing_id" ref="mrp_routing_impressionenveloppes0"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Impression enveloppes')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+        <record id="mrp_bom_plaque4" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Plaque</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Plaque')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="mrp_bom_impressionenveloppes0"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_impressionjetdencresurenveloppes0" model="product.product">
+            <field name="supply_method">produce</field>
+            <field eval="1.0" name="list_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">OFF02</field>
+            <field name="name_template">Impression jet d'encre sur enveloppes</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">service</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Atelier Offset')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Impression jet d'encre sur enveloppes</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+        <record id="mrp_bom_impressionjetdencresurenveloppes1" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Impression jet d'encre sur enveloppes</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field name="routing_id" ref="mrp_routing_impressionjetdencresurenveloppes0"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u&quot;Impression jet d'encre sur enveloppes&quot;)]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_impressionpapier0" model="product.product">
+            <field name="supply_method">produce</field>
+            <field eval="1.0" name="list_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">OFF03</field>
+            <field name="name_template">Impression papier</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">service</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Atelier Offset')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Impression papier</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+        <record id="mrp_bom_impressionpapier1" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Impression papier</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field name="routing_id" ref="mrp_routing_impressionpapier0"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Impression papier')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+        </record>
+        <record id="mrp_bom_plaque5" model="mrp.bom">
+            <field eval="[(6,0,[])]" name="property_ids"/>
+            <field name="name">Plaque</field>
+            <field name="product_uom" ref="product.product_uom_unit"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1" name="active"/>
+            <field model="product.product" name="product_id" search="[('name', '=', u'Plaque')]"/>
+            <field eval="1.0" name="product_qty"/>
+            <field eval="1.0" name="product_efficiency"/>
+            <field name="type">normal</field>
+            <field name="bom_id" ref="mrp_bom_impressionpapier0"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_blanchet0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Off/Blanchet</field>
+            <field name="name_template">Blanchet</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de 100f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Offset')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Blanchet</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_plaque0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field eval="1.95" name="list_price"/>
+            <field eval="1.5" name="standard_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Off/Plaque</field>
+            <field name="name_template">Plaque</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Offset')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Plaque</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cbgx0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field eval="0.5" name="list_price"/>
+            <field name="tag2">inf.135</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Pap/CB 115g : 640x450</field>
+            <field name="name_template">CB 115g : 640x450</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Paquet 500f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Papier')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">CB 115g : 640x450</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cbgx1" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag2">inf.176</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Pap/CB 135g : 640x450</field>
+            <field name="name_template">CB 135g : 640x450</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Paquet 500f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Papier')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">CB 135g : 640x450</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cbgx2" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag2">inf.176</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Pap/CB 170g : 640x450</field>
+            <field name="name_template">CB 170g : 640x450</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Paquet 500f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Papier')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">CB 170g : 640x450</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cbgx3" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag1">ImpOff</field>
+            <field name="tag2">inf.300</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Pap/CB 250g : 640x450</field>
+            <field name="name_template">CB 250g : 640x450</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Paquet 500f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Papier')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">CB 250g : 640x450</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cbgx4" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag1">ImpOff</field>
+            <field name="tag2">inf.300</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Pap/CB 300g : 640x450</field>
+            <field name="name_template">CB 300g : 640x450</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Paquet 500f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Papier')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">CB 300g : 640x450</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cmgx0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag2">inf.135</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Pap/CM 115g : 640x450</field>
+            <field name="name_template">CM 115g : 640x450</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Paquet 500f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Papier')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">CM 115g : 640x450</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cmgx1" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag2">inf.176</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Pap/CM 135g : 640x450</field>
+            <field name="name_template">CM 135g : 640x450</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Paquet 500f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Papier')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">CM 135g : 640x450</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cmgx2" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag2">inf.176</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Pap/CM 170g : 640x450</field>
+            <field name="name_template">CM 170g : 640x450</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Paquet 250f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Papier')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">CM 170g : 640x450</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cmgx3" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag1">ImpOff</field>
+            <field name="tag2">inf.300</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Pap/CM 250g : 640x450</field>
+            <field name="name_template">CM 250g : 640x450</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Paquet 500f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Papier')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">CM 250g : 640x450</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cmgx4" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="tag1">ImpOff</field>
+            <field name="tag2">inf.300</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Pap/CM 300g : 640x450</field>
+            <field name="name_template">CM 300g : 640x450</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Paquet 500f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Papier')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">CM 300g : 640x450</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_ofgx0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field eval="701.5" name="list_price"/>
+            <field name="tag2">inf.135</field>
+            <field eval="610.0" name="standard_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">Pap/OF 090g : 640x450</field>
+            <field name="name_template">OF 090g : 640x450</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Cube 18000f')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Papier')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">OF 090g : 640x450</field>
+            <field model="product.uom" name="uom_id" search="[('name', '=', u'Feuille')]"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cartespvc0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Cartes PVC20</field>
+            <field name="name_template">Cartes PVC20</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Cartes PVC20</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cartespvctroue0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Cartes PVC20 trouée</field>
+            <field name="name_template">Cartes PVC20 trouée</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Cartes PVC20 trouée</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cartespvcversoinscr0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Cartes PVC20 Verso inscr</field>
+            <field name="name_template">Cartes PVC20 Verso inscr</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Cartes PVC20 Verso inscr</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cartespvc1" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Cartes PVC30</field>
+            <field name="name_template">Cartes PVC30</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Cartes PVC30</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cartespvchico0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Cartes PVC30 HiCo</field>
+            <field name="name_template">Cartes PVC30 HiCo</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Cartes PVC30 HiCo</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cartespvcloco0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Cartes PVC30 LoCo</field>
+            <field name="name_template">Cartes PVC30 LoCo</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Cartes PVC30 LoCo</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cartespvcelts0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Cartes PVC 3 elts</field>
+            <field name="name_template">Cartes PVC 3 elts</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Cartes PVC 3 elts</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_cleaningkit0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Cleaning kit</field>
+            <field name="name_template">Cleaning kit</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Cleaning kit</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_portecartetrou0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Porte carte troué</field>
+            <field name="name_template">Porte carte troué</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Porte carte troué</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_rubanfull0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Ruban full 4:0</field>
+            <field name="name_template">Ruban full 4:0</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Ruban full 4:0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_rubanfull1" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Ruban full 4:1</field>
+            <field name="name_template">Ruban full 4:1</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Ruban full 4:1</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_rubanfullg0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Ruban full G:0</field>
+            <field name="name_template">Ruban full G:0</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Ruban full G:0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_rubanfullk0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Ruban full K:0</field>
+            <field name="name_template">Ruban full K:0</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Ruban full K:0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_rubanfullkvernis0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Ruban full K:0 vernis</field>
+            <field name="name_template">Ruban full K:0 vernis</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Ruban full K:0 vernis</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_rubanfulln0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Ruban full N:0</field>
+            <field name="name_template">Ruban full N:0</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Ruban full N:0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_rubanfulls0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Ruban full S:0</field>
+            <field name="name_template">Ruban full S:0</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Ruban full S:0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_rubanhalf0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Ruban half 4:0</field>
+            <field name="name_template">Ruban half 4:0</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Ruban half 4:0</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_rubanhologram0" model="product.product">
+            <field name="supply_method">buy</field>
+            <field name="procure_method">make_to_stock</field>
+            <field name="default_code">PVC/Ruban hologram</field>
+            <field name="name_template">Ruban hologram</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field model="product.uom" name="uom_po_id" search="[('name', '=', u'Carton de x')]"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'PVC')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Ruban hologram</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_couleur0" model="product.product">
+            <field name="supply_method">produce</field>
+            <field eval="1.0" name="list_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="name_template">Couleur</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Couleur</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_envoi0" model="product.product">
+            <field name="supply_method">produce</field>
+            <field eval="1.0" name="list_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="name_template">Envoi</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field model="product.category" name="categ_id" search="[('name', '=', u'Email')]"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Envoi</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="product_product_noir0" model="product.product">
+            <field name="supply_method">produce</field>
+            <field eval="1.0" name="list_price"/>
+            <field name="procure_method">make_to_stock</field>
+            <field name="name_template">Noir</field>
+            <field name="cost_method">standard</field>
+            <field eval="1.0" name="uos_coeff"/>
+            <field eval="0" name="margin_perso"/>
+            <field name="type">consu</field>
+            <field eval="1" name="sale_ok"/>
+            <field eval="0" name="track_outgoing"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field eval="1.0" name="produce_delay"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field eval="1.0" name="price_margin"/>
+            <field name="valuation">manual_periodic</field>
+            <field eval="0" name="track_incoming"/>
+            <field name="property_stock_production" ref="stock.location_production"/>
+            <field eval="[(6,0,[ref('False')])]" name="supplier_taxes_id"/>
+            <field eval="7.0" name="sale_delay"/>
+            <field eval="1" name="active"/>
+            <field name="property_stock_inventory" ref="stock.location_inventory"/>
+            <field eval="0" name="rental"/>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="mes_type">fixed</field>
+            <field name="name">Noir</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field eval="0" name="track_production"/>
+            <field name="property_stock_procurement" ref="stock.location_procurement"/>
+            <field eval="[(6,0,[ref('False')])]" name="taxes_id"/>
+            <field eval="1" name="purchase_ok"/>
+        </record>
+    </data>
+</openerp>

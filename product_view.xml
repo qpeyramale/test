@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="product_category_form_view" model="ir.ui.view">
+            <field name="name">product.category.form.simpac</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view" />
+            <field name="arch" type="xml">
+                <group name="parent" position="before">
+                    <group name="taux" col="4" colspan="4">
+                        <field name="taux"/>
+                        <field name="margin"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+        
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="name">product.normal.form.simpac</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <field name="list_price" position="after">
+                    <field name="margin_perso"/>
+                    <field name="margin" attrs="{'readonly': [('margin_perso','=',False)]}"/> %%
+                </field>
+                <notebook position="inside">
+                    <page string="Impression">
+                        <group>
+                            <field name="tag1"/>
+                            <field name="tag2"/>
+                            <field name="tag3"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_configurator" model="ir.ui.view">
+            <field name="name">Configurator</field>
+            <field name="model">configurator</field>
+            <field name="arch" type="xml">
+                <form string="Configurator" version="7.0">
+                    <group colspan="4" col="6">
+                        <group colspan="2">
+                            <group string="Atelier">
+<!--
+                                <div class="oe_right oe_button_box" name="ateliers"> 
+                                    <button string="Editique" readonly="1"/>
+                                    <button string="Faconnage"/>
+                                    <button string="Numerique" class="oe_highlight"/>
+                                    <button string="Offset"/>
+                                    <button string="Routage"/>
+                                </div>
+-->
+<!--
+                                <field name="atelier" nolabel="1" />
+-->
+                                <field name="atelier_id" nolabel="1" domain="[('parent_id','=','Atelier')]"/>
+                            </group>
+                            <newline/>
+                            <group string="Articles">
+<!--
+                                <label string="Choisir un atelier" attrs="{'invisible': [('atelier', '!=', False)]}"/>
+                                <field name="article_offset"  attrs="{'invisible': [('atelier', '!=', 'offset')]}" nolabel="1"/>
+                                <label string="En construction" attrs="{'invisible': [('atelier', '!=', 'editique')]}"/>
+                                <label string="En construction" attrs="{'invisible': [('atelier', '!=', 'faconnage')]}"/>
+                                <label string="En construction" attrs="{'invisible': [('atelier', '!=', 'numerique')]}"/>
+                                <label string="En construction" attrs="{'invisible': [('atelier', '!=', 'routage')]}"/>
+-->
+                                <field name="article_id" on_change="onchange_article(article_id)"
+                                    domain="[('categ_id','=',atelier_id)]" nolabel="1"/>
+                                <field name="article_code" invisible="1"/>
+                            </group>
+                        </group>
+                        <group colspan="4">
+                            <group  string="Config" >
+<!--
+                                <label string="Choisir un article" attrs="{'invisible': [('article_offset', '!=', False)]}"/>
+-->
+                                <group attrs="{'invisible': [('article_code', '!=', 'OFF01')]}">
+                                    <field name="quantite_env"
+                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="produit_env" 
+                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,conf_product_lines,conf_workcenter_lines)"
+                                    domain="[('categ_id','=','Enveloppes')]" style="width: 100%%"/>
+                                    <field name="env_fournies"
+                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,conf_product_lines,conf_workcenter_lines)"
+                                    />
+                                    <field name="impression_env" 
+                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'OFF02')]}">
+                                    <field name="quantite_jet"
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="produit_jet" 
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
+                                    domain="[('categ_id','=','Enveloppes')]" style="width: 100%%"/>
+                                    <field name="jet_fournies"
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
+                                    />
+                                    <field name="impression_jet" 
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                    <field name="zone_jet" 
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 30%%"/>
+                                    <field name="adressage_jet" 
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'OFF03')]}">
+                                    <field name="quantite_pap"
+                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_pap,impression_pap,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="produit_pap" 
+                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_pap,impression_pap,conf_product_lines,conf_workcenter_lines)"
+                                    domain="[('categ_id','=','Papier'),('tag1','=','ImpOff')]" style="width: 100%%"/>
+                                    <field name="pose_pap"
+                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_pap,impression_pap,conf_product_lines,conf_workcenter_lines)"
+                                    />
+                                    <field name="impression_pap" 
+                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_pap,impression_pap,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'EDI01')]}">
+                                    <field name="quantite_email"
+                                    on_change="onchange_email(quantite_email,heures_email,notes_email,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="heures_email" 
+                                    on_change="onchange_email(quantite_email,heures_email,notes_email,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 50%%"/>
+                                    <field name="notes_email" 
+                                    on_change="onchange_email(quantite_email,heures_email,notes_email,conf_product_lines,conf_workcenter_lines)"
+                                    />
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'EDI02')]}">
+                                    <field name="type_prepa"
+                                    on_change="onchange_prepa(type_prepa,heures_prepa,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="heures_prepa" attrs="{'invisible': [('type_prepa', '!=', 'specifique')]}"
+                                    on_change="onchange_prepa(type_prepa,heures_prepa,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 50%%"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'NUM01')]}" col="4">
+                                    <field name="quantite_imp" colspan="4"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        style="width: 50%%" />
+                                    <field name="perso_imp"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="perforation_imp"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="impression_imp"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="rainage_imp"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="pose_imp"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="pliage_imp"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="produit_imp" colspan="4"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        domain="[('categ_id','=','Papier')]"/>
+                                </group>
+                            </group>
+                        </group>
+                    </group>
+                    <group string="Chiffrage" col="4" colspan="4">
+                        <notebook>
+                            <page string="Résumé">
+                                <field name="quantite" invisible="1"/>
+                                <field name="name" colspan="4"/>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" >
+                                    <field name="prix_revient" readonly="1"/>
+                                    <field name="prix_theo" readonly="1"/>
+                                    <field name="prix_marche" readonly="1"/>
+                                    <field name="prix_global_theo" readonly="1"/>
+                                    <field name="prix_global_marche" readonly="1"/>
+                                    <field name="prix_offert"/>
+                                </group>
+                            </page>
+                            <page string="Détails">
+                                <field name="conf_product_lines" colspan="4" readonly="0" nolabel="1">
+                                    <tree>
+                                        <field name="product_id"/>
+                                        <field name="cout"/>
+                                        <field name="quantite"/>
+                                    </tree>
+                                </field>
+                                <field name="conf_workcenter_lines" colspan="4" readonly="0" nolabel="1">
+                                    <tree>
+                                        <field name="workcenter_id"/>
+                                        <field name="cout_marche"/>
+                                        <field name="quantite"/>
+                                        <field name="temps"/>
+                                        <field name="cout_theo"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+
+                    <footer>
+                        <button name="make_order_line" string="Créer ligne de devis" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Annuler" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_view_configurator" model="ir.actions.act_window">
+            <field name="name">Configurateur</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">configurator</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_configurator"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+
+    </data>
+</openerp>
+
