@@ -1,0 +1,16 @@
+id,name
+mrp_routing_env,Impression enveloppes
+mrp_routing_imp,Fabrication imprimé
+mrp_routing_pap,Impression papier
+mrp_routing_jet,Impression jet d'encre sur enveloppes
+mrp_routing_email,Campagne email
+mrp_routing_prepa,Préparation fichier données
+mrp_routing_doc,Personnalisation d’un document
+mrp_routing_npai,Traitement NPAI
+mrp_routing_film,Mise sous film
+mrp_routing_meca,Insertion mécanisée sous enveloppe
+mrp_routing_manu,Insertion manuelle sous enveloppe
+mrp_routing_enc,Encartage
+mrp_routing_col,Collage de document
+mrp_routing_livre,Fabrication d'un livre relié dos carré
+mrp_routing_livret,Fabrication d'un livret

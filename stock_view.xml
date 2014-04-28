@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_picking_out_form" model="ir.ui.view">
+            <field name="name">stock.picking.out.form</field>
+            <field name="model">stock.picking.out</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form" />
+            <field eval="100" name="priority"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Produits finis">
+                        <field name="order_line_ids" domain="[('produit_fini','=',True)]" nolabel="1"/>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</openerp>

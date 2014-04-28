@@ -6,21 +6,43 @@
             <field name="model">mrp.workcenter</field>
             <field name="inherit_id" ref="mrp.mrp_workcenter_view" />
             <field name="arch" type="xml">
+                <field name="time_efficiency" position="replace"/>
+                <field name="capacity_per_cycle" position="replace"/>
+                <field name="time_start" position="replace"/>
+                <field name="time_stop" position="replace"/>
+                <field name="product_id" position="replace"/>
+                <field name="costs_hour" position="replace"/>
+                <field name="costs_cycle" position="replace"/>
                 <field name="active" position="before">
                     <field name="product_categ_id"/>
                 </field>
-                <field name="capacity_per_cycle" position="after">
-                    <field name="capacity_per_hour"/>
-                </field>
                 <field name="time_cycle" position="replace">
-                    <field name="time_cycle" digits="(14,3)"/>
+                    <field name="capacity_per_hour"/>
+                    <field name="time_cycle" string="Temps de calage (h)" digits="(14,3)"/>
                 </field>
-                <field name="costs_cycle" position="after">
+                <group string="Costing Information" position="inside">
                     <field name="prix_theo_fixe"/>
                     <field name="prix_theo_variable"/>
                     <field name="prix_marche_fixe"/>
                     <field name="prix_marche_variable"/>
-                </field>
+                </group>
+                <notebook position="inside">
+                    <page string="Informations classiques">
+                        <group>
+                            <group string="Information sur la capacité">
+                                <field name="time_efficiency" />
+                                <field name="capacity_per_cycle" />
+                                <field name="time_start" />
+                                <field name="time_stop" />
+                            </group>
+                            <group string="Information de coût">
+                                <field name="product_id" />
+                                <field name="costs_hour" />
+                                <field name="costs_cycle" />
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
              </field>     
         </record>
     </data>

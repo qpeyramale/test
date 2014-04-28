@@ -27,9 +27,8 @@
                 <notebook position="inside">
                     <page string="Impression">
                         <group>
-                            <field name="tag1"/>
-                            <field name="tag2"/>
-                            <field name="tag3"/>
+                            <field name="tag_ids_fnct" invisible="1"/>
+                            <field name="tag_ids"/>
                         </group>
                     </page>
                 </notebook>

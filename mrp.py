@@ -39,8 +39,15 @@ class mrp_workcenter(osv.osv):
         'prix_theo_variable': fields.function(_get_prix,string=u"Prix théorique variable",digits=(12,6),multi="prix"),
         'prix_marche_fixe': fields.float(u'Prix marché fixe'),
         'prix_marche_variable': fields.float(u'Prix marché variable'),
+        'name_resource': fields.related('resource_id', 'name', string="Resource Name", type='char', size=128, store=True, select=True),
     }
     _defaults = {
      }
+     
+    _order = "name_resource"
 
 mrp_workcenter()
+
+#~ class resource_resource(osv.osv):
+    #~ _inherit = "resource.resource"
+    #~ _order = "name asc"

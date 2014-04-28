@@ -1,0 +1,59 @@
+id,name,product_categ_id/id,prix_marche_fixe,prix_marche_variable,time_cycle,capacity_per_hour
+mrp_workcenter_1,Editique : Data : Préparation complexe,product_category_atelier_editique_data,150.0,,1.0,
+mrp_workcenter_2,Editique : Data : Préparation simple,product_category_atelier_editique_data,50.0,,0.333,
+mrp_workcenter_3,Editique : Email : Mise en page,product_category_atelier_editique_email,300.0,,2.0,
+mrp_workcenter_4,Editique : Email : Test de campagne,product_category_atelier_editique_email,75.0,,0.5,
+mrp_workcenter_5,Editique : MO,product_category_atelier_editique,,150.0,,1.0
+mrp_workcenter_6,Faconnage : Encartage avec point de colle,product_category_atelier_fac_encartage,50.0,0.1,0.25,450.0
+mrp_workcenter_7,Faconnage : Encartage sans collage,product_category_atelier_fac_encartage,25.0,0.05,0.25,1000.0
+mrp_workcenter_8,Faconnage : Encollage manuel 1 bande,product_category_atelier_fac_encollage,25.0,0.15,0.25,200.0
+mrp_workcenter_9,Faconnage : Pliure,product_category_atelier_routage_pliage,,0.05,,720.0
+mrp_workcenter_10,Numérique : Coupe,product_category_atelier_num_massicot,,2.0,,120.0
+mrp_workcenter_11,Numérique : Fusion paramétrée,product_category_atelier_num_fusion,125.0,,0.75,
+mrp_workcenter_12,Numérique : Fusion simple,product_category_atelier_num_fusion,50.0,,0.25,
+mrp_workcenter_13,Numérique : MO,product_category_atelier_num,,,,1.0
+mrp_workcenter_14,Numérique : Perforation,product_category_atelier_num_finition,50.0,0.05,0.333,3000.0
+mrp_workcenter_15,Numérique : Piquage,product_category_atelier_num_finition,30.0,0.3,0.125,500.0
+mrp_workcenter_16,Numérique : Rainage,product_category_atelier_num_finition,50.0,0.3,0.333,500.0
+mrp_workcenter_17,Numérique : Reliure dos carré collé,product_category_atelier_num_reliure,75.0,10.0,0.5,25.0
+mrp_workcenter_18,Numérique : Sorties n:0 A4 <135g,product_category_atelier_num_sorties,50.0,0.04,0.05,4200.0
+mrp_workcenter_19,Numérique : Sorties n:0 A4 <176g,product_category_atelier_num_sorties,50.0,0.05,0.05,3150.0
+mrp_workcenter_20,Numérique : Sorties n:0 A4 <300g,product_category_atelier_num_sorties,50.0,0.08,0.05,2100.0
+mrp_workcenter_21,Numérique : Sorties n:0 SRA3 <135g,product_category_atelier_num_sorties,50.0,0.08,0.05,2100.0
+mrp_workcenter_22,Numérique : Sorties n:0 SRA3 <176g,product_category_atelier_num_sorties,50.0,0.1,0.05,1575.0
+mrp_workcenter_23,Numérique : Sorties n:0 SRA3 <300g,product_category_atelier_num_sorties,50.0,0.15,0.05,1050.0
+mrp_workcenter_24,Offset : Calage 1:0,product_category_atelier_offset_calage,,80.0,,4.0
+mrp_workcenter_25,Offset : Calage 2:0,product_category_atelier_offset_calage,,120.0,,2.0
+mrp_workcenter_26,Offset : Calage 4:0,product_category_atelier_offset_calage,,160.0,,1.33333333333
+mrp_workcenter_27,Offset : Jet d'encre grande image,product_category_atelier_offset_jet,25.0,1.0,0.125,100.0
+mrp_workcenter_28,Offset : Jet d'encre petite image,product_category_atelier_offset_jet,25.0,0.5,0.125,250.0
+mrp_workcenter_29,Offset : Roulage,product_category_atelier_offset_roulage,,0.03,,12500.0
+mrp_workcenter_30,Offset : Roulage grand format,product_category_atelier_offset_roulage,,0.035,,8000.0
+mrp_workcenter_31,Offset : Sortie plaque,product_category_atelier_offset_plaques,,20.0,,8.0
+mrp_workcenter_32,Routage : Adressage en ligne,product_category_atelier_routage_adressage,25.0,0.03,0.125,4000.0
+mrp_workcenter_33,Routage : Adressage hors ligne,product_category_atelier_routage_adressage,50.0,0.05,0.25,5000.0
+mrp_workcenter_34,Routage : Affranchissement hors ligne,product_category_atelier_routage_affran,,0.04,,2500.0
+mrp_workcenter_35,Routage : Insert manuelle : 1 doc,product_category_atelier_routage_insert,25.0,0.2,0.25,500.0
+mrp_workcenter_36,Routage : Insert manuelle : 2 docs,product_category_atelier_routage_insert,25.0,0.3,0.25,350.0
+mrp_workcenter_37,Routage : Insert manuelle : 3 docs,product_category_atelier_routage_insert,25.0,0.35,0.25,300.0
+mrp_workcenter_38,Routage : Insert manuelle : 4 docs,product_category_atelier_routage_insert,25.0,0.4,0.25,250.0
+mrp_workcenter_39,Routage : Insert manuelle : 5 docs,product_category_atelier_routage_insert,,,,
+mrp_workcenter_40,Routage : Insert meca : 1 doc,product_category_atelier_routage_meca,50.0,0.07,0.25,5000.0
+mrp_workcenter_41,Routage : Insert meca : 2 docs,product_category_atelier_routage_meca,50.0,0.09,0.5,4500.0
+mrp_workcenter_42,Routage : Insert meca : 3 docs,product_category_atelier_routage_meca,75.0,0.11,0.75,3500.0
+mrp_workcenter_43,Routage : Insert meca : 4 docs,product_category_atelier_routage_meca,100.0,0.12,1.0,2500.0
+mrp_workcenter_44,Routage : Insert meca : 5 docs,product_category_atelier_routage_meca,125.0,0.15,1.25,2000.0
+mrp_workcenter_45,Routage : Mise sous film : 1 doc,product_category_atelier_routage_film,25.0,0.15,0.25,1000.0
+mrp_workcenter_46,Routage : Mise sous film : 2 docs,product_category_atelier_routage_film,25.0,0.2,0.25,750.0
+mrp_workcenter_47,Routage : Mise sous film : 3 docs,product_category_atelier_routage_film,25.0,0.25,0.25,500.0
+mrp_workcenter_48,Routage : Mise sous film : 4 docs,product_category_atelier_routage_film,25.0,0.3,0.25,350.0
+mrp_workcenter_49,Routage : Mise sous film : 5 docs,product_category_atelier_routage_film,25.0,0.4,0.25,250.0
+mrp_workcenter_50,Routage : NPAI : Recherche dans liste,product_category_atelier_routage_npai,25.0,1.0,0.125,120.0
+mrp_workcenter_51,Routage : NPAI : Saisie code,product_category_atelier_routage_npai,25.0,0.3,0.125,360.0
+mrp_workcenter_52,Routage : NPAI : Scan code,product_category_atelier_routage_npai,25.0,0.1,0.125,1200.0
+mrp_workcenter_53,Routage : Passage encolleuse,product_category_atelier_routage_insert,,0.04,,2500.0
+mrp_workcenter_54,Routage : Pliage A4,product_category_atelier_routage_pliage,25.0,0.01,0.1,12000.0
+mrp_workcenter_55,Routage : Pliage A4 lourd,product_category_atelier_routage_pliage,50.0,0.02,0.1,8000.0
+mrp_workcenter_56,Routage : Pliage SRA3,product_category_atelier_routage_pliage,50.0,0.02,0.1,6000.0
+mrp_workcenter_57,Routage : Pliage SRA3 lourd,product_category_atelier_routage_pliage,100.0,0.04,0.1,3000.0
+mrp_workcenter_58,Routage : Rapprochement docs,product_category_atelier_routage_insert,,0.05,,2000.0

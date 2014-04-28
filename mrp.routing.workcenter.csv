@@ -1,0 +1,103 @@
+id,routing_id/id,name,workcenter_id/id
+mrp_routing_workcenter_1,mrp_routing_env,Offset : Calage 1:0,mrp_workcenter_24
+mrp_routing_workcenter_2,mrp_routing_env,Offset : Calage 2:0,mrp_workcenter_25
+mrp_routing_workcenter_3,mrp_routing_env,Offset : Calage 4:0,mrp_workcenter_26
+mrp_routing_workcenter_4,mrp_routing_env,Offset : Roulage,mrp_workcenter_29
+mrp_routing_workcenter_5,mrp_routing_env,Offset : Roulage grand format,mrp_workcenter_30
+mrp_routing_workcenter_6,mrp_routing_env,Offset : Sortie plaque,mrp_workcenter_31
+mrp_routing_workcenter_102,mrp_routing_imp,Editique : Data : Préparation simple,mrp_workcenter_2
+mrp_routing_workcenter_103,mrp_routing_imp,Editique : Data : Préparation complexe,mrp_workcenter_1
+mrp_routing_workcenter_7,mrp_routing_imp,Numérique : Fusion simple,mrp_workcenter_12
+mrp_routing_workcenter_8,mrp_routing_imp,Numérique : Fusion paramétrée,mrp_workcenter_11
+mrp_routing_workcenter_9,mrp_routing_imp,Numérique : Sorties n:0 SRA3 <135g,mrp_workcenter_21
+mrp_routing_workcenter_10,mrp_routing_imp,Numérique : Sorties n:0 SRA3 <176g,mrp_workcenter_22
+mrp_routing_workcenter_11,mrp_routing_imp,Numérique : Sorties n:0 SRA3 <300g,mrp_workcenter_23
+mrp_routing_workcenter_12,mrp_routing_imp,Numérique : Perforation,mrp_workcenter_14
+mrp_routing_workcenter_13,mrp_routing_imp,Numérique : Rainage,mrp_workcenter_16
+mrp_routing_workcenter_14,mrp_routing_imp,Routage : Pliage A4,mrp_workcenter_54
+mrp_routing_workcenter_15,mrp_routing_imp,Routage : Pliage A4 lourd,mrp_workcenter_55
+mrp_routing_workcenter_16,mrp_routing_imp,Routage : Pliage SRA3,mrp_workcenter_56
+mrp_routing_workcenter_17,mrp_routing_imp,Routage : Pliage SRA3 lourd,mrp_workcenter_57
+mrp_routing_workcenter_18,mrp_routing_imp,Numérique : Coupe,mrp_workcenter_10
+mrp_routing_workcenter_19,mrp_routing_jet,Offset : Jet d'encre petite image,mrp_workcenter_28
+mrp_routing_workcenter_20,mrp_routing_doc,Editique : Data : Préparation simple,mrp_workcenter_2
+mrp_routing_workcenter_21,mrp_routing_doc,Editique : Data : Préparation complexe,mrp_workcenter_1
+mrp_routing_workcenter_22,mrp_routing_email,Editique : Email : Mise en page,mrp_workcenter_3
+mrp_routing_workcenter_23,mrp_routing_email,Editique : Email : Test de campagne,mrp_workcenter_4
+mrp_routing_workcenter_24,mrp_routing_email,Editique : MO,mrp_workcenter_5
+mrp_routing_workcenter_25,mrp_routing_prepa,Editique : Data : Préparation simple,mrp_workcenter_2
+mrp_routing_workcenter_26,mrp_routing_prepa,Editique : Data : Préparation complexe,mrp_workcenter_1
+mrp_routing_workcenter_27,mrp_routing_prepa,Editique : MO,mrp_workcenter_5
+mrp_routing_workcenter_28,mrp_routing_doc,Numérique : Fusion simple,mrp_workcenter_12
+mrp_routing_workcenter_29,mrp_routing_pap,Offset : Sortie plaque,mrp_workcenter_31
+mrp_routing_workcenter_30,mrp_routing_pap,Offset : Calage 1:0,mrp_workcenter_24
+mrp_routing_workcenter_31,mrp_routing_doc,Numérique : Fusion paramétrée,mrp_workcenter_11
+mrp_routing_workcenter_32,mrp_routing_pap,Offset : Calage 2:0,mrp_workcenter_25
+mrp_routing_workcenter_33,mrp_routing_pap,Offset : Calage 4:0,mrp_workcenter_26
+mrp_routing_workcenter_34,mrp_routing_doc,Numérique : Sorties n:0 A4 <135g,mrp_workcenter_18
+mrp_routing_workcenter_35,mrp_routing_pap,Offset : Roulage grand format,mrp_workcenter_30
+mrp_routing_workcenter_36,mrp_routing_pap,Numérique : Coupe,mrp_workcenter_10
+mrp_routing_workcenter_37,mrp_routing_doc,Numérique : Sorties n:0 A4 <176g,mrp_workcenter_19
+mrp_routing_workcenter_38,mrp_routing_jet,Offset : Jet d'encre grande image,mrp_workcenter_27
+mrp_routing_workcenter_39,mrp_routing_doc,Numérique : Sorties n:0 A4 <300g,mrp_workcenter_23
+mrp_routing_workcenter_40,mrp_routing_doc,Numérique : Sorties n:0 SRA3 <135g,mrp_workcenter_18
+mrp_routing_workcenter_41,mrp_routing_doc,Numérique : Sorties n:0 SRA3 <176g,mrp_workcenter_19
+mrp_routing_workcenter_42,mrp_routing_pap,Numérique : Perforation,mrp_workcenter_14
+mrp_routing_workcenter_43,mrp_routing_pap,Numérique : Rainage,mrp_workcenter_16
+mrp_routing_workcenter_45,mrp_routing_pap,Routage : Pliage A4 lourd,mrp_workcenter_55
+mrp_routing_workcenter_46,mrp_routing_pap,Routage : Pliage SRA3 lourd,mrp_workcenter_57
+mrp_routing_workcenter_47,mrp_routing_npai,Routage : NPAI : Saisie code,mrp_workcenter_51
+mrp_routing_workcenter_48,mrp_routing_npai,Routage : NPAI : Scan code,mrp_workcenter_52
+mrp_routing_workcenter_49,mrp_routing_npai,Routage : NPAI : Recherche dans liste,mrp_workcenter_50
+mrp_routing_workcenter_50,mrp_routing_film,Editique : Data : Préparation simple,mrp_workcenter_2
+mrp_routing_workcenter_51,mrp_routing_film,Editique : Data : Préparation complexe,mrp_workcenter_1
+mrp_routing_workcenter_52,mrp_routing_film,Numérique : Sorties n:0 SRA3 <135g,mrp_workcenter_21
+mrp_routing_workcenter_53,mrp_routing_film,Numérique : Coupe,mrp_workcenter_10
+mrp_routing_workcenter_54,mrp_routing_film,Routage : Mise sous film : 1 doc,mrp_workcenter_45
+mrp_routing_workcenter_55,mrp_routing_film,Routage : Mise sous film : 2 docs,mrp_workcenter_46
+mrp_routing_workcenter_56,mrp_routing_film,Routage : Mise sous film : 3 docs,mrp_workcenter_47
+mrp_routing_workcenter_57,mrp_routing_film,Routage : Mise sous film : 4 docs,mrp_workcenter_48
+mrp_routing_workcenter_58,mrp_routing_film,Routage : Mise sous film : 5 docs,mrp_workcenter_49
+mrp_routing_workcenter_59,mrp_routing_meca,Routage : Insert meca : 1 doc,mrp_workcenter_40
+mrp_routing_workcenter_60,mrp_routing_meca,Routage : Insert meca : 2 docs,mrp_workcenter_41
+mrp_routing_workcenter_61,mrp_routing_meca,Routage : Insert meca : 3 docs,mrp_workcenter_42
+mrp_routing_workcenter_62,mrp_routing_meca,Routage : Insert meca : 4 docs,mrp_workcenter_43
+mrp_routing_workcenter_63,mrp_routing_meca,Routage : Insert meca : 5 docs,mrp_workcenter_44
+mrp_routing_workcenter_64,mrp_routing_meca,Routage : Adressage en ligne,mrp_workcenter_32
+mrp_routing_workcenter_65,mrp_routing_meca,Routage : Affranchissement hors ligne,mrp_workcenter_34
+mrp_routing_workcenter_66,mrp_routing_meca,Routage : Pliage A4,mrp_workcenter_54
+mrp_routing_workcenter_67,mrp_routing_manu,Routage : Rapprochement docs,mrp_workcenter_58
+mrp_routing_workcenter_68,mrp_routing_manu,Routage : Insert manuelle : 1 doc,mrp_workcenter_35
+mrp_routing_workcenter_69,mrp_routing_manu,Routage : Insert manuelle : 2 docs,mrp_workcenter_36
+mrp_routing_workcenter_70,mrp_routing_manu,Routage : Insert manuelle : 3 docs,mrp_workcenter_37
+mrp_routing_workcenter_71,mrp_routing_manu,Routage : Insert manuelle : 4 docs,mrp_workcenter_38
+mrp_routing_workcenter_72,mrp_routing_manu,Routage : Insert manuelle : 5 docs,mrp_workcenter_39
+mrp_routing_workcenter_73,mrp_routing_manu,Routage : Passage encolleuse,mrp_workcenter_53
+mrp_routing_workcenter_74,mrp_routing_manu,Routage : Adressage hors ligne,mrp_workcenter_33
+mrp_routing_workcenter_75,mrp_routing_manu,Routage : Affranchissement hors ligne,mrp_workcenter_34
+mrp_routing_workcenter_76,mrp_routing_manu,Routage : Pliage A4,mrp_workcenter_54
+mrp_routing_workcenter_77,mrp_routing_enc,Faconnage : Encartage avec point de colle,mrp_workcenter_6
+mrp_routing_workcenter_78,mrp_routing_enc,Faconnage : Encartage sans collage,mrp_workcenter_7
+mrp_routing_workcenter_79,mrp_routing_col,Faconnage : Encollage manuel 1 bande,mrp_workcenter_8
+mrp_routing_workcenter_80,mrp_routing_col,Faconnage : Pliure,mrp_workcenter_9
+mrp_routing_workcenter_81,mrp_routing_livre,Numérique : MO,mrp_workcenter_13
+mrp_routing_workcenter_82,mrp_routing_livre,Numérique : Sorties n:0 SRA3 <135g,mrp_workcenter_21
+mrp_routing_workcenter_83,mrp_routing_livre,Numérique : Sorties n:0 SRA3 <176g,mrp_workcenter_22
+mrp_routing_workcenter_84,mrp_routing_livre,Numérique : Sorties n:0 SRA3 <300g,mrp_workcenter_23
+mrp_routing_workcenter_85,mrp_routing_livre,Numérique : Coupe,mrp_workcenter_10
+mrp_routing_workcenter_86,mrp_routing_livre,Numérique : Reliure dos carré collé,mrp_workcenter_17
+mrp_routing_workcenter_87,mrp_routing_jet,Editique : Data : Préparation simple,mrp_workcenter_2
+mrp_routing_workcenter_88,mrp_routing_doc,Numérique : Sorties n:0 SRA3 <300g,mrp_workcenter_23
+mrp_routing_workcenter_89,mrp_routing_doc,Routage : Adressage hors ligne,mrp_workcenter_33
+mrp_routing_workcenter_90,mrp_routing_doc,Numérique : Perforation,mrp_workcenter_14
+mrp_routing_workcenter_91,mrp_routing_doc,Numérique : Rainage,mrp_workcenter_16
+mrp_routing_workcenter_92,mrp_routing_doc,Routage : Pliage A4,mrp_workcenter_54
+mrp_routing_workcenter_93,mrp_routing_doc,Routage : Pliage A4 lourd,mrp_workcenter_55
+mrp_routing_workcenter_94,mrp_routing_doc,Routage : Pliage SRA3,mrp_workcenter_56
+mrp_routing_workcenter_95,mrp_routing_doc,Routage : Pliage SRA3 lourd,mrp_workcenter_57
+mrp_routing_workcenter_96,mrp_routing_livret,Editique : Data : Préparation simple,mrp_workcenter_2
+mrp_routing_workcenter_97,mrp_routing_livret,Numérique : Fusion paramétrée,mrp_workcenter_11
+mrp_routing_workcenter_98,mrp_routing_livret,Numérique : Sorties n:0 A4 <135g,mrp_workcenter_18
+mrp_routing_workcenter_99,mrp_routing_livret,Numérique : Sorties n:0 A4 <176g,mrp_workcenter_19
+mrp_routing_workcenter_100,mrp_routing_livret,Numérique : Coupe,mrp_workcenter_10
+mrp_routing_workcenter_101,mrp_routing_livret,Numérique : Piquage,mrp_workcenter_15

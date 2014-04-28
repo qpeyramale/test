@@ -1,0 +1,209 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data noupdate="1">
+        <record id="product_category_all_divers" model="product.category">
+            <field name="parent_id" ref="product.product_category_all" />
+            <field name="name">Divers</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_all_env" model="product.category">
+            <field name="parent_id" ref="product.product_category_all" />
+            <field name="name">Enveloppe</field>
+            <field name="margin">15.0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_all_livraison" model="product.category">
+            <field name="parent_id" ref="product.product_category_all" />
+            <field name="name">Livraison</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_all_mo" model="product.category">
+            <field name="parent_id" ref="product.product_category_all" />
+            <field name="name">MO</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_all_offset" model="product.category">
+            <field name="parent_id" ref="product.product_category_all" />
+            <field name="name">Offset</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_all_papier" model="product.category">
+            <field name="parent_id" ref="product.product_category_all" />
+            <field name="name">Papier</field>
+            <field name="margin">50.0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_all_pvc" model="product.category">
+            <field name="parent_id" ref="product.product_category_all" />
+            <field name="name">PVC</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier" model="product.category">
+            <field name="parent_id" ref="" />
+            <field name="name">Atelier</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_num" model="product.category">
+            <field name="parent_id" ref="product_category_atelier" />
+            <field name="name">Atelier numérique</field>
+            <field name="margin">0</field>
+            <field name="taux">150</field>
+        </record>
+        <record id="product_category_atelier_num_finition" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_num" />
+            <field name="name">Finition</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_num_fusion" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_num" />
+            <field name="name">Fusion</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_num_massicot" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_num" />
+            <field name="name">Massicot</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_num_reliure" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_num" />
+            <field name="name">Reliure</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_num_sorties" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_num" />
+            <field name="name">Sorties</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_offset" model="product.category">
+            <field name="parent_id" ref="product_category_atelier" />
+            <field name="name">Atelier Offset</field>
+            <field name="margin">0</field>
+            <field name="taux">100</field>
+        </record>
+        <record id="product_category_atelier_offset_calage" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_offset" />
+            <field name="name">Calage</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_offset_jet" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_offset" />
+            <field name="name">Jet d'encre</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_offset_plaques" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_offset" />
+            <field name="name">Plaques</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_offset_roulage" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_offset" />
+            <field name="name">Roulage</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_editique" model="product.category">
+            <field name="parent_id" ref="product_category_atelier" />
+            <field name="name">Editique</field>
+            <field name="margin">15.0</field>
+            <field name="taux">150</field>
+        </record>
+        <record id="product_category_atelier_editique_data" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_editique" />
+            <field name="name">Data</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_editique_email" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_editique" />
+            <field name="name">Email</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_fac" model="product.category">
+            <field name="parent_id" ref="product_category_atelier" />
+            <field name="name">Faconnage</field>
+            <field name="margin">0</field>
+            <field name="taux">30</field>
+        </record>
+        <record id="product_category_atelier_fac_encartage" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_fac" />
+            <field name="name">Encartage</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_fac_encollage" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_fac" />
+            <field name="name">Encollage</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_fac_pliage" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_fac" />
+            <field name="name">Pliage</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_routage" model="product.category">
+            <field name="parent_id" ref="product_category_atelier" />
+            <field name="name">Routage</field>
+            <field name="margin">0</field>
+            <field name="taux">100</field>
+        </record>
+        <record id="product_category_atelier_routage_adressage" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_routage" />
+            <field name="name">Adressage</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_routage_affran" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_routage" />
+            <field name="name">Affranchissement</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_routage_film" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_routage" />
+            <field name="name">Film</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_routage_insert" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_routage" />
+            <field name="name">Insert manuel</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_routage_meca" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_routage" />
+            <field name="name">Meca</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_routage_npai" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_routage" />
+            <field name="name">NPAI</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+        <record id="product_category_atelier_routage_pliage" model="product.category">
+            <field name="parent_id" ref="product_category_atelier_routage" />
+            <field name="name">Pliage</field>
+            <field name="margin">0</field>
+            <field name="taux">0</field>
+        </record>
+    </data>
+</openerp>

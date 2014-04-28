@@ -45,96 +45,351 @@
 -->
                                 <group attrs="{'invisible': [('article_code', '!=', 'OFF01')]}">
                                     <field name="quantite_env"
-                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,article_id,conf_product_lines,conf_workcenter_lines)"
                                      style="width: 50%%"/>
                                     <field name="produit_env" 
-                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,article_id,conf_product_lines,conf_workcenter_lines)"
                                     domain="[('categ_id','=','Enveloppes')]" style="width: 100%%"/>
                                     <field name="env_fournies"
-                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,article_id,conf_product_lines,conf_workcenter_lines)"
                                     />
                                     <field name="impression_env" 
-                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_enveloppe(quantite_env,produit_env,env_fournies,impression_env,article_id,conf_product_lines,conf_workcenter_lines)"
                                     style="width: 20%%"/>
                                 </group>
                                 <group attrs="{'invisible': [('article_code', '!=', 'OFF02')]}">
                                     <field name="quantite_jet"
-                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,article_id,conf_product_lines,conf_workcenter_lines)"
                                      style="width: 50%%"/>
                                     <field name="produit_jet" 
-                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,article_id,conf_product_lines,conf_workcenter_lines)"
                                     domain="[('categ_id','=','Enveloppes')]" style="width: 100%%"/>
                                     <field name="jet_fournies"
-                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,article_id,conf_product_lines,conf_workcenter_lines)"
                                     />
                                     <field name="impression_jet" 
-                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
-                                    style="width: 20%%"/>
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 40%%"/>
                                     <field name="zone_jet" 
-                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,article_id,conf_product_lines,conf_workcenter_lines)"
                                     style="width: 30%%"/>
                                     <field name="adressage_jet" 
-                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_jet(quantite_jet,produit_jet,jet_fournies,impression_jet,zone_jet,adressage_jet,article_id,conf_product_lines,conf_workcenter_lines)"
                                     style="width: 20%%"/>
                                 </group>
                                 <group attrs="{'invisible': [('article_code', '!=', 'OFF03')]}">
                                     <field name="quantite_pap"
-                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_pap,impression_pap,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_l_pap,pose_w_pap,impression_pap,perforation_pap,rainage_pap,pliage_pap,article_id,conf_product_lines,conf_workcenter_lines)"
                                      style="width: 50%%"/>
                                     <field name="produit_pap" 
-                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_pap,impression_pap,conf_product_lines,conf_workcenter_lines)"
-                                    domain="[('categ_id','=','Papier'),('tag1','=','ImpOff')]" style="width: 100%%"/>
-                                    <field name="pose_pap"
-                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_pap,impression_pap,conf_product_lines,conf_workcenter_lines)"
-                                    />
+                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_l_pap,pose_w_pap,impression_pap,perforation_pap,rainage_pap,pliage_pap,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    domain="[('categ_id','=','Papier'),('tag_ids','=','ImpOff')]" style="width: 100%%"/>
+                                    <label for="pose_l_pap" string="Longueur/Largeur"/>
+                                    <div>
+                                        <field name="pose_l_pap"
+                                        on_change="onchange_papier(quantite_pap,produit_pap,pose_l_pap,pose_w_pap,impression_pap,perforation_pap,rainage_pap,pliage_pap,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        class="oe_inline"/>x
+                                        <field name="pose_w_pap"
+                                        on_change="onchange_papier(quantite_pap,produit_pap,pose_l_pap,pose_w_pap,impression_pap,perforation_pap,rainage_pap,pliage_pap,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        class="oe_inline"/>
+                                    </div>
                                     <field name="impression_pap" 
-                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_pap,impression_pap,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_l_pap,pose_w_pap,impression_pap,perforation_pap,rainage_pap,pliage_pap,article_id,conf_product_lines,conf_workcenter_lines)"
                                     style="width: 20%%"/>
+                                    <field name="perforation_pap"
+                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_l_pap,pose_w_pap,impression_pap,perforation_pap,rainage_pap,pliage_pap,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    />
+                                    <field name="rainage_pap"
+                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_l_pap,pose_w_pap,impression_pap,perforation_pap,rainage_pap,pliage_pap,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    />
+                                    <field name="pliage_pap"
+                                    on_change="onchange_papier(quantite_pap,produit_pap,pose_l_pap,pose_w_pap,impression_pap,perforation_pap,rainage_pap,pliage_pap,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    />
                                 </group>
                                 <group attrs="{'invisible': [('article_code', '!=', 'EDI01')]}">
                                     <field name="quantite_email"
-                                    on_change="onchange_email(quantite_email,heures_email,notes_email,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_email(quantite_email,heures_email,notes_email,article_id,conf_product_lines,conf_workcenter_lines)"
                                      style="width: 50%%"/>
                                     <field name="heures_email" 
-                                    on_change="onchange_email(quantite_email,heures_email,notes_email,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_email(quantite_email,heures_email,notes_email,article_id,conf_product_lines,conf_workcenter_lines)"
                                     style="width: 50%%"/>
                                     <field name="notes_email" 
-                                    on_change="onchange_email(quantite_email,heures_email,notes_email,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_email(quantite_email,heures_email,notes_email,article_id,conf_product_lines,conf_workcenter_lines)"
                                     />
                                 </group>
                                 <group attrs="{'invisible': [('article_code', '!=', 'EDI02')]}">
                                     <field name="type_prepa"
-                                    on_change="onchange_prepa(type_prepa,heures_prepa,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_prepa(type_prepa,heures_prepa,article_id,conf_product_lines,conf_workcenter_lines)"
                                      style="width: 50%%"/>
                                     <field name="heures_prepa" attrs="{'invisible': [('type_prepa', '!=', 'specifique')]}"
-                                    on_change="onchange_prepa(type_prepa,heures_prepa,conf_product_lines,conf_workcenter_lines)"
+                                    on_change="onchange_prepa(type_prepa,heures_prepa,article_id,conf_product_lines,conf_workcenter_lines)"
                                     style="width: 50%%"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'FAC01')]}">
+                                    <field name="quantite_col"
+                                    on_change="onchange_collage(quantite_col,bandes_col,pliures_col,stockage_col,cartons_col,realisation_col,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="bandes_col"
+                                    on_change="onchange_collage(quantite_col,bandes_col,pliures_col,stockage_col,cartons_col,realisation_col,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="pliures_col"
+                                    on_change="onchange_collage(quantite_col,bandes_col,pliures_col,stockage_col,cartons_col,realisation_col,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="stockage_col"
+                                    on_change="onchange_collage(quantite_col,bandes_col,pliures_col,stockage_col,cartons_col,realisation_col,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="cartons_col"
+                                    on_change="onchange_collage(quantite_col,bandes_col,pliures_col,stockage_col,cartons_col,realisation_col,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%" attrs="{'invisible': [('stockage_col', '!=', 'carton')]}"/>
+                                    <field name="realisation_col"
+                                    on_change="onchange_collage(quantite_col,bandes_col,pliures_col,stockage_col,cartons_col,realisation_col,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'FAC02')]}">
+                                    <field name="note_div"
+                                    on_change="onchange_divers(note_div, heures_div, produit1_div, quantite1_div, produit2_div, quantite2_div,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="heures_div"
+                                    on_change="onchange_divers(note_div, heures_div, produit1_div, quantite1_div, produit2_div, quantite2_div,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="produit1_div"
+                                    on_change="onchange_divers(note_div, heures_div, produit1_div, quantite1_div, produit2_div, quantite2_div,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="quantite1_div"
+                                    on_change="onchange_divers(note_div, heures_div, produit1_div, quantite1_div, produit2_div, quantite2_div,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="produit2_div"
+                                    on_change="onchange_divers(note_div, heures_div, produit1_div, quantite1_div, produit2_div, quantite2_div,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="quantite2_div"
+                                    on_change="onchange_divers(note_div, heures_div, produit1_div, quantite1_div, produit2_div, quantite2_div,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'FAC03')]}">
+                                    <field name="quantite_enc"
+                                    on_change="onchange_encartage(quantite_enc,depose_enc,type_enc,stockage_enc,cartons_enc,realisation_enc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="depose_enc"
+                                    on_change="onchange_encartage(quantite_enc,depose_enc,type_enc,stockage_enc,cartons_enc,realisation_enc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="type_enc"
+                                    on_change="onchange_encartage(quantite_enc,depose_enc,type_enc,stockage_enc,cartons_enc,realisation_enc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="stockage_enc"
+                                    on_change="onchange_encartage(quantite_enc,depose_enc,type_enc,stockage_enc,cartons_enc,realisation_enc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="cartons_enc"
+                                    on_change="onchange_encartage(quantite_enc,depose_enc,type_enc,stockage_enc,cartons_enc,realisation_enc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%" attrs="{'invisible': [('stockage_enc', '!=', 'carton')]}"/>
+                                    <field name="realisation_enc"
+                                    on_change="onchange_encartage(quantite_enc,depose_enc,type_enc,stockage_enc,cartons_enc,realisation_enc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
                                 </group>
                                 <group attrs="{'invisible': [('article_code', '!=', 'NUM01')]}" col="4">
                                     <field name="quantite_imp" colspan="4"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
                                         style="width: 50%%" />
                                     <field name="perso_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
                                         />
                                     <field name="perforation_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="mise_page_imp"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        attrs="{'invisible': [('perso_imp', '=', 'sans')]}" />
+                                    <label string="" colspan="2" attrs="{'invisible': [('perso_imp', '!=', 'sans')]}"/>
+                                    <field name="rainage_imp"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
                                         />
                                     <field name="impression_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
-                                        />
-                                    <field name="rainage_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
-                                        />
-                                    <field name="pose_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
                                         />
                                     <field name="pliage_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
                                         />
+                                    <label for="pose_l_imp" string="Longueur/Largeur"/>
+                                    <div colspan="3">
+                                        <field name="pose_l_imp"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        class="oe_inline"/>x
+                                        <field name="pose_w_imp"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        class="oe_inline"/>
+                                    </div>
                                     <field name="produit_imp" colspan="4"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, impression_imp, pose_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
                                         domain="[('categ_id','=','Papier')]"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'NUM02')]}" col="4">
+                                    <field name="quantite_liv" colspan="4"
+                                        on_change="onchange_livre(quantite_liv, heures_liv, pose_l_liv, pose_w_liv, pages_noir_liv, produit_noir_liv, pages_couleur_liv, produit_couleur_liv,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        style="width: 50%%" />
+                                    <field name="heures_liv" colspan="4"
+                                        on_change="onchange_livre(quantite_liv, heures_liv, pose_l_liv, pose_w_liv, pages_noir_liv, produit_noir_liv, pages_couleur_liv, produit_couleur_liv,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <label for="pose_l_liv" string="Longueur/Largeur"/>
+                                    <div colspan="3">
+                                        <field name="pose_l_liv"
+                                        on_change="onchange_livre(quantite_liv, heures_liv, pose_l_liv, pose_w_liv, pages_noir_liv, produit_noir_liv, pages_couleur_liv, produit_couleur_liv,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        class="oe_inline"/>x
+                                        <field name="pose_w_liv"
+                                        on_change="onchange_livre(quantite_liv, heures_liv, pose_l_liv, pose_w_liv, pages_noir_liv, produit_noir_liv, pages_couleur_liv, produit_couleur_liv,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        class="oe_inline"/>
+                                    </div>
+                                    <field name="pages_noir_liv" colspan="4"
+                                        on_change="onchange_livre(quantite_liv, heures_liv, pose_l_liv, pose_w_liv, pages_noir_liv, produit_noir_liv, pages_couleur_liv, produit_couleur_liv,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="produit_noir_liv" colspan="4"
+                                        on_change="onchange_livre(quantite_liv, heures_liv, pose_l_liv, pose_w_liv, pages_noir_liv, produit_noir_liv, pages_couleur_liv, produit_couleur_liv,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        domain="[('categ_id','=','Papier'),('tag_ids_fnct','!=','ImpOff')]"/>
+                                    <field name="pages_couleur_liv" colspan="4"
+                                        on_change="onchange_livre(quantite_liv, heures_liv, pose_l_liv, pose_w_liv, pages_noir_liv, produit_noir_liv, pages_couleur_liv, produit_couleur_liv,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="produit_couleur_liv" colspan="4"
+                                        on_change="onchange_livre(quantite_liv, heures_liv, pose_l_liv, pose_w_liv, pages_noir_liv, produit_noir_liv, pages_couleur_liv, produit_couleur_liv,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        domain="[('categ_id','=','Papier'),('tag_ids_fnct','!=','ImpOff')]"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'NUM04')]}" col="4">
+                                    <field name="quantite_doc"
+                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        style="width: 50%%" />
+                                    <field name="perforation_doc"
+                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="mise_page_doc"
+                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        style="width: 100%%" />
+                                    <field name="rainage_doc"
+                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="prepa_doc"
+                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        style="width: 100%%" />
+                                    <field name="pliage_doc"
+                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="perso_doc"
+                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        colspan="4" />
+                                    <field name="format_doc"
+                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="gram_doc"
+                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'NUM05')]}" col="4">
+                                    <field name="quantite_livret" colspan="4"
+                                        on_change="onchange_livret(quantite_livret, perso_livret, pages_livret, pose_l_livret, pose_w_livret,produit_inter_livret, produit_couve_livret, type_livret,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        style="width: 50%%" />
+                                    <field name="perso_livret" colspan="4"
+                                        on_change="onchange_livret(quantite_livret, perso_livret, pages_livret, pose_l_livret, pose_w_livret,produit_inter_livret, produit_couve_livret, type_livret,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        style="width: 50%%" />
+                                    <field name="pages_livret" colspan="4"
+                                        on_change="onchange_livret(quantite_livret, perso_livret, pages_livret, pose_l_livret, pose_w_livret,produit_inter_livret, produit_couve_livret, type_livret,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        style="width: 50%%"/>
+                                    <label for="pose_l_livret" string="Format ouvert"/>
+                                    <div colspan="3">
+                                        <field name="pose_l_livret"
+                                        on_change="onchange_livret(quantite_livret, perso_livret, pages_livret, pose_l_livret, pose_w_livret,produit_inter_livret, produit_couve_livret, type_livret,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        class="oe_inline"/>x
+                                        <field name="pose_w_livret"
+                                        on_change="onchange_livret(quantite_livret, perso_livret, pages_livret, pose_l_livret, pose_w_livret,produit_inter_livret, produit_couve_livret, type_livret,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        class="oe_inline"/>
+                                    </div>
+                                    <field name="produit_inter_livret" colspan="4"
+                                        on_change="onchange_livret(quantite_livret, perso_livret, pages_livret, pose_l_livret, pose_w_livret,produit_inter_livret, produit_couve_livret, type_livret,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        domain="[('categ_id','=','Papier'),('tag_ids_fnct','!=','ImpOff')]"/>
+                                    <field name="produit_couve_livret" colspan="4"
+                                        on_change="onchange_livret(quantite_livret, perso_livret, pages_livret, pose_l_livret, pose_w_livret,produit_inter_livret, produit_couve_livret, type_livret,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        domain="[('categ_id','=','Papier'),('tag_ids_fnct','!=','ImpOff')]"/>
+                                    <field name="type_livret" colspan="4"
+                                        on_change="onchange_livret(quantite_livret, perso_livret, pages_livret, pose_l_livret, pose_w_livret,produit_inter_livret, produit_couve_livret, type_livret,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'ROU02')]}">
+                                    <field name="quantite_man"
+                                    on_change="onchange_manuelle(quantite_man,produit_man,fournies_man,documents_man,insertion_man,pliage_man,fermeture_man,adressage_man,machine_man,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="produit_man" 
+                                    on_change="onchange_manuelle(quantite_man,produit_man,fournies_man,documents_man,insertion_man,pliage_man,fermeture_man,adressage_man,machine_man,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    domain="[('categ_id','=','Enveloppes')]" style="width: 100%%"/>
+                                    <field name="fournies_man"
+                                    on_change="onchange_manuelle(quantite_man,produit_man,fournies_man,documents_man,insertion_man,pliage_man,fermeture_man,adressage_man,machine_man,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    />
+                                    <field name="documents_man" 
+                                    on_change="onchange_manuelle(quantite_man,produit_man,fournies_man,documents_man,insertion_man,pliage_man,fermeture_man,adressage_man,machine_man,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                    <field name="insertion_man" 
+                                    on_change="onchange_manuelle(quantite_man,produit_man,fournies_man,documents_man,insertion_man,pliage_man,fermeture_man,adressage_man,machine_man,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                    <field name="pliage_man" 
+                                    on_change="onchange_manuelle(quantite_man,produit_man,fournies_man,documents_man,insertion_man,pliage_man,fermeture_man,adressage_man,machine_man,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                    <field name="fermeture_man" 
+                                    on_change="onchange_manuelle(quantite_man,produit_man,fournies_man,documents_man,insertion_man,pliage_man,fermeture_man,adressage_man,machine_man,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    />
+                                    <field name="adressage_man" 
+                                    on_change="onchange_manuelle(quantite_man,produit_man,fournies_man,documents_man,insertion_man,pliage_man,fermeture_man,adressage_man,machine_man,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                    <field name="machine_man" 
+                                    on_change="onchange_manuelle(quantite_man,produit_man,fournies_man,documents_man,insertion_man,pliage_man,fermeture_man,adressage_man,machine_man,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'ROU03')]}">
+                                    <field name="quantite_mec"
+                                    on_change="onchange_mecanise(quantite_mec,produit_mec,fournies_mec,documents_mec,pliage_mec,adressage_mec,machine_mec,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="produit_mec" 
+                                    on_change="onchange_mecanise(quantite_mec,produit_mec,fournies_mec,documents_mec,pliage_mec,adressage_mec,machine_mec,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    domain="[('categ_id','=','Enveloppes'),('tag_ids','=','Mecanisables')]" style="width: 100%%"/>
+                                    <field name="fournies_mec"
+                                    on_change="onchange_mecanise(quantite_mec,produit_mec,fournies_mec,documents_mec,pliage_mec,adressage_mec,machine_mec,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    />
+                                    <field name="documents_mec" 
+                                    on_change="onchange_mecanise(quantite_mec,produit_mec,fournies_mec,documents_mec,pliage_mec,adressage_mec,machine_mec,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                    <field name="pliage_mec" 
+                                    on_change="onchange_mecanise(quantite_mec,produit_mec,fournies_mec,documents_mec,pliage_mec,adressage_mec,machine_mec,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                    <field name="adressage_mec" 
+                                    on_change="onchange_mecanise(quantite_mec,produit_mec,fournies_mec,documents_mec,pliage_mec,adressage_mec,machine_mec,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                    <field name="machine_mec" 
+                                    on_change="onchange_mecanise(quantite_mec,produit_mec,fournies_mec,documents_mec,pliage_mec,adressage_mec,machine_mec,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'ROU04')]}">
+                                    <field name="quantite_fil"
+                                    on_change="onchange_film(quantite_fil,porte_fil,prepa_fil,documents_fil,livraison_fil,palettes_fil,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="porte_fil"
+                                    on_change="onchange_film(quantite_fil,porte_fil,prepa_fil,documents_fil,livraison_fil,palettes_fil,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 50%%"/>
+                                    <field name="prepa_fil" attrs="{'invisible': [('porte_fil', 'not in', ('noir','couleur'))]}"
+                                    on_change="onchange_film(quantite_fil,porte_fil,prepa_fil,documents_fil,livraison_fil,palettes_fil,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 50%%"/>
+                                    <field name="documents_fil" 
+                                    on_change="onchange_film(quantite_fil,porte_fil,prepa_fil,documents_fil,livraison_fil,palettes_fil,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                    <field name="livraison_fil" 
+                                    on_change="onchange_film(quantite_fil,porte_fil,prepa_fil,documents_fil,livraison_fil,palettes_fil,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%"/>
+                                    <field name="palettes_fil" 
+                                    on_change="onchange_film(quantite_fil,porte_fil,prepa_fil,documents_fil,livraison_fil,palettes_fil,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 20%%" attrs="{'invisible': [('livraison_fil', '!=', True)]}"/>
+                                </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'ROU05')]}">
+                                    <field name="quantite_npa"
+                                    on_change="onchange_npai(quantite_npa,type_npa,ref_npa,article_id,conf_product_lines,conf_workcenter_lines)"
+                                     style="width: 50%%"/>
+                                    <field name="type_npa"
+                                    on_change="onchange_npai(quantite_npa,type_npa,ref_npa,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    style="width: 50%%"/>
+                                    <field name="ref_npa" 
+                                    on_change="onchange_npai(quantite_npa,type_npa,ref_npa,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    />
                                 </group>
                             </group>
                         </group>
@@ -145,36 +400,45 @@
                                 <field name="quantite" invisible="1"/>
                                 <field name="name" colspan="4"/>
                                 <group class="oe_subtotal_footer oe_right" colspan="2" >
-                                    <field name="prix_revient" readonly="1"/>
-                                    <field name="prix_theo" readonly="1"/>
-                                    <field name="prix_marche" readonly="1"/>
-                                    <field name="prix_global_theo" readonly="1"/>
-                                    <field name="prix_global_marche" readonly="1"/>
-                                    <field name="prix_offert"/>
+                                    <field name="sale_id" readonly="1" invisible="1"/>
+                                    <group class="oe_subtotal_footer oe_right" colspan="4">
+                                        <field name="prix_revient" readonly="1"/>
+                                    </group>
+                                    <group class="oe_subtotal_footer oe_right" colspan="4">
+                                        <field name="prix_theo" readonly="1"/>
+                                        <field name="prix_global_theo" readonly="1"/>
+                                    </group>
+                                    <group class="oe_subtotal_footer oe_right" colspan="4">
+                                        <field name="prix_marche" readonly="1"/>
+                                        <field name="prix_global_marche" readonly="1"/>
+                                    </group>
+                                    <group class="oe_subtotal_footer oe_right" colspan="4">
+                                        <field name="prix_offert"/>
+                                    </group>
                                 </group>
                             </page>
                             <page string="Détails">
-                                <field name="conf_product_lines" colspan="4" readonly="0" nolabel="1">
+                                <field name="conf_product_lines" colspan="4" create="False" readonly="0" nolabel="1">
                                     <tree>
                                         <field name="product_id"/>
-                                        <field name="cout"/>
                                         <field name="quantite"/>
+                                        <field name="cout"/>
                                     </tree>
                                 </field>
-                                <field name="conf_workcenter_lines" colspan="4" readonly="0" nolabel="1">
+                                <field name="conf_workcenter_lines" colspan="4" create="False" readonly="0" nolabel="1">
                                     <tree>
                                         <field name="workcenter_id"/>
-                                        <field name="cout_marche"/>
                                         <field name="quantite"/>
                                         <field name="temps"/>
                                         <field name="cout_theo"/>
+                                        <field name="cout_marche"/>
                                     </tree>
                                 </field>
                             </page>
                         </notebook>
                     </group>
 
-                    <footer>
+                    <footer invisible="context.get('visible', True)">
                         <button name="make_order_line" string="Créer ligne de devis" type="object" class="oe_highlight"/>
                         or
                         <button string="Annuler" class="oe_link" special="cancel" />
@@ -190,6 +454,36 @@
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_configurator"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+            <field name="context" eval="{'visible':False}"/>
+        </record>
+        
+        <record id="view_configurator_edit" model="ir.ui.view">
+            <field name="name">Configurator edit</field>
+            <field name="model">configurator.edit</field>
+            <field name="arch" type="xml">
+                <form string="Configurator edit" version="7.0">
+                    <group>
+                        <field name="name" domain="[('id','=',active_id)]"/>
+                    </group>
+
+                    <footer>
+                        <button name="next" string="Suivant" type="object" class="oe_highlight"/>
+                        ou
+                        <button string="Annuler" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_view_configurator_edit" model="ir.actions.act_window">
+            <field name="name">Editer une configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">configurator.edit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_configurator_edit"/>
             <field name="target">new</field>
             <field name="multi">True</field>
         </record>

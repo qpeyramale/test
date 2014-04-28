@@ -1,0 +1,36 @@
+id,product_id/id,product_uom/id,routing_id/id,name,bom_id/id
+mrp_bom_env,product_product_env,product.product_uom_unit,mrp_routing_env,Impression enveloppes,
+mrp_bom_imp,product_product_imp,product.product_uom_unit,mrp_routing_imp,Fabrication d'un imprimé,
+mrp_bom_pap,product_product_pap,product.product_uom_unit,mrp_routing_pap,Impression papier,
+mrp_bom_jet,product_product_jet,product.product_uom_unit,mrp_routing_jet,Impression jet d'encre sur enveloppes,
+mrp_bom_email,product_product_email,product.product_uom_unit,mrp_routing_email,Campagne email,
+mrp_bom_prepa,product_product_prepa,product.product_uom_unit,mrp_routing_prepa,Préparation fichier données,
+mrp_bom_doc,product_product_doc,product.product_uom_unit,mrp_routing_doc,Personnalisation d’un document,
+mrp_bom_npai,product_product_npai,product.product_uom_unit,mrp_routing_npai,Traitement NPAI,
+mrp_bom_film,product_product_film,product.product_uom_unit,mrp_routing_film,Mise sous film,
+mrp_bom_meca,product_product_meca,product.product_uom_unit,mrp_routing_meca,Insertion mécanisée sous enveloppe,
+mrp_bom_manu,product_product_manu,product.product_uom_unit,mrp_routing_manu,Insertion manuelle sous enveloppe,
+mrp_bom_col,product_product_col,product.product_uom_unit,mrp_routing_col,Collage de document,
+mrp_bom_div,product_product_div,product.product_uom_unit,,Travaux divers,
+mrp_bom_enc,product_product_enc,product.product_uom_unit,mrp_routing_enc,Encartage,
+mrp_bom_livre,product_product_livre,product.product_uom_unit,mrp_routing_livre,Fabrication d'un livre relié dos carré,
+mrp_bom_line_1,product_product_53,product.product_uom_unit,,,mrp_bom_env
+mrp_bom_line_2,product_product_67,product.product_uom_unit,,,mrp_bom_imp
+mrp_bom_line_3,product_product_66,product.product_uom_unit,,,mrp_bom_imp
+mrp_bom_line_4,product_product_53,product.product_uom_unit,,,mrp_bom_pap
+mrp_bom_line_6,product_product_56,product.product_uom_unit,,,mrp_bom_email
+mrp_bom_line_8,product_product_67,product.product_uom_unit,,,mrp_bom_doc
+mrp_bom_line_9,product_product_66,product.product_uom_unit,,,mrp_bom_doc
+mrp_bom_line_11,product_product_1,product.product_uom_unit,,,mrp_bom_film
+mrp_bom_line_12,product_product_67,product.product_uom_unit,,,mrp_bom_film
+mrp_bom_line_13,product_product_66,product.product_uom_unit,,,mrp_bom_film
+mrp_bom_line_14,product_product_50,product.product_uom_unit,,,mrp_bom_film
+mrp_bom_line_17,product_product_37,product.product_uom_unit,,,mrp_bom_col
+mrp_bom_line_18,product_product_48,product.product_uom_hour,,,mrp_bom_col
+mrp_bom_line_19,product_product_48,product.product_uom_hour,,,mrp_bom_div
+mrp_bom_line_20,product_product_37,product.product_uom_unit,,,mrp_bom_enc
+mrp_bom_line_21,product_product_51,product.product_uom_unit,,,mrp_bom_enc
+mrp_bom_line_22,product_product_48,product.product_uom_hour,,,mrp_bom_enc
+mrp_bom_line_23,product_product_67,product.product_uom_unit,,,mrp_bom_livre
+mrp_bom_line_24,product_product_66,product.product_uom_unit,,,mrp_bom_livre
+mrp_bom_line_25,product_product_27,product.product_uom_unit,,,mrp_bom_livre

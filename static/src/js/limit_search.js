@@ -8,7 +8,7 @@ openerp.sudokeys_simpac = function(instance){
         init: function(field_manager, node) {
             this._super(field_manager, node);
             var self=this;
-            self.limit = 7;
+            self.limit = 25;
         },
     });
     

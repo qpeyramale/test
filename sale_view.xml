@@ -10,6 +10,41 @@
                     <button name="%(action_view_configurator)d" string="Configurateur"
                     type="action" states="draft" class="oe_highlight" groups="base.group_user"/>
                 </field>
+                <notebook position="inside">
+                    <page string="Configurations">
+                        <field name="configurator_ids"  nolabel="1">
+                            <tree editable="top" create="false">
+                                <field name="name" readonly="1"/>
+                                <button name="%(action_view_configurator)d" string="Editer la configuration"
+                                type="action" icon="gtk-select-color" groups="base.group_user"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
+                    <field name="configurator_id" invisible="1"/>
+                    <field name="composant" invisible="0" readonly="1"/>
+                    <field name="produit_fini" invisible="0" readonly="1"/>
+                </xpath>
+<!--
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+                    <field name="configurator_id" invisible="0"/>
+                    <field name="composant" invisible="0"/>
+                </xpath>
+-->
+                
+            </field>
+        </record>
+        
+        <record id="view_order_line_form2" model="ir.ui.view">
+            <field name="name">sale.order.line.form2</field>
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" ref="sale.view_order_line_form2" />
+            <field name="arch" type="xml">
+                <field name="invoiced" position="after">
+                    <field name="composant" readonly="1"/>
+                    <field name="produit_fini" readonly="1"/>
+                </field>
             </field>
         </record>
     </data>
