@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <menuitem id="menu_hr_deputies_general" parent="hr.menu_hr_root" name="Intérimaires" sequence="1"/>
+        
+        <record id="view_deputy_form" model="ir.ui.view">
+            <field name="name">hr.deputy.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_employee_extd_form" />
+            <field name="arch" type="xml">
+                
+                <group string="Contact Information" position="before">
+                    <field name="interimaire" invisible="1"/>
+                    <field name="partner_id" attrs="{'invisible': [('interimaire','=',False)]}"/>
+                </group>
+                <xpath expr="//page[@string='Public Information']/group/group[@string='Contact Information']" position="replace">
+                    <group string="Contact Information" attrs="{'invisible': [('interimaire','=',True)]}">
+                        <field name="address_id" on_change="onchange_address_id(address_id)" context="{'show_address': 1}" options='{"always_reload": True, "highlight_first_line": True}'/>
+                        <field name="work_email" widget="email"/>
+                        <field name="work_phone"/>
+                        <field name="mobile_phone"/>
+                        <field name="work_location"/>
+                    </group>
+                </xpath>
+                <group string="Position" position="replace">
+                    <group string="Position" attrs="{'invisible': [('interimaire','=',True)]}">
+                        <field name="department_id" on_change="onchange_department_id(department_id)"/>
+                        <field name="job_id" options='{"no_open": True}' domain="[('state','!=','old')]" context="{'form_view_ref': 'hr.view_hr_job_employee_form'}"/>
+                        <field name="parent_id"/>
+                        <field name="coach_id"/>
+                    </group>
+                </group>
+                <field name="user_id" position="replace">
+                    <field name="user_id" on_change="onchange_user(user_id)" string="Related User" attrs="{'invisible': [('interimaire','=',True)]}"/>
+                </field>
+                <group string="Citizenship &amp; Other Info" position="replace">
+                    <group string="Citizenship &amp; Other Info" attrs="{'invisible': [('interimaire','=',True)]}">
+                        <field name="country_id" options='{"no_open": True}'/>
+                        <field name="identification_id" groups="base.group_hr_user"/>
+                        <field name="passport_id" groups="base.group_hr_user"/>
+                        <field name="bank_account_id"/>
+                        <field name="otherid" groups="base.group_hr_user"/>
+                    </group>
+                </group>
+                <xpath expr="//page[@string='Personal Information']/group/group[@string='Contact Information']" position="replace">
+                    <group string="Contact Information" attrs="{'invisible': [('interimaire','=',True)]}">
+                        <field name="address_home_id" context="{'show_address': 1}" options='{"always_reload": True, "highlight_first_line": True}'/>
+                    </group>
+                </xpath>
+                <field name="marital" position="replace">
+                    <field name="marital" attrs="{'invisible': [('interimaire','=',True)]}"/>
+                </field>
+                <group string="Birth" position="replace">
+                    <group string="Birth" attrs="{'invisible': [('interimaire','=',True)]}">
+                        <field name="birthday" attrs="{'invisible': [('interimaire','=',True)]}"/>
+                    </group>
+                </group>
+                <group string="Timesheets" position="replace">
+                    <group string="Timesheets" attrs="{'invisible': [('interimaire','=',True)]}">
+                        <field name="product_id" domain="[('type','=','service')]"/>
+                        <field name="journal_id"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+        
+        <record id="view_deputy_tree" model="ir.ui.view">
+            <field name="name">hr.deputy.tree</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <tree string="Intérimaires">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_deputies" model="ir.actions.act_window">
+            <field name="name">Intérimaires</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_deputy_tree"/>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'default_interimaire': True}</field>
+            <field name="domain">[('interimaire','=',True)]</field>
+        </record>
+        
+        <menuitem id="menu_hr_deputies" action="action_deputies" parent="menu_hr_deputies_general" sequence="1"/>
+        
+        <!-- ========================== intérimaires ======================== -->
+        
+        <record model="ir.actions.act_window" id="act_hr_deputy_timesheet_sheet_sheet_2_hr_analytic_timesheet">
+            <field name="context">{'search_default_sheet_id': [active_id]}</field>
+            <field name="name">Timesheet Activities</field>
+            <field name="res_model">hr.deputy.analytic.timesheet</field>
+            <field name="src_model">hr_deputy_timesheet_sheet.sheet</field>
+        </record>
+        
+        <record id="hr_deputy_timesheet_sheet_tree_simplified" model="ir.ui.view">
+            <field name="name">hr.deputy.timesheet.sheet.tree</field>
+            <field name="model">hr_deputy_timesheet_sheet.sheet</field>
+            <field eval="10" name="priority"/>
+            <field name="arch" type="xml">
+                <tree colors="blue:state == 'draft';black:state in ('confirm','new');gray:state == 'done'" string="Timesheets">
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="hr_deputy_timesheet_sheet_form" model="ir.ui.view">
+            <field name="name">hr.deputy.timesheet.sheet.form</field>
+            <field name="model">hr_deputy_timesheet_sheet.sheet</field>
+            <field name="arch" type="xml">
+                <form string="Timesheet" version="7.0">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="new,confirm,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_right oe_button_box" name="buttons">
+                        <button type="action"
+                            name="%(act_hr_deputy_timesheet_sheet_sheet_2_hr_analytic_timesheet)d"
+                            string="Timesheet Activities" />
+                    </div>
+                   
+                    <group>
+                        <group>
+                            <label for="date_from" string="Timesheet Period"/>
+                            <div><field name="date_from" class="oe_inline"/> to <field name="date_to" class="oe_inline"/></div>
+                            <field name="name" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Details">
+                            <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to}" name="timesheet_ids" nolabel="1">
+                                <tree editable="top" string="Timesheet Activities">
+                                    <field name="date"/>
+                                    <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>
+                                    <field name="name"/>
+                                    <field name="unit_amount" widget="float_time" string="Hours" sum="Hours"/>
+                                    <field invisible="1" name="user_id"/>
+                                </tree>
+                                <form string="Timesheet Activities" version="7.0">
+                                    <field name="date"/>
+                                    <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>
+                                    <field name="name"/>
+                                    <field name="unit_amount" widget="float_time"/>
+                                    <field name="user_id" required="1"/>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                </div>
+                </form>
+            </field>
+        </record>
+        
+        <record id="hr_deputy_timesheet_line_tree" model="ir.ui.view">
+            <field name="name">hr.deputy.analytic.timesheet.tree</field>
+            <field name="model">hr.deputy.analytic.timesheet</field>
+            <field name="arch" type="xml">
+                <tree editable="top" string="Timesheet Activities">                  
+                    <field name="date" />
+                    <field name="employee_id"/>
+                    <field name="user_id" required="1" options='{"no_open": True}' invisible="1"/>
+                    <field name="name"/>
+                    <field name="unit_amount" string="Duration"  sum="Total time" widget="float_time"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="ir_actions_server_deputy_timesheet_sheet" model="ir.actions.server">
+            <field name="sequence" eval="5"/>
+            <field name="state">code</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_hr_deputy_timesheet_current_open"/>
+            <field name="code">action = pool.get('hr.deputy.timesheet.current.open').open_timesheet(cr, uid, None, context)</field>
+            <field name="condition">True</field>
+            <field name="name">My Timesheet</field>
+        </record>
+
+        <menuitem name="Feuille de présence actuelle" id="menu_deputy_current_timesheet" parent="menu_hr_deputies_general" action="ir_actions_server_deputy_timesheet_sheet" sequence="1"/>
+        
+        <record id="act_hr_deputy_timesheet_sheet_form" model="ir.actions.act_window">
+            <field name="name">Timesheets to Validate</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr_deputy_timesheet_sheet.sheet</field>
+            <field name="view_type">form</field>
+            <field name="view_id" eval="False"/>
+            <field name="context">{'search_default_to_approve':1}</field>
+            <!--<field name="search_view_id" ref="view_hr_timesheet_sheet_filter"/>-->
+        </record>
+
+        <menuitem action="act_hr_deputy_timesheet_sheet_form" id="menu_act_hr_deputy_timesheet_sheet_form" parent="menu_hr_deputies_general"
+             sequence="2" groups="base.group_hr_user"/>
+        
+        <record id="act_hr_deputy_timesheet_line_evry1_all_form" model="ir.actions.act_window">
+            <field name="name">Timesheet Activities</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.deputy.analytic.timesheet</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_today":1}</field>
+            <!--<field name="search_view_id" ref="hr_timesheet_line_search"/>-->
+        </record>
+
+        <menuitem id="menu_hr_deputy_working_hours" parent="menu_hr_deputies_general" action="act_hr_deputy_timesheet_line_evry1_all_form"/>
+        
+    </data>
+</openerp>
