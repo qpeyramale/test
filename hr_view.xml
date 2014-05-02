@@ -9,59 +9,36 @@
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr_timesheet.hr_timesheet_employee_extd_form" />
             <field name="arch" type="xml">
-                
-                <group string="Contact Information" position="before">
-                    <field name="interimaire" invisible="1"/>
-                    <field name="partner_id" attrs="{'invisible': [('interimaire','=',False)]}"/>
-                </group>
-                <xpath expr="//page[@string='Public Information']/group/group[@string='Contact Information']" position="replace">
-                    <group string="Contact Information" attrs="{'invisible': [('interimaire','=',True)]}">
-                        <field name="address_id" on_change="onchange_address_id(address_id)" context="{'show_address': 1}" options='{"always_reload": True, "highlight_first_line": True}'/>
-                        <field name="work_email" widget="email"/>
-                        <field name="work_phone"/>
-                        <field name="mobile_phone"/>
-                        <field name="work_location"/>
-                    </group>
-                </xpath>
-                <group string="Position" position="replace">
-                    <group string="Position" attrs="{'invisible': [('interimaire','=',True)]}">
-                        <field name="department_id" on_change="onchange_department_id(department_id)"/>
-                        <field name="job_id" options='{"no_open": True}' domain="[('state','!=','old')]" context="{'form_view_ref': 'hr.view_hr_job_employee_form'}"/>
-                        <field name="parent_id"/>
-                        <field name="coach_id"/>
-                    </group>
-                </group>
-                <field name="user_id" position="replace">
-                    <field name="user_id" on_change="onchange_user(user_id)" string="Related User" attrs="{'invisible': [('interimaire','=',True)]}"/>
-                </field>
-                <group string="Citizenship &amp; Other Info" position="replace">
-                    <group string="Citizenship &amp; Other Info" attrs="{'invisible': [('interimaire','=',True)]}">
-                        <field name="country_id" options='{"no_open": True}'/>
-                        <field name="identification_id" groups="base.group_hr_user"/>
-                        <field name="passport_id" groups="base.group_hr_user"/>
-                        <field name="bank_account_id"/>
-                        <field name="otherid" groups="base.group_hr_user"/>
-                    </group>
-                </group>
-                <xpath expr="//page[@string='Personal Information']/group/group[@string='Contact Information']" position="replace">
-                    <group string="Contact Information" attrs="{'invisible': [('interimaire','=',True)]}">
-                        <field name="address_home_id" context="{'show_address': 1}" options='{"always_reload": True, "highlight_first_line": True}'/>
-                    </group>
-                </xpath>
-                <field name="marital" position="replace">
-                    <field name="marital" attrs="{'invisible': [('interimaire','=',True)]}"/>
-                </field>
-                <group string="Birth" position="replace">
-                    <group string="Birth" attrs="{'invisible': [('interimaire','=',True)]}">
-                        <field name="birthday" attrs="{'invisible': [('interimaire','=',True)]}"/>
-                    </group>
-                </group>
-                <group string="Timesheets" position="replace">
-                    <group string="Timesheets" attrs="{'invisible': [('interimaire','=',True)]}">
-                        <field name="product_id" domain="[('type','=','service')]"/>
-                        <field name="journal_id"/>
-                    </group>
-                </group>
+                <div name="button_box" position="replace">
+                    <div class="oe_right oe_button_box" name="button_box" attrs="{'invisible': [('interimaire','=',True)]}">
+                    </div>
+                    <div class="oe_right oe_button_box" name="button_box2" attrs="{'invisible': [('interimaire','=',False)]}">
+                    </div>
+                </div>
+                <notebook position="inside">
+                    <page string="Information" attrs="{'invisible': [('interimaire','=',False)]}">
+                        <group>
+                            <field name="interimaire" invisible="1"/>
+                            <field name="active"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <separator string="Personal Information"/>
+                        <group>
+                            <field name="gender"/>
+                        </group>
+                         <separator string="Notes"/>
+                        <field name="notes" placeholder="Other Information ..." colspan="4"/>
+                    </page>
+                </notebook>
+                <page string="Public Information" position="attributes">
+                    <attribute name="attrs">{'invisible': [('interimaire','=',True)]}</attribute>
+                </page>
+                <page string="Personal Information" position="attributes">
+                    <attribute name="attrs">{'invisible': [('interimaire','=',True)]}</attribute>
+                </page>
+                <page string="HR Settings" position="attributes">
+                    <attribute name="attrs">{'invisible': [('interimaire','=',True)]}</attribute>
+                </page>
             </field>
         </record>
         
@@ -115,48 +92,56 @@
             <field name="model">hr_deputy_timesheet_sheet.sheet</field>
             <field name="arch" type="xml">
                 <form string="Timesheet" version="7.0">
-                <header>
-                    <field name="state" widget="statusbar" statusbar_visible="new,confirm,done"/>
-                </header>
-                <sheet>
-                    <div class="oe_right oe_button_box" name="buttons">
-                        <button type="action"
-                            name="%(act_hr_deputy_timesheet_sheet_sheet_2_hr_analytic_timesheet)d"
-                            string="Timesheet Activities" />
-                    </div>
-                   
-                    <group>
+                    <header>
+                        <button name="button_confirm" states="new" string="Valider" type="object" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,confirm,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_right oe_button_box" name="buttons">
+                            <button name="%(action_view_report_timesheet)d" string="Edition"
+                                type="action" class="oe_highlight"/>
+                            <button type="action"
+                                name="%(act_hr_deputy_timesheet_sheet_sheet_2_hr_analytic_timesheet)d"
+                                string="Timesheet Activities" />
+                        </div>
+
                         <group>
-                            <label for="date_from" string="Timesheet Period"/>
-                            <div><field name="date_from" class="oe_inline"/> to <field name="date_to" class="oe_inline"/></div>
-                            <field name="name" invisible="1"/>
+                            <group>
+                                <label for="date_from" string="Timesheet Period"/>
+                                <div><field name="date_from" class="oe_inline"/> to <field name="date_to" class="oe_inline"/></div>
+                                <field name="name" invisible="1"/>
+                            </group>
                         </group>
-                    </group>
-                    <notebook>
-                        <page string="Details">
-                            <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to}" name="timesheet_ids" nolabel="1">
-                                <tree editable="top" string="Timesheet Activities">
-                                    <field name="date"/>
-                                    <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>
-                                    <field name="name"/>
-                                    <field name="unit_amount" widget="float_time" string="Hours" sum="Hours"/>
-                                    <field invisible="1" name="user_id"/>
-                                </tree>
-                                <form string="Timesheet Activities" version="7.0">
-                                    <field name="date"/>
-                                    <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>
-                                    <field name="name"/>
-                                    <field name="unit_amount" widget="float_time"/>
-                                    <field name="user_id" required="1"/>
-                                </form>
-                            </field>
-                        </page>
-                    </notebook>
-                </sheet>
-                <div class="oe_chatter">
-                    <field name="message_ids" widget="mail_thread"/>
-                    <field name="message_follower_ids" widget="mail_followers"/>
-                </div>
+                        <notebook>
+                            <page string="Details">
+                                <field name="id" invisible="1"/>
+                                <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to, 'timesheet_id': id}" name="timesheet_ids" nolabel="1">
+                                    <tree editable="top" string="Timesheet Activities">
+                                        <field name="date"/>
+                                        <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>
+                                        <field name="name"/>
+                                        <field name="hour_from" widget="float_time"/>
+                                        <field name="hour_to" widget="float_time"/>
+                                        <field name="unit_amount" readonly="1" widget="float_time" string="Hours" sum="Hours"/>
+                                        <field invisible="1" name="user_id"/>
+                                    </tree>
+                                    <form string="Timesheet Activities" version="7.0">
+                                        <field name="date"/>
+                                        <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>
+                                        <field name="name"/>
+                                        <field name="hour_from" widget="float_time"/>
+                                        <field name="hour_to" widget="float_time"/>
+                                        <field name="unit_amount" widget="float_time" readonly="1"/>
+                                        <field name="user_id" required="1" readonly="1"/>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread"/>
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -170,7 +155,9 @@
                     <field name="employee_id"/>
                     <field name="user_id" required="1" options='{"no_open": True}' invisible="1"/>
                     <field name="name"/>
-                    <field name="unit_amount" string="Duration"  sum="Total time" widget="float_time"/>
+                    <field name="hour_from" widget="float_time"/>
+                    <field name="hour_to" widget="float_time"/>
+                    <field name="unit_amount" readonly="1" string="Duration"  sum="Total time" widget="float_time"/>
                 </tree>
             </field>
         </record>
@@ -208,6 +195,25 @@
             <field name="view_mode">tree,form</field>
             <field name="context">{"search_default_today":1}</field>
             <!--<field name="search_view_id" ref="hr_timesheet_line_search"/>-->
+        </record>
+        
+        <record id="act_deputy_employee_2_hr_timesheet" model="ir.actions.act_window">
+            <field name="res_model">hr_deputy_timesheet_sheet.sheet</field>
+            <field name="view_type">form</field>
+            <field name="name">Timesheets</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_employee_id': [active_id], 'default_employee_id': active_id}</field>
+        </record>
+         
+        <record id="hr_deputy_timesheet_sheet_employee_extd_form" model="ir.ui.view">
+            <field name="name">hr.deputy.timesheet.sheet.employee.extd_form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_employee_extd_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box2']" position="inside">
+                    <button name="%(act_deputy_employee_2_hr_timesheet)d" string="Timesheets" type="action" groups="base.group_hr_manager"/>
+                </xpath>
+            </field>
         </record>
 
         <menuitem id="menu_hr_deputy_working_hours" parent="menu_hr_deputies_general" action="act_hr_deputy_timesheet_line_evry1_all_form"/>

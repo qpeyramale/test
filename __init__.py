@@ -7,3 +7,4 @@ import sale
 import account_invoice
 import stock
 import hr
+import report

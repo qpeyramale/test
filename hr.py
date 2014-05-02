@@ -3,6 +3,7 @@
 import time
 from datetime import datetime
 from openerp.tools.translate import _
+from openerp import netsvc
 from dateutil.relativedelta import relativedelta
 
 from openerp.osv import fields, osv, orm
@@ -79,8 +80,6 @@ class hr_deputy_timesheet_sheet(osv.osv):
                 'new': [('readonly', False)]}
             ),
         'user_id': fields.many2one('res.users', 'User', required=True, select=1, states={'confirm':[('readonly', True)], 'done':[('readonly', True)]}),
-        #'company_id': fields.many2one('res.company', 'Company'),
-        #'department_id':fields.many2one('hr.department','Department'),
         'state' : fields.selection([
             ('new', 'New'),
             ('draft','Open'),
@@ -90,6 +89,11 @@ class hr_deputy_timesheet_sheet(osv.osv):
                 \n* The \'Confirmed\' status is used for to confirm the timesheet by user. \
                 \n* The \'Done\' status is used when users timesheet is accepted by his/her senior.'),
     }
+    
+    def button_confirm(self, cr, uid, ids, context=None):
+        for sheet in self.browse(cr, uid, ids, context=context):
+            self.write(cr, uid, sheet.id, {'state': 'done'})
+        return True
     
     def _default_date_from(self, cr, uid, context=None):
         user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
@@ -168,10 +172,17 @@ class hr_deputy_analytic_timesheet(osv.osv):
             ts_line_ids.extend([row[0] for row in cr.fetchall()])
         return ts_line_ids
     
+    def _get_hours(self, cursor, user, ids, name, args, context=None):
+        res = {}
+        for ts_line in self.browse(cursor, user, ids, context=context):
+            res[ts_line.id] = ts_line.hour_to - ts_line.hour_from
+        return res
+    
     _columns = {
         'name': fields.char(u'Nom', size=64),
         'date': fields.date('Date', required=True, select=True),
-        'employee_id': fields.many2one('hr.employee', "Employee"),
+        'employee_id': fields.many2one('hr.employee', "Employee", required=True),
+        'partner_id': fields.related('employee_id', 'partner_id', 'name', type='char', string='Société'),
         'sheet_id': fields.function(_sheet, string='Sheet', type='many2one', relation='hr_deputy_timesheet_sheet.sheet', ondelete="cascade",
                         store={
                             'hr_deputy_timesheet_sheet.sheet': (_get_hr_timesheet_sheet, ['employee_id', 'date_from', 'date_to'], 10),
@@ -179,19 +190,26 @@ class hr_deputy_analytic_timesheet(osv.osv):
                             'hr.deputy.analytic.timesheet': (lambda self,cr,uid,ids,context=None: ids, None, 10),
                         },
         ),
-        'unit_amount': fields.float('Units'),
+        'hour_from': fields.float('Heure entrée', required=True),
+        'hour_to':  fields.float('Heure sortie', required=True),
+        'unit_amount': fields.function(_get_hours, string='Heures', type='float', store=False),
         'user_id': fields.related('sheet_id', 'user_id', type="many2one", relation="res.users", store=True, string="User", required=False, readonly=True),
-        #'line_id': fields.many2one('account.analytic.line', 'Analytic Line', ondelete='cascade', required=True),
     }
     
     def _get_default_date(self, cr, uid, context=None):
-        return fields.date.context_today(self, cr, uid, context=context)
-
-    def __get_default_date(self, cr, uid, context=None):
-        return self._get_default_date(cr, uid, context=context)
+        if context.has_key('timesheet_id') and context.get('timesheet_id'):
+            obj_ts = self.pool.get('hr_deputy_timesheet_sheet.sheet').browse(cr, uid, context.get('timesheet_id'))
+            if obj_ts.timesheet_ids:
+                for timesheet in obj_ts.timesheet_ids:
+                    retour = timesheet.date
+                return retour
+            else:
+                return fields.date.context_today(self, cr, uid, context=context)
+        else:
+            return fields.date.context_today(self, cr, uid, context=context)
     
     _defaults = {
-        'date': __get_default_date,
+        'date': _get_default_date,
     }
 
 #~ class resource_resource(osv.osv):
