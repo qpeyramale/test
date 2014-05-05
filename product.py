@@ -143,6 +143,10 @@ class product_product(osv.osv):
                 'product.product': (lambda self,cr,uid,ids,c=None: ids, ['list_price','standard_price'], 10),
                 #~ 'product.category': (_get_margin_category, ['margin'], 10),
             }),
+        'plis_mini': fields.integer('Nombre de plis mini'),
+        'plis_maxi': fields.integer('Nombre de plis maxi'),
+        'masse_mini': fields.integer('Masse d\'1 pli mini'),
+        'masse_maxi': fields.integer('Masse d\'1 pli maxi'),
         
     }
     

@@ -391,6 +391,20 @@
                                     on_change="onchange_npai(quantite_npa,type_npa,ref_npa,article_id,conf_product_lines,conf_workcenter_lines)"
                                     />
                                 </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'ROU06')]}">
+                                    <field name="quantite_plis"
+                                    style="width: 50%%"/>
+                                    <field name="masse_plis"
+                                    style="width: 50%%"/>
+                                    <field name="category_plis" 
+                                    domain="[('parent_id.parent_id','=',atelier_id)]"
+                                    />
+                                    <field name="article_plis" on_change="onchange_affran(quantite_plis,masse_plis,article_plis)"
+                                    domain="[('plis_mini','&lt;=',quantite_plis),('plis_maxi','&gt;=',quantite_plis)
+                                            ,('masse_mini','&lt;=',masse_plis),('masse_maxi','&gt;=',masse_plis)
+                                            ,'|',('categ_id.parent_id','=',category_plis),('categ_id','=',category_plis)]"
+                                    />
+                                </group>
                             </group>
                         </group>
                     </group>

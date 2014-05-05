@@ -294,6 +294,11 @@ class configurator(osv.osv):
             ], u'Type de lecture',
             help="Type de lecture"),
         'ref_npa': fields.char(u'Référence de l\'opération'),    
+        #ATELIER ROUTAGE : Affranchissement
+        'quantite_plis': fields.integer(u'Nombre de plis'),
+        'masse_plis': fields.integer(u'Masse d\'1 pli'),
+        'category_plis': fields.many2one('product.category',u'Catégorie'),
+        'article_plis': fields.many2one('product.product',u'Article'),
         
         'conf_product_lines': fields.one2many('configurator.product.line','conf_id',u'Détails composants'),
         'conf_workcenter_lines': fields.one2many('configurator.workcenter.line','conf_id',u'Détails tâches'),
@@ -2589,6 +2594,13 @@ class configurator(osv.osv):
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
+    #ATELIER ROUTAGE : Affranchissement
+    def onchange_affran(self, cr, uid, ids, quantite_plis,masse_plis,article_plis, context=None):
+        v = {}
+        article=self.pool.get('product.product').browse(cr,uid,article_plis)
+        v['name'] = article and article.name or ''
+        return {'value': v}
+    
 
     def make_order_line(self, cr, uid, ids, context=None):
         order_obj = self.pool.get('sale.order')
@@ -2598,10 +2610,13 @@ class configurator(osv.osv):
         if context is None:
             context = {}
         data = self.read(cr, uid, ids)[0]
+        product_browse=self.pool.get('product.product').browse(cr,uid,data['article_id'][0])
         if context.get('active_model',False)=='sale.order':
             sale_order=order_obj.browse(cr, uid, context.get(('active_ids'), []), context=context)[0]
         else:
             sale_order=order_obj.browse(cr, uid, [data['sale_id'][0]],context=context)[0]
+        if sale_order.state!='draft':
+            raise osv.except_osv(_('Attention!'), _('Modification possible uniquement en devis.'))
         for line in sale_order.order_line:
             if line.configurator_id.id==data['id']:
                 self.pool.get('sale.order.line').unlink(cr,uid,[line.id])
@@ -2627,20 +2642,37 @@ class configurator(osv.osv):
                     #~ 'state':'draft',
                     #~ 'composant':True
                 #~ }, context)
-        self.pool.get('sale.order.line').create(cr, uid, {
-            'order_id': sale_order.id,
-            'name': data['name'],
-            'price_unit': data['prix_offert']/(data['quantite'] or 1),
-            'product_uom_qty': data['quantite'] or 1,
-            'product_uos_qty': data['quantite'] or 1,
-            'configurator_id': ids[0],
-            'product_id': data['article_id'][0],
-            'discount': False,
-            'type': 'make_to_order',
-            'delay':0,
-            'state':'draft',
-            'produit_fini':True
-        }, context)
+        print 'name',product_browse.name
+        if product_browse.name=='Affranchissement':
+            self.pool.get('sale.order.line').create(cr, uid, {
+                'order_id': sale_order.id,
+                'name': data['name'],
+                'price_unit': self.pool.get('product.product').browse(cr,uid,data['article_plis'][0]).list_price,
+                'product_uom_qty': data['quantite_plis'] or 1,
+                'product_uos_qty': data['quantite_plis'] or 1,
+                'configurator_id': ids[0],
+                'product_id': data['article_plis'][0],
+                'discount': False,
+                'type': 'make_to_order',
+                'delay':0,
+                'state':'draft',
+                'affranchissement': True
+            }, context)
+        else:
+            self.pool.get('sale.order.line').create(cr, uid, {
+                'order_id': sale_order.id,
+                'name': data['name'],
+                'price_unit': data['prix_offert']/(data['quantite'] or 1),
+                'product_uom_qty': data['quantite'] or 1,
+                'product_uos_qty': data['quantite'] or 1,
+                'configurator_id': ids[0],
+                'product_id': data['article_id'][0],
+                'discount': False,
+                'type': 'make_to_order',
+                'delay':0,
+                'state':'draft',
+                'produit_fini':True
+            }, context)
         return {
                 'view_type': 'form',
                 'view_mode': 'form',

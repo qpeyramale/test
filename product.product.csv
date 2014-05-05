@@ -1,71 +1,72 @@
-id,categ_id/id,name,default_code,type,uom_id/id,uom_po_id/id,tag_ids/id,list_price,margin_perso,margin,standard_price
-product_product_1,product_category_all_papier,090 gsm offset,Pap/OF 090g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_7,0.02,False,50.0,0.01
-product_product_2,product_category_all_env,110x220 AF 80grs,Env/110x220 AF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,28.75,False,15.0,25.0
-product_product_3,product_category_all_env,110x220 AF 90grs,Env/110x220 AF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,28.75,False,15.0,25.0
-product_product_4,product_category_all_env,110x220 SF 80grs,Env/110x220 SF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,27.6,False,15.0,24.0
-product_product_5,product_category_all_env,110x220 SF 90grs,Env/110x220 SF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,27.6,False,15.0,24.0
-product_product_6,product_category_all_env,114x229 AF 80grs : IM,Env/114x229 AF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,23.69,False,15.0,20.6
-product_product_7,product_category_all_env,114x229 SF 80grs : IM,Env/114x229 SF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,23.69,False,15.0,20.6
-product_product_8,product_category_all_papier,115 gsm couché brillant ,Pap/CB 115g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_7,,False,50.0,
-product_product_9,product_category_all_papier,115 gsm couché mat,Pap/CM 115g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_7,,False,50.0,
-product_product_10,product_category_all_papier,135 gsm couché brillant,Pap/CB 135g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_4,36.99,False,50.0,24.66
-product_product_11,product_category_all_papier,135 gsm couché mat,Pap/CM 135g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_4,,False,50.0,
-product_product_12,product_category_all_env,162x229 AF 80grs,Env/162x229 AF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,36.8,False,15.0,32.0
-product_product_13,product_category_all_env,162x229 AF 80grs : IM,Env/162x229 AF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,36.8,False,15.0,32.0
-product_product_14,product_category_all_env,162x229 AF 90grs,Env/162x229 AF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,36.8,False,15.0,32.0
-product_product_15,product_category_all_env,162x229 SF 80g,Env/162x229 SF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,34.04,False,15.0,29.6
-product_product_16,product_category_all_env,162x229 SF 80grs : IM,Env/162x229 SF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,33.35,False,15.0,29.0
-product_product_17,product_category_all_env,162x229 SF 90grs,Env/162x229 SF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,36.8,False,15.0,32.0
-product_product_18,product_category_all_papier,170 gsm couché brillant,Pap/CB 170g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_4",15.0,False,50.0,10.0
-product_product_19,product_category_all_papier,170 gsm couché mat,Pap/CM 170g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_4",,False,50.0,
-product_product_20,product_category_all_env,190x190 SF 135grs,Env/190x190 SF 135grs,Consumable,product.product_uom_unit,product.product_uom_unit,,47.15,False,15.0,41.0
-product_product_21,product_category_all_env,229x324 AF 90grs,Env/229x324 AF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_6,72.335,False,15.0,62.9
-product_product_22,product_category_all_env,229x324 AF 90grs : IM,Env/229x324 AF 90grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_1,product_tags_6",72.335,False,15.0,62.9
-product_product_23,product_category_all_env,229x324 SF 90grs,Env/229x324 SF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_6,64.4,False,15.0,56.0
-product_product_24,product_category_all_env,229x324 SF 90grs : IM,Env/229x324 SF 90grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_1,product_tags_6",64.4,False,15.0,56.0
-product_product_25,product_category_all_papier,250 gsm couché brillant,Pap/CB 250g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",,False,50.0,
-product_product_26,product_category_all_papier,250 gsm couché mat,Pap/CM 250g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",0.05,False,50.0,0.025
-product_product_27,product_category_all_papier,300 gsm couché brillant,Pap/CB 300g : 640x450,Stockable Product,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",99.0,False,50.0,66.0
-product_product_28,product_category_all_papier,300 gsm couché mat,Pap/CM 300g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",,False,50.0,
-product_product_30,product_category_all_pvc,Cartes PVC20,PVC/Cartes PVC20,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_31,product_category_all_pvc,Cartes PVC20 trouée,PVC/Cartes PVC20 trouée,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_32,product_category_all_pvc,Cartes PVC20 Verso inscr,PVC/Cartes PVC20 Verso inscr,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_33,product_category_all_pvc,Cartes PVC30,PVC/Cartes PVC30,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_34,product_category_all_pvc,Cartes PVC30 HiCo,PVC/Cartes PVC30 HiCo,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_35,product_category_all_pvc,Cartes PVC30 LoCo,PVC/Cartes PVC30 LoCo,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_36,product_category_all_pvc,Cartes PVC 3 elts,PVC/Cartes PVC 3 elts,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_37,product_category_all_divers,Carton 92,,Stockable Product,product.product_uom_unit,product.product_uom_unit,,0.8,False,,0.8
-product_product_38,product_category_all_pvc,Cleaning kit,PVC/Cleaning kit,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_48,product_category_all_mo,Intérimaires,,Service,product.product_uom_hour,product.product_uom_hour,,30.0,False,,30.0
-product_product_50,product_category_all_livraison,Palette,,Service,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_51,product_category_all_divers,Pastilles adhésives,,Stockable Product,product.product_uom_unit,product.product_uom_unit,,0.02,False,,0.02
-product_product_53,product_category_all_offset,Plaque,Off/Plaque,Consumable,product.product_uom_unit,product.product_uom_unit,,5.0,False,,5.0
-product_product_54,product_category_all_pvc,Porte carte troué,PVC/Porte carte troué,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_56,product_category_atelier_editique_email,Routage emails,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.01,False,,
-product_product_57,product_category_all_pvc,Ruban full 4:0,PVC/Ruban full 4:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_58,product_category_all_pvc,Ruban full 4:1,PVC/Ruban full 4:1,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_59,product_category_all_pvc,Ruban full G:0,PVC/Ruban full G:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_60,product_category_all_pvc,Ruban full K:0,PVC/Ruban full K:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_61,product_category_all_pvc,Ruban full K:0 vernis,PVC/Ruban full K:0 vernis,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_62,product_category_all_pvc,Ruban full N:0,PVC/Ruban full N:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_63,product_category_all_pvc,Ruban full S:0,PVC/Ruban full S:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_64,product_category_all_pvc,Ruban half 4:0,PVC/Ruban half 4:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_65,product_category_all_pvc,Ruban hologram,PVC/Ruban hologram,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_66,product.product_category_all,Sortie numérique couleur,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.09,False,,
-product_product_67,product.product_category_all,Sortie numérique noir,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.02,False,,
-product_product_col,product_category_atelier_fac,Collage de document,FAC01,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_div,product_category_atelier_fac,Travaux divers,FAC02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_enc,product_category_atelier_fac,Encartage,FAC03,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_imp,product_category_atelier_num,Fabrication d'un imprimé,NUM01,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,
-product_product_livre,product_category_atelier_num,Fabrication d'un livre relié dos carré,NUM02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_doc,product_category_atelier_num,Personnalisation d’un document,NUM04,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_livret,product_category_atelier_num,Fabrication d'un livret,NUM05,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_env,product_category_atelier_offset,Impression enveloppes,OFF01,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,
-product_product_jet,product_category_atelier_offset,Impression jet d'encre sur enveloppes,OFF02,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,
-product_product_pap,product_category_atelier_offset,Impression papier,OFF03,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,
-product_product_manu,product_category_atelier_routage,Insertion manuelle sous enveloppe,ROU02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_meca,product_category_atelier_routage,Insertion mécanisée sous enveloppe,ROU03,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_film,product_category_atelier_routage,Mise sous film,ROU04,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_npai,product_category_atelier_routage,Traitement NPAI,ROU05,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
-product_product_email,product_category_atelier_editique,Campagne email,EDI01,Consumable,product.product_uom_unit,product.product_uom_unit,,115.0,False,15.0,100.0
-product_product_prepa,product_category_atelier_editique,Préparation fichier données,EDI02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,15.0,
+id,categ_id/id,name,default_code,type,uom_id/id,uom_po_id/id,tag_ids/id,list_price,margin_perso,margin,standard_price,supply_method
+product_product_1,product_category_all_papier,090 gsm offset,Pap/OF 090g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_7,0.02,False,50.0,0.01,buy
+product_product_2,product_category_all_env,110x220 AF 80grs,Env/110x220 AF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,28.75,False,15.0,25.0,buy
+product_product_3,product_category_all_env,110x220 AF 90grs,Env/110x220 AF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,28.75,False,15.0,25.0,buy
+product_product_4,product_category_all_env,110x220 SF 80grs,Env/110x220 SF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,27.6,False,15.0,24.0,buy
+product_product_5,product_category_all_env,110x220 SF 90grs,Env/110x220 SF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,27.6,False,15.0,24.0,buy
+product_product_6,product_category_all_env,114x229 AF 80grs : IM,Env/114x229 AF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,23.69,False,15.0,20.6,buy
+product_product_7,product_category_all_env,114x229 SF 80grs : IM,Env/114x229 SF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,23.69,False,15.0,20.6,buy
+product_product_8,product_category_all_papier,115 gsm couché brillant ,Pap/CB 115g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_7,,False,50.0,,buy
+product_product_9,product_category_all_papier,115 gsm couché mat,Pap/CM 115g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_7,,False,50.0,,buy
+product_product_10,product_category_all_papier,135 gsm couché brillant,Pap/CB 135g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_4,36.99,False,50.0,24.66,buy
+product_product_11,product_category_all_papier,135 gsm couché mat,Pap/CM 135g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_4,,False,50.0,,buy
+product_product_12,product_category_all_env,162x229 AF 80grs,Env/162x229 AF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,36.8,False,15.0,32.0,buy
+product_product_13,product_category_all_env,162x229 AF 80grs : IM,Env/162x229 AF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,36.8,False,15.0,32.0,buy
+product_product_14,product_category_all_env,162x229 AF 90grs,Env/162x229 AF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,36.8,False,15.0,32.0,buy
+product_product_15,product_category_all_env,162x229 SF 80g,Env/162x229 SF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,34.04,False,15.0,29.6,buy
+product_product_16,product_category_all_env,162x229 SF 80grs : IM,Env/162x229 SF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,33.35,False,15.0,29.0,buy
+product_product_17,product_category_all_env,162x229 SF 90grs,Env/162x229 SF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,36.8,False,15.0,32.0,buy
+product_product_18,product_category_all_papier,170 gsm couché brillant,Pap/CB 170g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_4",15.0,False,50.0,10.0,buy
+product_product_19,product_category_all_papier,170 gsm couché mat,Pap/CM 170g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_4",,False,50.0,,buy
+product_product_20,product_category_all_env,190x190 SF 135grs,Env/190x190 SF 135grs,Consumable,product.product_uom_unit,product.product_uom_unit,,47.15,False,15.0,41.0,buy
+product_product_21,product_category_all_env,229x324 AF 90grs,Env/229x324 AF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_6,72.335,False,15.0,62.9,buy
+product_product_22,product_category_all_env,229x324 AF 90grs : IM,Env/229x324 AF 90grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_1,product_tags_6",72.335,False,15.0,62.9,buy
+product_product_23,product_category_all_env,229x324 SF 90grs,Env/229x324 SF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_6,64.4,False,15.0,56.0,buy
+product_product_24,product_category_all_env,229x324 SF 90grs : IM,Env/229x324 SF 90grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_1,product_tags_6",64.4,False,15.0,56.0,buy
+product_product_25,product_category_all_papier,250 gsm couché brillant,Pap/CB 250g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",,False,50.0,,buy
+product_product_26,product_category_all_papier,250 gsm couché mat,Pap/CM 250g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",0.05,False,50.0,0.025,buy
+product_product_27,product_category_all_papier,300 gsm couché brillant,Pap/CB 300g : 640x450,Stockable Product,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",99.0,False,50.0,66.0,buy
+product_product_28,product_category_all_papier,300 gsm couché mat,Pap/CM 300g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",,False,50.0,,buy
+product_product_30,product_category_all_pvc,Cartes PVC20,PVC/Cartes PVC20,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_31,product_category_all_pvc,Cartes PVC20 trouée,PVC/Cartes PVC20 trouée,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_32,product_category_all_pvc,Cartes PVC20 Verso inscr,PVC/Cartes PVC20 Verso inscr,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_33,product_category_all_pvc,Cartes PVC30,PVC/Cartes PVC30,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_34,product_category_all_pvc,Cartes PVC30 HiCo,PVC/Cartes PVC30 HiCo,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_35,product_category_all_pvc,Cartes PVC30 LoCo,PVC/Cartes PVC30 LoCo,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_36,product_category_all_pvc,Cartes PVC 3 elts,PVC/Cartes PVC 3 elts,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_37,product_category_all_divers,Carton 92,,Stockable Product,product.product_uom_unit,product.product_uom_unit,,0.8,False,,0.8,buy
+product_product_38,product_category_all_pvc,Cleaning kit,PVC/Cleaning kit,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_48,product_category_all_mo,Intérimaires,,Service,product.product_uom_hour,product.product_uom_hour,,30.0,False,,30.0,buy
+product_product_50,product_category_all_livraison,Palette,,Service,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_51,product_category_all_divers,Pastilles adhésives,,Stockable Product,product.product_uom_unit,product.product_uom_unit,,0.02,False,,0.02,buy
+product_product_53,product_category_all_offset,Plaque,Off/Plaque,Consumable,product.product_uom_unit,product.product_uom_unit,,5.0,False,,5.0,buy
+product_product_54,product_category_all_pvc,Porte carte troué,PVC/Porte carte troué,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_56,product_category_atelier_editique_email,Routage emails,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.01,False,,,buy
+product_product_57,product_category_all_pvc,Ruban full 4:0,PVC/Ruban full 4:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_58,product_category_all_pvc,Ruban full 4:1,PVC/Ruban full 4:1,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_59,product_category_all_pvc,Ruban full G:0,PVC/Ruban full G:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_60,product_category_all_pvc,Ruban full K:0,PVC/Ruban full K:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_61,product_category_all_pvc,Ruban full K:0 vernis,PVC/Ruban full K:0 vernis,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_62,product_category_all_pvc,Ruban full N:0,PVC/Ruban full N:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_63,product_category_all_pvc,Ruban full S:0,PVC/Ruban full S:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_64,product_category_all_pvc,Ruban half 4:0,PVC/Ruban half 4:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_65,product_category_all_pvc,Ruban hologram,PVC/Ruban hologram,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_66,product.product_category_all,Sortie numérique couleur,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.09,False,,,buy
+product_product_67,product.product_category_all,Sortie numérique noir,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.02,False,,,buy
+product_product_col,product_category_atelier_fac,Collage de document,FAC01,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
+product_product_div,product_category_atelier_fac,Travaux divers,FAC02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
+product_product_enc,product_category_atelier_fac,Encartage,FAC03,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
+product_product_imp,product_category_atelier_num,Fabrication d'un imprimé,NUM01,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,,produce
+product_product_livre,product_category_atelier_num,Fabrication d'un livre relié dos carré,NUM02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
+product_product_doc,product_category_atelier_num,Personnalisation d’un document,NUM04,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
+product_product_livret,product_category_atelier_num,Fabrication d'un livret,NUM05,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
+product_product_env,product_category_atelier_offset,Impression enveloppes,OFF01,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,,produce
+product_product_jet,product_category_atelier_offset,Impression jet d'encre sur enveloppes,OFF02,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,,produce
+product_product_pap,product_category_atelier_offset,Impression papier,OFF03,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,,produce
+product_product_manu,product_category_atelier_routage,Insertion manuelle sous enveloppe,ROU02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
+product_product_meca,product_category_atelier_routage,Insertion mécanisée sous enveloppe,ROU03,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
+product_product_film,product_category_atelier_routage,Mise sous film,ROU04,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
+product_product_npai,product_category_atelier_routage,Traitement NPAI,ROU05,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
+product_product_email,product_category_atelier_editique,Campagne email,EDI01,Consumable,product.product_uom_unit,product.product_uom_unit,,115.0,False,15.0,100.0,produce
+product_product_prepa,product_category_atelier_editique,Préparation fichier données,EDI02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,15.0,,produce
+product_product_affranchissement,product_category_atelier_routage,Affranchissement,ROU06,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy

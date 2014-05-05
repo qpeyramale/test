@@ -31,6 +31,14 @@
                             <field name="tag_ids"/>
                         </group>
                     </page>
+                    <page string="Affranchissement">
+                        <group>
+                            <field name="plis_mini"/>
+                            <field name="plis_maxi"/>
+                            <field name="masse_mini"/>
+                            <field name="masse_maxi"/>
+                        </group>
+                    </page>
                 </notebook>
             </field>
         </record>

@@ -8,7 +8,7 @@
             <field eval="100" name="priority"/>
             <field name="arch" type="xml">
                 <notebook position="inside">
-                    <page string="Produits finis">
+                    <page string="Produits finis" invisible="1">
                         <field name="order_line_ids" domain="[('produit_fini','=',True)]" nolabel="1"/>
                     </page>
                 </notebook>

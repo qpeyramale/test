@@ -12,7 +12,7 @@
                 </field>
                 <notebook position="inside">
                     <page string="Configurations">
-                        <field name="configurator_ids"  nolabel="1">
+                        <field name="configurator_ids" attrs="{'readonly': [('state', '!=', 'draft')]}" nolabel="1">
                             <tree editable="top" create="false">
                                 <field name="name" readonly="1"/>
                                 <button name="%(action_view_configurator)d" string="Editer la configuration"
@@ -25,6 +25,7 @@
                     <field name="configurator_id" invisible="1"/>
                     <field name="composant" invisible="0" readonly="1"/>
                     <field name="produit_fini" invisible="0" readonly="1"/>
+                    <field name="affranchissement" invisible="0" readonly="1"/>
                 </xpath>
 <!--
                 <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">

@@ -23,6 +23,8 @@
         'report/timesheet.xml',
         'edi/timesheet_action_data.xml',
         'data/simpac_data.xml',
+        
+        #données
         #~ 'product.category.csv',
         #~ 'product.tags.csv',
         #~ 'product.product.csv',

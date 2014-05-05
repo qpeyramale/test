@@ -20,6 +20,7 @@ class stock_picking(osv.osv):
 
     _columns = {
         'order_line_ids': fields.related('sale_id','order_line',type='one2many', relation='sale.order.line', string='Lignes de commande',readonly=True),
+        'affranchissement': fields.boolean('Affranchissement'),
     }
 
 class stock_picking_out(osv.osv):
@@ -27,5 +28,6 @@ class stock_picking_out(osv.osv):
 
     _columns = {
         'order_line_ids': fields.related('sale_id','order_line',type='one2many', relation='sale.order.line', string='Lignes de commande',readonly=True),
+        'affranchissement': fields.boolean('Affranchissement'),
     }
  
