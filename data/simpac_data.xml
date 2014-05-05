@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="product_product_default_timesheet_product" model="product.product">
+            <field name="default_code">MO</field>
+            <field name="supply_method">produce</field>
+            <field eval="'make_to_order'" name="procure_method"/>
+            <field name="list_price">1</field>
+            <field name="standard_price">1</field>
+            <field name="name">Produit Test</field>
+            <field eval="0" name="purchase_ok"/>
+            <field name="type">service</field>
+        </record>
+
+    </data>
+</openerp>

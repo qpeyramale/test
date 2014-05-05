@@ -21,6 +21,8 @@
         'stock_view.xml',
         'hr_view.xml',
         'report/timesheet.xml',
+        'edi/timesheet_action_data.xml',
+        'data/simpac_data.xml',
         #~ 'product.category.csv',
         #~ 'product.tags.csv',
         #~ 'product.product.csv',

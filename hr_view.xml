@@ -94,12 +94,14 @@
                 <form string="Timesheet" version="7.0">
                     <header>
                         <button name="button_confirm" states="new" string="Valider" type="object" class="oe_highlight"/>
-                        <field name="state" widget="statusbar" statusbar_visible="new,confirm,done"/>
+                        <button name="%(action_view_invoice_timesheet)d" string="Facturation"
+                                type="action" class="oe_highlight" context="{'action': 'invoice'}" attrs="{'invisible': [('state','!=','done')]}"/>
+                        <button name="%(action_view_report_timesheet)d" string="Edition"
+                                type="action" class="oe_highlight" context="{'action': 'report'}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,done"/>
                     </header>
                     <sheet>
                         <div class="oe_right oe_button_box" name="buttons">
-                            <button name="%(action_view_report_timesheet)d" string="Edition"
-                                type="action" class="oe_highlight"/>
                             <button type="action"
                                 name="%(act_hr_deputy_timesheet_sheet_sheet_2_hr_analytic_timesheet)d"
                                 string="Timesheet Activities" />
@@ -108,14 +110,14 @@
                         <group>
                             <group>
                                 <label for="date_from" string="Timesheet Period"/>
-                                <div><field name="date_from" class="oe_inline"/> to <field name="date_to" class="oe_inline"/></div>
+                                <div><field name="date_from" class="oe_inline" attrs="{'readonly': [('state','!=','new')]}"/> to <field name="date_to" class="oe_inline" attrs="{'readonly': [('state','!=','new')]}"/></div>
                                 <field name="name" invisible="1"/>
                             </group>
                         </group>
                         <notebook>
                             <page string="Details">
                                 <field name="id" invisible="1"/>
-                                <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to, 'timesheet_id': id}" name="timesheet_ids" nolabel="1">
+                                <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to, 'timesheet_id': id}" name="timesheet_ids" nolabel="1" attrs="{'readonly': [('state','!=','new')]}">
                                     <tree editable="top" string="Timesheet Activities">
                                         <field name="date"/>
                                         <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>

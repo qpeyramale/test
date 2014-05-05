@@ -4,6 +4,8 @@ import time
 from datetime import datetime
 from openerp.tools.translate import _
 from openerp import netsvc
+from openerp import tools
+import base64
 from dateutil.relativedelta import relativedelta
 
 from openerp.osv import fields, osv, orm
@@ -70,7 +72,7 @@ class hr_deputy_timesheet_sheet(osv.osv):
     
     _columns = {
         'name': fields.char('Note', size=64, select=1,
-                            states={'confirm':[('readonly', True)], 'done':[('readonly', True)]}),
+                states={'confirm':[('readonly', True)], 'done':[('readonly', True)]}),
         'date_from': fields.date('Date from', required=True, select=1, readonly=True, states={'new':[('readonly', False)]}),
         'date_to': fields.date('Date to', required=True, select=1, readonly=True, states={'new':[('readonly', False)]}),
         'timesheet_ids': fields.one2many('hr.deputy.analytic.timesheet', 'sheet_id',
@@ -84,10 +86,7 @@ class hr_deputy_timesheet_sheet(osv.osv):
             ('new', 'New'),
             ('draft','Open'),
             ('confirm','Waiting Approval'),
-            ('done','Approved')], 'Status', select=True, required=True, readonly=True,
-            help=' * The \'Draft\' status is used when a user is encoding a new and unconfirmed timesheet. \
-                \n* The \'Confirmed\' status is used for to confirm the timesheet by user. \
-                \n* The \'Done\' status is used when users timesheet is accepted by his/her senior.'),
+            ('done','Approved'),('invoiced','Invoiced')], 'Status', select=True, required=True, readonly=True),
     }
     
     def button_confirm(self, cr, uid, ids, context=None):
@@ -142,6 +141,8 @@ class hr_deputy_timesheet_sheet(osv.osv):
         (_sheet_date, 'You cannot have 2 timesheets that overlap!\nPlease use the menu \'My Current Timesheet\' to avoid this problem.', ['date_from','date_to']),
     ]
     
+hr_deputy_timesheet_sheet()
+    
 class hr_deputy_analytic_timesheet(osv.osv):
     
     _name = "hr.deputy.analytic.timesheet"
@@ -194,6 +195,11 @@ class hr_deputy_analytic_timesheet(osv.osv):
         'hour_to':  fields.float('Heure sortie', required=True),
         'unit_amount': fields.function(_get_hours, string='Heures', type='float', store=False),
         'user_id': fields.related('sheet_id', 'user_id', type="many2one", relation="res.users", store=True, string="User", required=False, readonly=True),
+        'state' : fields.selection([
+            ('new', 'New'),
+            ('draft','Open'),
+            ('confirm','Waiting Approval'),
+            ('done','Approved'),('invoiced','Invoiced')], 'Status', select=True, required=True, readonly=True),
     }
     
     def _get_default_date(self, cr, uid, context=None):
@@ -211,6 +217,84 @@ class hr_deputy_analytic_timesheet(osv.osv):
     _defaults = {
         'date': _get_default_date,
     }
+    
+class email_template(osv.osv):
+    
+    "Templates for sending email"
+    
+    _inherit = "email.template"
+    
+    def generate_email(self, cr, uid, template_id, res_id, context=None):
+        """Generates an email from the template for given (model, res_id) pair.
+
+           :param template_id: id of the template to render.
+           :param res_id: id of the record to use for rendering the template (model
+                          is taken from template definition)
+           :returns: a dict containing all relevant fields for creating a new
+                     mail.mail entry, with one extra key ``attachments``, in the
+                     format expected by :py:meth:`mail_thread.message_post`.
+        """
+
+        if context is None:
+            context = {}
+        
+        if context.has_key('form') and context['form'].has_key('partner_id'):
+            obj_partner = self.pool.get('res.partner').browse(cr, uid, context['form']['partner_id'][0])
+            context.update({
+                'partner_id': context.get('form')['partner_id'][0],
+                'partner_name': obj_partner.name or '',
+            })
+            
+        report_xml_pool = self.pool.get('ir.actions.report.xml')
+        template = self.get_email_template(cr, uid, template_id, res_id, context)
+        values = {}
+        for field in ['subject', 'body_html', 'email_from',
+                      'email_to', 'email_recipients', 'email_cc', 'reply_to']:
+            values[field] = self.render_template(cr, uid, getattr(template, field),
+                                                 template.model, res_id, context=context) \
+                                                 or False
+        if template.user_signature:
+            signature = self.pool.get('res.users').browse(cr, uid, uid, context).signature
+            values['body_html'] = tools.append_content_to_html(values['body_html'], signature)
+
+        if values['body_html']:
+            values['body'] = tools.html_sanitize(values['body_html'])
+
+        values.update(mail_server_id=template.mail_server_id.id or False,
+                      auto_delete=template.auto_delete,
+                      model=template.model,
+                      res_id=res_id or False)
+
+        attachments = []
+        # Add report in attachments
+        if template.report_template:
+            report_name = self.render_template(cr, uid, template.report_name, template.model, res_id, context=context)
+            report_service = 'report.' + report_xml_pool.browse(cr, uid, template.report_template.id, context).report_name
+            # Ensure report is rendered using template's language
+            ctx = context.copy()
+            if template.lang:
+                ctx['lang'] = self.render_template(cr, uid, template.lang, template.model, res_id, context)
+            service = netsvc.LocalService(report_service)
+            #print '==========>', context
+            if template.model == 'hr_deputy_timesheet_sheet.sheet':
+                (result, format) = service.create(cr, uid, [res_id], {'model': template.model, 'form': context.get('form')}, ctx)
+            else:
+                (result, format) = service.create(cr, uid, [res_id], {'model': template.model}, ctx)
+            result = base64.b64encode(result)
+            if not report_name:
+                report_name = report_service
+            ext = "." + format
+            if not report_name.endswith(ext):
+                report_name += ext
+            attachments.append((report_name, result))
+
+        # Add template attachments
+        for attach in template.attachment_ids:
+            attachments.append((attach.datas_fname, attach.datas))
+
+        values['attachments'] = attachments
+        return values
+
 
 #~ class resource_resource(osv.osv):
     #~ _inherit = "resource.resource"

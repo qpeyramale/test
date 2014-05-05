@@ -8,10 +8,12 @@
                 <form string="Timesheet edition" version="7.0">
                     <group>
                         <field name="partner_id"/>
+                        <field name="action" invisible="1"/>
                     </group>
                     <footer invisible="context.get('visible', True)">
-                        <button name="print_report" string="Print" type="object" class="oe_highlight"/>
-                        <button name="send_mail" string="Envoyer par mail" type="object" class="oe_highlight" attrs="{'invisible': [('partner_id','=',False)]}"/>
+                        <button name="print_report" string="Print" type="object" class="oe_highlight" attrs="{'invisible': [('action','=','invoice')]}"/>
+                        <button name="send_mail" string="Envoyer par mail" type="object" class="oe_highlight" attrs="{'invisible': ['|',('partner_id','=',False),('action','=','invoice')]}"/>
+                        <button name="create_invoices" string="Créer la facture" type="object" class="oe_highlight" attrs="{'invisible': [('action','=','report')]}"/>
                         or
                         <button string="Annuler" class="oe_link" special="cancel" />
                     </footer>
@@ -21,6 +23,18 @@
 
         <record id="action_view_report_timesheet" model="ir.actions.act_window">
             <field name="name">Edition feuille de présence</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard_timesheet</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_timesheet"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+            <field name="context" eval="{'visible':False}"/>
+        </record>
+        
+        <record id="action_view_invoice_timesheet" model="ir.actions.act_window">
+            <field name="name">Facturation feuille de présence</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">wizard_timesheet</field>
             <field name="view_type">form</field>
