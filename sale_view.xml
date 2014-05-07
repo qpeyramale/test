@@ -23,9 +23,10 @@
                 </notebook>
                 <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
                     <field name="configurator_id" invisible="1"/>
-                    <field name="composant" invisible="0" readonly="1"/>
-                    <field name="produit_fini" invisible="0" readonly="1"/>
-                    <field name="affranchissement" invisible="0" readonly="1"/>
+                    <field name="composant" invisible="1" readonly="1"/>
+                    <field name="produit_fini" invisible="1" readonly="1"/>
+                    <field name="affranchissement_machine" invisible="0" readonly="1"/>
+                    <field name="affranchissement_dispense" invisible="0" readonly="1"/>
                 </xpath>
 <!--
                 <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">

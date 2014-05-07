@@ -2642,12 +2642,18 @@ class configurator(osv.osv):
                     #~ 'state':'draft',
                     #~ 'composant':True
                 #~ }, context)
-        print 'name',product_browse.name
         if product_browse.name=='Affranchissement':
+            article_plis=self.pool.get('product.product').browse(cr,uid,data['article_plis'][0])
+            affran_machine=False
+            affran_dispense=False
+            if article_plis.categ_id.parent_id.name==u'Machine à affranchir' or article_plis.categ_id.name==u'Machine à affranchir':
+                affran_machine=True
+            if article_plis.categ_id.parent_id.name==u'Dispense de timbrage' or article_plis.categ_id.name==u'Dispense de timbrage':
+                affran_dispense=True
             self.pool.get('sale.order.line').create(cr, uid, {
                 'order_id': sale_order.id,
                 'name': data['name'],
-                'price_unit': self.pool.get('product.product').browse(cr,uid,data['article_plis'][0]).list_price,
+                'price_unit': article_plis.list_price,
                 'product_uom_qty': data['quantite_plis'] or 1,
                 'product_uos_qty': data['quantite_plis'] or 1,
                 'configurator_id': ids[0],
@@ -2656,7 +2662,8 @@ class configurator(osv.osv):
                 'type': 'make_to_order',
                 'delay':0,
                 'state':'draft',
-                'affranchissement': True
+                'affranchissement_machine': affran_machine,
+                'affranchissement_dispense': affran_dispense
             }, context)
         else:
             self.pool.get('sale.order.line').create(cr, uid, {

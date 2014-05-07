@@ -9,3 +9,4 @@ import stock
 import hr
 import report
 import edi
+import res_company

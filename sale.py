@@ -42,7 +42,8 @@ class sale_order(osv.osv):
         picking_obj = self.pool.get('stock.picking')
         procurement_obj = self.pool.get('procurement.order')
         proc_ids = []
-        picking_id_aff=False
+        picking_id_aff_machine=False
+        picking_id_aff_dispense=False
         print '_create_pickings_and_procurements'
         for line in order_lines:
             if line.state == 'done':
@@ -52,21 +53,31 @@ class sale_order(osv.osv):
 
             if line.product_id:
                 if line.product_id.type in ('product', 'consu'):
-                    if line.affranchissement:
-                        if not picking_id_aff:
-                            picking_id_aff = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
-                            picking_obj.write(cr,uid,picking_id_aff,{'affranchissement':True})
-                        move_id_aff = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id_aff, date_planned, context=context))
+                    if line.affranchissement_machine:
+                        if not picking_id_aff_machine:
+                            picking_id_aff_machine = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                            picking_obj.write(cr,uid,picking_id_aff_machine,{'affranchissement_machine':True})
+                        move_id_aff_machine = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id_aff_machine, date_planned, context=context))
+                        move_id_aff_dispense = False
+                        move_id = False
+                    elif line.affranchissement_dispense:
+                        if not picking_id_aff_dispense:
+                            picking_id_aff_dispense = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                            picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True})
+                        move_id_aff_dispense = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id_aff_dispense, date_planned, context=context))
+                        move_id_aff_machine = False
                         move_id = False
                     else:
                         if not picking_id:
                             picking_id = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
                         move_id = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id, date_planned, context=context))
-                        move_id_aff = False
+                        move_id_aff_machine = False
+                        move_id_aff_dispense = False
                 else:
                     # a service has no stock move
                     move_id = False
-                    move_id_aff = False
+                    move_id_aff_machine = False
+                    move_id_aff_dispense = False
                 
                 if move_id:
                     proc_id = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id, date_planned, context=context))
@@ -74,17 +85,25 @@ class sale_order(osv.osv):
                     line.write({'procurement_id': proc_id})
                     self.ship_recreate(cr, uid, order, line, move_id, proc_id)
                 
-                if move_id_aff:
-                    proc_id_aff = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id_aff, date_planned, context=context))
-                    proc_ids.append(proc_id_aff)
-                    line.write({'procurement_id': proc_id_aff})
-                    self.ship_recreate(cr, uid, order, line, move_id_aff, proc_id_aff)
+                if move_id_aff_machine:
+                    proc_id_aff_machine = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id_aff_machine, date_planned, context=context))
+                    proc_ids.append(proc_id_aff_machine)
+                    line.write({'procurement_id': proc_id_aff_machine})
+                    self.ship_recreate(cr, uid, order, line, move_id_aff_machine, proc_id_aff_machine)
+
+                if move_id_aff_dispense:
+                    proc_id_aff_dispense = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id_aff_dispense, date_planned, context=context))
+                    proc_ids.append(proc_id_aff_dispense)
+                    line.write({'procurement_id': proc_id_aff_dispense})
+                    self.ship_recreate(cr, uid, order, line, move_id_aff_dispense, proc_id_aff_dispense)
 
         wf_service = netsvc.LocalService("workflow")
         if picking_id:
             wf_service.trg_validate(uid, 'stock.picking', picking_id, 'button_confirm', cr)
-        if picking_id_aff:
-            wf_service.trg_validate(uid, 'stock.picking', picking_id_aff, 'button_confirm', cr)
+        if picking_id_aff_machine:
+            wf_service.trg_validate(uid, 'stock.picking', picking_id_aff_machine, 'button_confirm', cr)
+        if picking_id_aff_dispense:
+            wf_service.trg_validate(uid, 'stock.picking', picking_id_aff_dispense, 'button_confirm', cr)
         for proc_id in proc_ids:
             wf_service.trg_validate(uid, 'procurement.order', proc_id, 'button_confirm', cr)
 
@@ -125,7 +144,8 @@ class sale_order_line(osv.osv):
         'configurator_id': fields.many2one('configurator',string='Configuration'),
         'composant': fields.boolean('Composant'),
         'produit_fini': fields.boolean('Produit fini'),
-        'affranchissement': fields.boolean('Affranchissement'),
+        'affranchissement_machine': fields.boolean('Affranchissement machine'),
+        'affranchissement_dispense': fields.boolean('Affranchissement dispense'),
     }
     
     def _prepare_order_line_invoice_line(self, cr, uid, line, account_id=False, context=None):

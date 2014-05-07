@@ -127,9 +127,6 @@ class simpac_timesheet(report_sxw.rml_parse):
         
         return lines
 
-report_sxw.report_sxw(
-    'report.simpac.timesheet',
-    'hr_deputy_timesheet_sheet.sheet',
-    'addons/sudokeys_simpac/report/timesheet.rml',
-    parser=simpac_timesheet)
+report_sxw.report_sxw('report.simpac.timesheet','hr_deputy_timesheet_sheet.sheet','addons/sudokeys_simpac/report/timesheet.rml',parser=simpac_timesheet)
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
