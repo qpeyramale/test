@@ -108,7 +108,7 @@
     <paraStyle name="terp_header_Centre" fontName="Helvetica-Bold" fontSize="12.0" leading="15" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="terp_default_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="terp_default_Bold_8" fontName="Helvetica-Bold" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
-    <paraStyle name="terp_tblheader_Details" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_tblheader_Details" fontName="Helvetica-Bold" fontSize="10.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="terp_tblheader_Details_Centre" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="terp_default_Centre_8" fontName="Helvetica" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="terp_default_Centre_9" fontName="Helvetica" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
@@ -141,7 +141,10 @@
       <tr>
         <td>
             <para style="terp_tblheader_Details">Statistiques présence</para>
-            <para style="terp_default_8">[[ time ]]</para>
+            <para style="terp_default_9">
+                <font color="white"> </font>
+            </para>
+            <para style="terp_default_8">généré le [[ time ]]</para>
         </td>
         <td>
             <para style="terp_default_8">
@@ -174,7 +177,10 @@
       <tr>
         <td>
             <para style="terp_tblheader_Details">Statistiques présence</para>
-            <para style="terp_default_8">[[ time ]]</para>
+            <para style="terp_default_9">
+                <font color="white"> </font>
+            </para>
+            <para style="terp_default_8">généré le [[ time ]]</para>
         </td>
         <td>
             <para style="terp_default_8">

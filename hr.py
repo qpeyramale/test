@@ -16,6 +16,8 @@ class hr_employee(osv.osv):
     _columns = {
         'interimaire': fields.boolean(u'Intérimaire'),
         'partner_id': fields.many2one('res.partner', 'Société d\'intérimaires'),
+        'num_secu': fields.char(u'Numéro Sécurité Sociale', size=20),
+        'timesheet_ids': fields.one2many('hr.deputy.analytic.timesheet', 'employee_id', 'Timesheet lines', readonly=True),
     }
     _defaults = {
      }
@@ -75,6 +77,9 @@ class hr_deputy_timesheet_sheet(osv.osv):
                 states={'confirm':[('readonly', True)], 'done':[('readonly', True)]}),
         'date_from': fields.date('Date from', required=True, select=1, readonly=True, states={'new':[('readonly', False)]}),
         'date_to': fields.date('Date to', required=True, select=1, readonly=True, states={'new':[('readonly', False)]}),
+        'last_date': fields.date('Dernière date', required=False),
+        'last_hour_from': fields.float('Dernière heure entrée', required=False),
+        'last_hour_to':  fields.float('Dernière heure sortie', required=False),
         'timesheet_ids': fields.one2many('hr.deputy.analytic.timesheet', 'sheet_id',
             'Timesheet lines',
             readonly=True, states={
@@ -203,19 +208,55 @@ class hr_deputy_analytic_timesheet(osv.osv):
     }
     
     def _get_default_date(self, cr, uid, context=None):
+        print context
         if context.has_key('timesheet_id') and context.get('timesheet_id'):
-            obj_ts = self.pool.get('hr_deputy_timesheet_sheet.sheet').browse(cr, uid, context.get('timesheet_id'))
-            if obj_ts.timesheet_ids:
-                for timesheet in obj_ts.timesheet_ids:
-                    retour = timesheet.date
-                return retour
-            else:
-                return fields.date.context_today(self, cr, uid, context=context)
-        else:
-            return fields.date.context_today(self, cr, uid, context=context)
+            obj_timesheet = self.pool.get('hr_deputy_timesheet_sheet.sheet').browse(cr, uid, context.get('timesheet_id'))
+            if obj_timesheet.last_date:
+                return obj_timesheet.last_date
+        return fields.date.context_today(self, cr, uid, context=context)
+    
+    def _get_default_hour_from(self, cr, uid, context=None):
+        #print context
+        if context.has_key('timesheet_id') and context.get('timesheet_id'):
+            obj_timesheet = self.pool.get('hr_deputy_timesheet_sheet.sheet').browse(cr, uid, context.get('timesheet_id'))
+            if obj_timesheet.last_hour_from:
+                return obj_timesheet.last_hour_from
+        return 0
+    
+    def _get_default_hour_to(self, cr, uid, context=None):
+        if context.has_key('timesheet_id') and context.get('timesheet_id'):
+            obj_timesheet = self.pool.get('hr_deputy_timesheet_sheet.sheet').browse(cr, uid, context.get('timesheet_id'))
+            if obj_timesheet.last_hour_to:
+                return obj_timesheet.last_hour_to
+        return 0
+    
+    def onchange_hour_from(self, cr, uid, ids, hour_from, context=None):
+        self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_hour_from': hour_from})
+        return {}
+    
+    def onchange_hour_to(self, cr, uid, ids, hour_to, context=None):
+        self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_hour_to': hour_to})
+        return {}
+    
+    def onchange_date(self, cr, uid, ids, date, context=None):
+        self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_date': date})
+        return {}
+    
+    def check_hours(self, cr, uid, ids, context=None):
+         timesheet = self.read(cr, uid, ids[0], ['hour_from', 'hour_to'])
+         if timesheet['hour_from'] and timesheet['hour_to']:
+             if timesheet['hour_from'] > timesheet['hour_to']:
+                 return False
+         return True
+
+    _constraints = [
+        (check_hours, "Erreur! l'heure d'entrée doit être inférieure à l'heure de sortie.", ['hour_from', 'hour_to'])
+    ]
     
     _defaults = {
         'date': _get_default_date,
+        'hour_from': _get_default_hour_from,
+        'hour_to': _get_default_hour_to,
         'state': 'new',
     }
     

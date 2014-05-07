@@ -10,20 +10,8 @@ class wizard_timesheet(osv.osv):
     
     _description = "Timesheet edition"
     
-    def _get_partner_ids(self, cr, uid, ids, field_names, arg, context):
-        res = {}
-        
-        partner_ids = []
-        obj_timesheet_sheet = self.pool.get('hr_deputy_timesheet_sheet.sheet').browse(cr, uid, context.get('active_id'))
-        
-        for id in ids:
-            res[id] = self.get_partners(cr, uid, obj_timesheet_sheet)
-            
-        return res
-    
     _columns = {
-        'partner_id': fields.many2one('res.partner', u"Société d'intérimaires"),
-        'partner_ids': fields.function(_get_partner_ids, method=True, type='one2many', string='Avail. Partners', store=False),
+        'partner_id': fields.many2one('res.partner', u"Société d'intérimaires",),
         'action': fields.selection([
             ('report', 'New'),
             ('invoice','Open')], 'Action', select=True, required=True, readonly=True)

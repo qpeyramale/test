@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <notebook position="inside">
-                    <page string="Information" attrs="{'invisible': [('interimaire','=',False)]}">
+                    <page string="Informations" attrs="{'invisible': [('interimaire','=',False)]}">
                         <group>
                             <field name="interimaire" invisible="1"/>
                             <field name="active"/>
@@ -25,9 +25,23 @@
                         <separator string="Personal Information"/>
                         <group>
                             <field name="gender"/>
+                            <field name="num_secu"/>
                         </group>
                          <separator string="Notes"/>
                         <field name="notes" placeholder="Other Information ..." colspan="4"/>
+                    </page>
+                    <page string="Présences" attrs="{'invisible': [('interimaire','=',False)]}">
+                        <group>
+                            <field name="timesheet_ids" nolabel="1">
+                                <tree string="Présences">
+                                    <field name="date"/>
+                                    <field name="name"/>
+                                    <field name="hour_from" widget="float_time"/>
+                                    <field name="hour_to" widget="float_time"/>
+                                    <field name="unit_amount" widget="float_time"/>
+                                </tree>
+                            </field>
+                        </group>
                     </page>
                 </notebook>
                 <page string="Public Information" position="attributes">
@@ -119,11 +133,11 @@
                                 <field name="id" invisible="1"/>
                                 <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to, 'timesheet_id': id, 'default_interimaire': True}" name="timesheet_ids" nolabel="1" attrs="{'readonly': [('state','!=','new')]}">
                                     <tree editable="top" string="Timesheet Activities">
-                                        <field name="date"/>
+                                        <field name="date" on_change="onchange_date(date, context)"/>
                                         <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>
                                         <field name="name"/>
-                                        <field name="hour_from" widget="float_time"/>
-                                        <field name="hour_to" widget="float_time"/>
+                                        <field name="hour_from" widget="float_time" on_change="onchange_hour_from(hour_from, context)"/>
+                                        <field name="hour_to" widget="float_time" on_change="onchange_hour_to(hour_to, context)"/>
                                         <field name="unit_amount" readonly="1" widget="float_time" string="Hours" sum="Hours"/>
                                         <field invisible="1" name="user_id"/>
                                     </tree>
