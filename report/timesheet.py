@@ -27,6 +27,8 @@ import pooler
 
 class simpac_timesheet(report_sxw.rml_parse):
     
+    _name = 'simpac.timesheet'
+    
     def __init__(self, cr, uid, name, context):
         super(simpac_timesheet, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
@@ -125,5 +127,9 @@ class simpac_timesheet(report_sxw.rml_parse):
         
         return lines
 
-report_sxw.report_sxw('report.simpac.timesheet','hr_deputy_timesheet_sheet.sheet','addons/Simpac/report/timesheet.rml',parser=simpac_timesheet)
+report_sxw.report_sxw(
+    'report.simpac.timesheet',
+    'hr_deputy_timesheet_sheet.sheet',
+    'addons/sudokeys_simpac/report/timesheet.rml',
+    parser=simpac_timesheet)
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -5,7 +5,7 @@
             model="hr_deputy_timesheet_sheet.sheet"
             name="simpac.timesheet"
             string="Feuilles de présence"
-            rml="Simpac/report/timesheet.rml"
+            rml="sudokeys_simpac/report/timesheet.rml"
             header="False"/>
     </data>
 </openerp>

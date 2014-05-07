@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            id="simpac_report_invoice"
+            model="account.invoice"
+            name="simpac_report_invoice"
+            string="Facture Simpac"
+            rml="sudokeys_simpac/report/invoice.rml"
+            header="False"/>
+    </data>
+</openerp>

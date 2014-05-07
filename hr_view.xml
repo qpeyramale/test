@@ -20,7 +20,7 @@
                         <group>
                             <field name="interimaire" invisible="1"/>
                             <field name="active"/>
-                            <field name="partner_id"/>
+                            <field name="partner_id" attrs="{'required': [('interimaire','=',True)]}"/>
                         </group>
                         <separator string="Personal Information"/>
                         <group>
@@ -117,7 +117,7 @@
                         <notebook>
                             <page string="Details">
                                 <field name="id" invisible="1"/>
-                                <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to, 'timesheet_id': id}" name="timesheet_ids" nolabel="1" attrs="{'readonly': [('state','!=','new')]}">
+                                <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to, 'timesheet_id': id, 'default_interimaire': True}" name="timesheet_ids" nolabel="1" attrs="{'readonly': [('state','!=','new')]}">
                                     <tree editable="top" string="Timesheet Activities">
                                         <field name="date"/>
                                         <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>

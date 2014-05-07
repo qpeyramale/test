@@ -9,7 +9,7 @@
     'description': """""",
     'author': 'Sudokeys',
     'website': 'http://www.sudokeys.com',
-    'depends': ['sale', 'hr_timesheet_sheet', 'mrp','account','stock'],
+    'depends': ['sale', 'hr', 'mrp','account','stock'],
     'data': [
         'security/ir.model.access.csv',
         'security/sale_security.xml',
@@ -20,6 +20,9 @@
         'product_view.xml',
         'stock_view.xml',
         'hr_view.xml',
+        'report/timesheet.xml',
+        'report/sale_report.xml',
+        'report/invoice.xml',
         'report/timesheet.xml',
         'edi/timesheet_action_data.xml',
         'data/simpac_data.xml',

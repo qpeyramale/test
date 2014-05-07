@@ -15,7 +15,7 @@ class hr_employee(osv.osv):
     
     _columns = {
         'interimaire': fields.boolean(u'Intérimaire'),
-        'partner_id': fields.many2one('res.partner', 'Société d\'intérimaires', required=True),
+        'partner_id': fields.many2one('res.partner', 'Société d\'intérimaires'),
     }
     _defaults = {
      }
@@ -216,6 +216,7 @@ class hr_deputy_analytic_timesheet(osv.osv):
     
     _defaults = {
         'date': _get_default_date,
+        'state': 'new',
     }
     
 class email_template(osv.osv):

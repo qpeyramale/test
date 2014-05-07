@@ -3,3 +3,6 @@ access_configurator,access_configurator,model_configurator,,1,1,1,1
 access_configurator_product_line,access_configurator_product_line,model_configurator_product_line,,1,1,1,1
 access_configurator_workcenter_line,access_configurator_workcenter_line,model_configurator_workcenter_line,,1,1,1,1
 access_product_tags,access_product_tags,model_product_tags,,1,1,1,1
+access_hr_deputy_timesheet_sheet_sheet,hr_deputy_timesheet_sheet.sheet,model_hr_deputy_timesheet_sheet_sheet,,1,1,1,1
+access_hr_deputy_analytic_timesheet,hr.deputy.analytic.timesheet,model_hr_deputy_analytic_timesheet,,1,1,1,1
+access_wizard_timesheet,wizard_timesheet,model_wizard_timesheet,,1,1,1,1
