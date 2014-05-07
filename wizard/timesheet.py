@@ -23,7 +23,7 @@ class wizard_timesheet(osv.osv):
     
     _columns = {
         'partner_id': fields.many2one('res.partner', u"Société d'intérimaires"),
-        'partner_ids': fields.function(_get_partner_ids, method=True, type='list', string='Avail. Partners', store=False),
+        'partner_ids': fields.function(_get_partner_ids, method=True, type='one2many', string='Avail. Partners', store=False),
         'action': fields.selection([
             ('report', 'New'),
             ('invoice','Open')], 'Action', select=True, required=True, readonly=True)

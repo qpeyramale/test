@@ -7,8 +7,9 @@
             <field name="arch" type="xml">
                 <form string="Timesheet edition" version="7.0">
                     <group>
-                        <field name="partner_ids" invisible="1"/>
-                        <field name="partner_id" domain="[('id','in',partner_ids)]"/>
+                        <!--<field name="partner_ids" invisible="1"/>
+                        <field name="partner_id" domain="[('id','in',partner_ids)]"/>-->
+                        <field name="partner_id"/>
                         <field name="action" invisible="1"/>
                     </group>
                     <footer invisible="context.get('visible', True)">
