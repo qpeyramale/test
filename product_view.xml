@@ -42,5 +42,20 @@
                 </notebook>
             </field>
         </record>
+        
+        <!-- =============================================================== -->
+        
+        <record id="product.open_view_product_tree1" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+        </record>
+
+        <record id="product.open_view_product_form1" model="ir.actions.act_window.view">
+            <field name="sequence" eval="3"/>
+        </record>
+
+        <record id="product.open_view_product_kanban1" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+        </record>
+        
     </data>
 </openerp>

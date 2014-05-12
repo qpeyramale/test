@@ -15,10 +15,15 @@ class hr_employee(osv.osv):
     
     _columns = {
         'interimaire': fields.boolean(u'Intérimaire'),
-        'partner_id': fields.many2one('res.partner', 'Société d\'intérimaires'),
+        'partner_id': fields.many2one('res.partner', u'Société d\'intérimaires'),
         'num_secu': fields.char(u'Numéro Sécurité Sociale', size=20),
-        'timesheet_ids': fields.one2many('hr.deputy.analytic.timesheet', 'employee_id', 'Timesheet lines', readonly=True),
+        'timesheet_ids': fields.one2many('hr.deputy.analytic.timesheet', 'employee_id', u'Timesheet lines', readonly=True),
+        'phone': fields.char(u'Téléphone', size=64),
+        'mobile': fields.char(u'Portable', size=64),
+        'phone2': fields.char(u'Autre numéro', size=64),
+        'title': fields.many2one('res.partner.title', u'Civilité'),
     }
+    
     _defaults = {
      }
      
@@ -126,6 +131,7 @@ class hr_deputy_timesheet_sheet(osv.osv):
         'date_to' : _default_date_to,
         'user_id': lambda cr, uid, id, c={}: id,
         'state': 'new',
+        'last_date': datetime.today().strftime('%Y-%m-%d'),
         #'company_id': lambda self, cr, uid, c: self.pool.get('res.company')._company_default_get(cr, uid, 'hr_deputy_timesheet_sheet.sheet', context=c)
     }
     
@@ -186,29 +192,31 @@ class hr_deputy_analytic_timesheet(osv.osv):
     
     _columns = {
         'name': fields.char(u'Nom', size=64),
-        'date': fields.date('Date', required=True, select=True),
-        'employee_id': fields.many2one('hr.employee', "Employee", required=True),
-        'partner_id': fields.related('employee_id', 'partner_id', 'name', type='char', string='Société'),
-        'sheet_id': fields.function(_sheet, string='Sheet', type='many2one', relation='hr_deputy_timesheet_sheet.sheet', ondelete="cascade",
+        'date': fields.date(u'Date', required=True, select=True),
+        'employee_id': fields.many2one('hr.employee', u"Employee", required=True),
+        'partner_id': fields.related('employee_id', 'partner_id', 'name', type='char', string=u'Société'),
+        'sheet_id': fields.function(_sheet, string=u'Sheet', type='many2one', relation='hr_deputy_timesheet_sheet.sheet', ondelete="cascade",
                         store={
                             'hr_deputy_timesheet_sheet.sheet': (_get_hr_timesheet_sheet, ['employee_id', 'date_from', 'date_to'], 10),
                             #'account.analytic.line': (_get_account_analytic_line, ['user_id', 'date'], 10),
                             'hr.deputy.analytic.timesheet': (lambda self,cr,uid,ids,context=None: ids, None, 10),
                         },
         ),
-        'hour_from': fields.float('Heure entrée', required=True),
-        'hour_to':  fields.float('Heure sortie', required=True),
+        'hour_from': fields.float(u'Heure entrée', required=True),
+        'hour_to':  fields.float(u'Heure sortie', required=True),
         'unit_amount': fields.function(_get_hours, string='Heures', type='float', store=False),
-        'user_id': fields.related('sheet_id', 'user_id', type="many2one", relation="res.users", store=True, string="User", required=False, readonly=True),
+        'user_id': fields.related('sheet_id', 'user_id', type="many2one", relation="res.users", store=True, string=u"User", required=False, readonly=True),
         'state' : fields.selection([
-            ('new', 'New'),
-            ('draft','Open'),
-            ('confirm','Waiting Approval'),
-            ('done','Approved'),('invoiced','Invoiced')], 'Status', select=True, required=True, readonly=True),
+            ('new', u'New'),
+            ('draft',u'Open'),
+            ('confirm',u'Waiting Approval'),
+            ('done',u'Approved'),('invoiced',u'Invoiced')], u'Status', select=True, required=True, readonly=True),
+        'search_date_from':fields.function(lambda *a,**k:{}, method=True, type='date',string=u"Du"),
+        'search_date_to':fields.function(lambda *a,**k:{}, method=True, type='date',string=u"Au"),
     }
     
     def _get_default_date(self, cr, uid, context=None):
-        print context
+        #print context
         if context.has_key('timesheet_id') and context.get('timesheet_id'):
             obj_timesheet = self.pool.get('hr_deputy_timesheet_sheet.sheet').browse(cr, uid, context.get('timesheet_id'))
             if obj_timesheet.last_date:
@@ -231,15 +239,24 @@ class hr_deputy_analytic_timesheet(osv.osv):
         return 0
     
     def onchange_hour_from(self, cr, uid, ids, hour_from, context=None):
-        self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_hour_from': hour_from})
+        if context.get('timesheet_id') and context['timesheet_id']:
+            self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_hour_from': hour_from})
+        else:
+            return {'value': {'last_hour_from': hour_from}}
         return {}
     
     def onchange_hour_to(self, cr, uid, ids, hour_to, context=None):
-        self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_hour_to': hour_to})
+        if context.get('timesheet_id') and context['timesheet_id']:
+            self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_hour_to': hour_to})
+        else:
+            return {'value': {'last_hour_to': hour_to}}
         return {}
     
     def onchange_date(self, cr, uid, ids, date, context=None):
-        self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_date': date})
+        if context.get('timesheet_id') and context['timesheet_id']:
+            self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_date': date})
+        else:
+            return {'value': {'last_date': date}}
         return {}
     
     def check_hours(self, cr, uid, ids, context=None):

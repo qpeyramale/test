@@ -10,3 +10,4 @@ import hr
 import report
 import edi
 import res_company
+import res_partner
