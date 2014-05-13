@@ -83,7 +83,7 @@ class wizard_timesheet(osv.osv):
         
         for timesheet in obj_timesheet_sheet.timesheet_ids:
             #print timesheet.employee_id.partner_id.id,' ? ',timesheet.employee_id.partner_id.id not in retour
-            if timesheet.employee_id.partner_id.id not in partners:
+            if timesheet.employee_id.partner_id.id not in partners and timesheet.state != 'invoiced':
                 partners.append(timesheet.employee_id.partner_id.id)
         return partners
     
@@ -91,7 +91,7 @@ class wizard_timesheet(osv.osv):
         
         quantity = 0
         for timesheet in obj_timesheet_sheet.timesheet_ids:
-            if timesheet.employee_id.partner_id.id == obj_partner.id:
+            if timesheet.employee_id.partner_id.id == obj_partner.id and timesheet.state != 'invoiced':
                 quantity += timesheet.unit_amount
                 
         price_unit = obj_product.standard_price
@@ -179,6 +179,7 @@ class wizard_timesheet(osv.osv):
             partners = self.get_partners(cr, uid, obj_timesheet_sheet)
             for partner_id in partners:
                 self.create_invoice(cr, uid, obj_timesheet_sheet, partner_id, context)
+            self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, [context.get('active_id')], {'state': 'invoiced'})
         else:
             partner_id = int(data['partner_id'][0])
             self.create_invoice(cr, uid, obj_timesheet_sheet, partner_id, context)

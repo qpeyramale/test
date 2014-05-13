@@ -37,6 +37,18 @@ class wizard_timesheet_invoice(osv.osv):
         'state': _get_state,
     }
     
+    def check_invoiced_timesheets(self, cr, uid, timesheet_ids):
+        
+        _obj_timesheet = self.pool.get('hr_deputy_timesheet_sheet.sheet')
+        
+        for timesheet_sheet in _obj_timesheet.browse(cr, uid, timesheet_ids):
+            invoiced = True
+            for timesheet in timesheet_sheet.timesheet_ids:
+                if timesheet.state != 'invoiced':
+                    invoiced = False
+            if len(timesheet_sheet.timesheet_ids) > 0 and invoiced:
+                _obj_timesheet.write(cr, uid, [timesheet_sheet.id], {'state':'invoiced'})
+    
     def get_partners(self, cr, uid, context):
         
         partners = []
@@ -125,10 +137,15 @@ class wizard_timesheet_invoice(osv.osv):
         inv_id = inv_obj.create(cr, uid, inv_data, context=context)
         
         #-------------- states -------------------------------------------------
+        timesheet_ids = []
         for timesheet in self.pool.get('hr.deputy.analytic.timesheet').browse(cr, uid, context.get('active_ids')):
             if timesheet.employee_id.partner_id.id == obj_partner.id and timesheet.state != 'invoiced':
                 self.pool.get('hr.deputy.analytic.timesheet').write(cr, uid, timesheet.id, {'state': 'invoiced'}, context)
-
+                if timesheet.sheet_id.id not in timesheet_ids:
+                    timesheet_ids.append(timesheet.sheet_id.id)
+                    
+        self.check_invoiced_timesheets(cr, uid, timesheet_ids)
+                    
         return inv_id
         
     def create_invoices(self, cr, uid, ids, context=None):

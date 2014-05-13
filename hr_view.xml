@@ -121,7 +121,7 @@
                                 type="action" class="oe_highlight" context="{'action': 'invoice'}" attrs="{'invisible': [('state','!=','done')]}"/>
                         <button name="%(action_view_report_timesheet)d" string="Edition"
                                 type="action" class="oe_highlight" context="{'action': 'report'}"/>
-                        <field name="state" widget="statusbar" statusbar_visible="new,done"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,done,invoiced"/>
                     </header>
                     <sheet>
                         <div class="oe_right oe_button_box" name="buttons">

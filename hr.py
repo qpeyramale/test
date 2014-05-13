@@ -104,6 +104,9 @@ class hr_deputy_timesheet_sheet(osv.osv):
     def button_confirm(self, cr, uid, ids, context=None):
         for sheet in self.browse(cr, uid, ids, context=context):
             self.write(cr, uid, sheet.id, {'state': 'done'})
+            for timesheet in sheet.timesheet_ids:
+                if timesheet.state != 'invoiced':
+                    self.pool.get('hr.deputy.analytic.timesheet').write(cr, uid, timesheet.id, {'state': 'done'})
         return True
     
     def _default_date_from(self, cr, uid, context=None):
