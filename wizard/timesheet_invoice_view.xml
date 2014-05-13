@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_timesheet_invoice" model="ir.ui.view">
+            <field name="name">Facturation</field>
+            <field name="model">wizard_timesheet_invoice</field>
+            <field name="arch" type="xml">
+                <form string="Facturation" version="7.0">
+                    <field name="state" invisible="1"/>
+                    <div attrs="{'invisible': [('state','!=','ok')]}">Une facture sera créée pour chaque société d'intérimaires.</div>
+                    <div attrs="{'invisible': [('state','!=','partially_invoiced')]}">
+                        <p>Certains enregistrements sélectionnés ont déjà été facturés.</p>
+                        <p>Ils ne seront pas pris en compte dans les nouvelles factures.</p>
+                    </div>
+                    <div attrs="{'invisible': [('state','!=','all_invoiced')]}">Les enregistrements sélectionnés ont déjà été facturés!</div>
+                    <footer invisible="context.get('visible', True)">
+                        <button name="create_invoices" string="Créer la facture" type="object" class="oe_highlight" attrs="{'invisible': [('state','=','all_invoiced')]}"/>
+                        <span attrs="{'invisible': [('state','=','all_invoiced')]}">or</span>
+                        <button string="Annuler" class="oe_link" special="cancel" attrs="{'invisible': [('state','=','all_invoiced')]}"/>
+                        <button string="Annuler" class="oe_highlight" special="cancel" attrs="{'invisible': [('state','!=','all_invoiced')]}"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_timesheet_make_invoice" model="ir.actions.act_window">
+            <field name="name">Facturation lignes feuilles de présence</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard_timesheet_invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_timesheet_invoice"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+            <field name="context" eval="{'visible':False}"/>
+        </record>
+
+    </data>
+</openerp>
+

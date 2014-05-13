@@ -15,6 +15,7 @@
         'security/sale_security.xml',
         'wizard/configurator_view.xml',
         'wizard/timesheet_view.xml',
+        'wizard/timesheet_invoice_view.xml',
         'sale_view.xml',
         'mrp_view.xml',
         'product_view.xml',

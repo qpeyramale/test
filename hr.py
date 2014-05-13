@@ -212,7 +212,8 @@ class hr_deputy_analytic_timesheet(osv.osv):
             ('new', u'New'),
             ('draft',u'Open'),
             ('confirm',u'Waiting Approval'),
-            ('done',u'Approved'),('invoiced',u'Invoiced')], u'Status', select=True, required=True, readonly=True),
+            ('done',u'Approved'),
+            ('invoiced',u'Invoiced')], u'Status', select=True, required=True, readonly=True),
         'search_date_from':fields.function(lambda *a,**k:{}, method=True, type='date',string=u"Du"),
         'search_date_to':fields.function(lambda *a,**k:{}, method=True, type='date',string=u"Au"),
     }

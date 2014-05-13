@@ -139,15 +139,17 @@ class wizard_timesheet(osv.osv):
         else:
             raise osv.except_osv(_('Error!'), _('No product %s for invoice lines') % (obj_product.default_code))
             
-        fpos = obj_partner.property_account_position and partner.property_account_position.id or False
+        fpos = obj_partner.property_account_position and obj_partner.property_account_position.id or False
         
         acc_id = fiscal_obj.map_account(cr, uid, fpos, acc_id)
 
         inv_line_data = self._prepare_inv_line(cr, uid, acc_id, timesheet_sheet, obj_partner, obj_product, context=context)
         inv_line_id = inv_line_obj.create(cr, uid, inv_line_data, context=context)
         inv_lines.append(inv_line_id)
-
-        #po_line.write({'invoiced':True, 'invoice_lines': [(4, inv_line_id)]}, context=context)
+        
+        for timesheet in timesheet_sheet.timesheet_ids:
+            if timesheet.employee_id.partner_id.id == partner_id:
+                self.pool.get('hr.deputy.analytic.timesheet').write(cr, uid, [timesheet.id],{'state':'invoiced'}, context=context)
 
         # get invoice data and create invoice
         inv_data = {
@@ -160,7 +162,7 @@ class wizard_timesheet(osv.osv):
             'journal_id': len(journal_ids) and journal_ids[0] or False,
             'invoice_line': [(6, 0, inv_lines)],
             'origin': timesheet_sheet.name,
-            'fiscal_position': obj_partner.property_account_position and supplier.property_account_position.id or False,
+            'fiscal_position': obj_partner.property_account_position and obj_partner.property_account_position.id or False,
             'payment_term': obj_partner.property_supplier_payment_term.id or False,
             'company_id': timesheet_sheet.user_id.company_id.id,
         }
