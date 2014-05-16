@@ -6,6 +6,10 @@ class res_partner(osv.osv):
     
     _inherit = 'res.partner'
     
+    _columns = {
+        'interimaires': fields.boolean(u"Société d'intérimaires")
+    }
+    
     _defaults = {
         'is_company': 1
     }

@@ -3,7 +3,7 @@
 # *************
 
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from openerp.tools.translate import _
 from openerp import netsvc
 from openerp import tools
@@ -17,7 +17,8 @@ class hr_employee(osv.osv):
     
     _columns = {
         'interimaire': fields.boolean(u'Intérimaire'),
-        'partner_id': fields.many2one('res.partner', u'Société d\'intérimaires'),
+        'prenom': fields.char(u'Prénom', size=64),
+        'partner_id': fields.many2one('res.partner', u'Société'),
         'num_secu': fields.char(u'Numéro Sécurité Sociale', size=20),
         'timesheet_ids': fields.one2many('hr.deputy.analytic.timesheet', 'employee_id', u'Timesheet lines', readonly=True),
         'phone': fields.char(u'Téléphone', size=64),
@@ -29,8 +30,73 @@ class hr_employee(osv.osv):
     _defaults = {
      }
      
+    def create(self, cr, uid, data, context=None):
+        if data.has_key('interimaire') and data['interimaire']:
+            data['name'] = data['name'].upper()
+        return super(hr_employee, self).create(cr, uid, data, context=context)
+    
+    def write(self, cr, uid, ids, data, context=None):
+        if data.has_key('interimaire') and data['interimaire']:
+            data['name'] = data['name'].upper()
+        elif not data.has_key('interimaire'):
+            for obj_employee in self.browse(cr, uid, ids):
+                if obj_employee.interimaire:
+                    data['name'] = data['name'].upper()
+        return super(hr_employee, self).write(cr, uid, ids, data, context=context)
+    
+    def name_get(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        if not len(ids):
+            return []
+
+        res = [(r['id'], r['prenom'] and (r['name']+' '+r['prenom']) or r['name']  ) for r in self.read(cr, uid, ids, ['name', 'prenom'], context)]
+        return res
+     
 
 hr_employee()
+
+class hr_deputy_timesheet_previous(osv.osv_memory):
+    _name = 'hr.deputy.timesheet.previous'
+    _description = 'hr.deputy.timesheet.previous'
+
+    def open_timesheet(self, cr, uid, ids, context=None):
+        ts = self.pool.get('hr_deputy_timesheet_sheet.sheet')
+        if context is None:
+            context = {}
+        view_type = 'form,tree'
+
+        user_ids = self.pool.get('hr.employee').search(cr, uid, [('user_id','=',uid)], context=context)
+        if not len(user_ids):
+            raise osv.except_osv(_('Error!'), _('Please create an employee and associate it with this user.'))
+        
+        date_debut = datetime.strptime(time.strftime('%d/%m/%y',time.localtime()), '%d/%m/%y')
+        duree = timedelta(7) 
+        date_fin = date_debut - duree_finale
+        
+        ids = ts.search(cr, uid, [('user_id','=',uid),('state','in',('draft','new')),('date_from','<=',date_fin.strftime('%Y-%m-%d')), ('date_to','>=',date_fin.strftime('%Y-%m-%d'))], context=context)
+
+        if len(ids) > 1:
+            view_type = 'tree,form'
+            domain = "[('id','in',["+','.join(map(str, ids))+"]),('user_id', '=', uid)]"
+        elif len(ids)==1:
+            domain = "[('user_id', '=', uid)]"
+        else:
+            domain = "[('user_id', '=', uid)]"
+        value = {
+            'domain': domain,
+            'name': 'Nouveau',
+            'view_type': 'form',
+            'view_mode': view_type,
+            'res_model': 'hr_deputy_timesheet_sheet.sheet',
+            'view_id': False,
+            'type': 'ir.actions.act_window'
+        }
+        if len(ids) == 1:
+            value['res_id'] = ids[0]
+        return value
+
+hr_deputy_timesheet_previous()
 
 class hr_deputy_timesheet_current_open(osv.osv_memory):
     _name = 'hr.deputy.timesheet.current.open'
@@ -100,6 +166,8 @@ class hr_deputy_timesheet_sheet(osv.osv):
             ('confirm','Waiting Approval'),
             ('done','Approved'),('invoiced','Invoiced')], 'Status', select=True, required=True, readonly=True),
     }
+    
+    _order = 'date_from desc'
     
     def button_confirm(self, cr, uid, ids, context=None):
         for sheet in self.browse(cr, uid, ids, context=context):
@@ -209,7 +277,7 @@ class hr_deputy_analytic_timesheet(osv.osv):
         return res
     
     _columns = {
-        'name': fields.char(u'Nom', size=64),
+        #'name': fields.char(u'Nom', size=64),
         'date': fields.date(u'Date', required=True, select=True),
         'employee_id': fields.many2one('hr.employee', u"Employee", required=True),
         'partner_id': fields.related('employee_id', 'partner_id', 'name', type='char', string=u'Société'),
@@ -233,6 +301,8 @@ class hr_deputy_analytic_timesheet(osv.osv):
         'search_date_from':fields.function(lambda *a,**k:{}, method=True, type='date',string=u"Du"),
         'search_date_to':fields.function(lambda *a,**k:{}, method=True, type='date',string=u"Au"),
     }
+    
+    _order = 'date desc, hour_from desc, hour_to desc'
     
     def _get_default_date(self, cr, uid, context=None):
         #print context
@@ -285,8 +355,8 @@ class hr_deputy_analytic_timesheet(osv.osv):
     
     _defaults = {
         'date': _get_default_date,
-        'hour_from': _get_default_hour_from,
-        'hour_to': _get_default_hour_to,
+        #'hour_from': _get_default_hour_from,
+        #'hour_to': _get_default_hour_to,
         'state': 'new',
     }
     
