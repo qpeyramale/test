@@ -16,6 +16,7 @@ class sale_order(osv.osv):
 
     _columns = {
         'configurator_ids': fields.one2many('configurator','sale_id',string='Configurations'),
+        'contrat_cadre': fields.boolean('Contrat cadre', states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}),
         #~ 'order_line': fields.one2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, domain=[('composant','=',False)]),
     }
     
@@ -56,14 +57,20 @@ class sale_order(osv.osv):
                     if line.affranchissement_machine:
                         if not picking_id_aff_machine:
                             picking_id_aff_machine = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
-                            picking_obj.write(cr,uid,picking_id_aff_machine,{'affranchissement_machine':True})
+                            if order.contrat_cadre:
+                                picking_obj.write(cr,uid,picking_id_aff_machine,{'affranchissement_machine':True,'type_affran':'mensuel'})
+                            else:
+                                picking_obj.write(cr,uid,picking_id_aff_machine,{'affranchissement_machine':True,'type_affran':'devis'})
                         move_id_aff_machine = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id_aff_machine, date_planned, context=context))
                         move_id_aff_dispense = False
                         move_id = False
                     elif line.affranchissement_dispense:
                         if not picking_id_aff_dispense:
                             picking_id_aff_dispense = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
-                            picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True})
+                            if order.contrat_cadre:
+                                picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True,'type_affran':'mensuel'})
+                            else:
+                                picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True,'type_affran':'devis'})
                         move_id_aff_dispense = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id_aff_dispense, date_planned, context=context))
                         move_id_aff_machine = False
                         move_id = False
@@ -135,7 +142,13 @@ class sale_order(osv.osv):
         }
         return {'type': 'ir.actions.report.xml', 'report_name': 'simpac_report_sale', 'datas': datas, 'nodestroy': True}
     
-    
+    def onchange_contrat_cadre(self, cr, uid, ids, contrat_cadre, context=None):
+        res={}
+        if contrat_cadre:
+            res['order_policy']='picking'
+        else:
+            res['order_policy']='manual'
+        return {'value':res}
     
 class sale_order_line(osv.osv):
     _inherit = "sale.order.line"

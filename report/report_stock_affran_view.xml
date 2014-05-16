@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_stock_affran_tree" model="ir.ui.view">
+        <field name="name">report.stock.affran.tree</field>
+        <field name="model">report.stock.affran</field>
+        <field name="arch" type="xml">
+            <tree string="Analyse affranchissement" create="false">
+                <field name="date" invisible="1"/>
+                <field name="year" invisible="1" />
+                <field name="month" invisible="1"/>
+                <field name="day" invisible="1"/>
+                <field name="week" invisible="1"/>
+                <field name="type" invisible="1"/>
+                <field name="type_affran" invisible="1"/>
+                <field name="company_id" invisible="1"/>
+                <field name="partner_id" invisible="1" context="{'contact_display':'partner'}" />
+                <field name="picking_id" invisible="1"/>
+                <field name="location_id" invisible="1"/>
+                <field name="location_dest_id" invisible="1"/>
+                <field name="product_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+                <field name="stock_journal" invisible="1"/>
+                <field name="state" invisible="1"/>
+                <field name="product_qty" sum="Total quantity"/>
+                <field name="product_qty_in" sum="Total incoming quantity" />
+                <field name="product_qty_out" sum="Total outgoing quantity"/>
+                <field name="value"  sum="Total value"/>
+<!--
+                <field name="day_diff1"/>
+                <field name="day_diff"/>
+                <field name="day_diff2" string="Delay(Days)"/>
+-->
+           </tree>
+        </field>
+    </record>
+    <record id="view_stock_affran_graph" model="ir.ui.view">
+         <field name="name">report.stock.affran.graph</field>
+         <field name="model">report.stock.affran</field>
+         <field name="arch" type="xml">
+             <graph string="Analyse affranchissement" type="bar">
+                 <field name="product_id"/>
+                 <field name="product_qty" operator="+"/>
+             </graph>
+         </field>
+    </record>
+
+    <record id="view_stock_affran_search" model="ir.ui.view">
+        <field name="name">report.stock.affran.search</field>
+        <field name="model">report.stock.affran</field>
+        <field name="arch" type="xml">
+            <search string="Analyse affranchissement">
+                <filter string="Terminé" name="done" icon="terp-dialog-close" domain="[('state','=','done')]" help = "Completed Stock-Moves"/>
+                <filter string="À faire" icon="terp-gtk-go-back-rtl" domain="[('state','in',('assigned','waiting','confirmed'))]" help = "Future Stock-Moves"/>
+                <separator/>
+                <filter icon="terp-go-home" name="in" string="Entrant" domain="[('type','=','in')]"/>
+                <filter icon="terp-go-home" name="internal" string="Interne" domain="[('type','=','internal')]"/>
+                <filter icon="terp-go-home" name="out" string="Sortant" domain="[('type','=','out')]"/>
+                <separator/>
+                <filter icon="terp-go-home" name="devis" string="Devis" domain="[('type_affran','=','devis')]"/>
+                <filter icon="terp-go-home" name="mensuel" string="Mensuel" domain="[('type_affran','=','mensuel')]"/>
+                <filter icon="terp-go-home" name="seul" string="Seul" domain="[('type_affran','=','seul')]"/>
+                <field name="product_id" default_focus="1"/>
+                <field name="partner_id" context="{'contact_display':'partner'}"/>
+                <group expand="0" string="Filtres étendus...">
+                    <field name="location_id" />
+                    <field name="location_dest_id" />
+                    <field name="categ_id"/>
+                    <field name="stock_journal"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="date"/>
+                </group>
+                <group expand="1" string="Regrouper par...">
+                    <filter name="group_partner" string="Partenaire" icon="terp-partner" context="{'group_by':'partner_id'}"/>
+                    <filter name="group_categ_id" string="Catégorie de produit" icon="terp-stock_symbol-selection" context="{'group_by':'categ_id'}"/>
+                    <filter string="Semaine" name="week" icon="terp-go-today" context="{'group_by':'week'}" help="Week Planned"/>
+                    <filter string="Jour" name="day" icon="terp-go-today" context="{'group_by':'day'}" help="Day Planned"/>
+                    <filter string="Mois" name="month" icon="terp-go-month" context="{'group_by':'date'}" help="Month Planned"/>
+                    <filter string="Année" name="year" icon="terp-go-year" context="{'group_by':'year'}"  help="Year Planned"/>
+                    <filter name="group_product" string="Produit" icon="terp-accessories-archiver" context="{'group_by':'product_id'}"/>
+                    <filter name="group_picking" string="Expédition" icon="terp-accessories-archiver" context="{'group_by':'picking_id'}"/>
+                    <filter string="Emplacement source" name="src_location" icon="terp-gtk-jump-to-rtl" context="{'group_by':'location_id'}"/>
+                    <filter string="Emplacement de dest." name="dest_location" icon="terp-gtk-jump-to-ltr"  context="{'group_by':'location_dest_id'}"/>
+                    <filter string="Type" name="group_type" icon="terp-stock_symbol-selection" context="{'group_by':'type'}" help="Shipping type specify, goods coming in or going out"/>
+                    <filter string="Type affranchissement" name="group_type_affran" icon="terp-stock_symbol-selection" context="{'group_by':'type_affran'}" />
+                    <filter string="État" name="group_state" icon="terp-stock_effects-object-colorize" context="{'group_by':'state'}"/>
+                    <filter string="Journal de stock" name="group_stock_journal" icon="terp-folder-orange" context="{'group_by':'stock_journal'}"/>
+                    <filter string="Société" name="group_state" icon="terp-go-home" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_stock_affran_report" model="ir.actions.act_window">
+        <field name="name">Analyse affranchissement</field>
+        <field name="res_model">report.stock.affran</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,graph</field>
+        <field name="search_view_id"  ref="view_stock_affran_search"/>
+        <field name="context">{'search_default_week':1,'contact_display': 'partner','search_default_done':1,'search_default_out':1,'search_default_group_product':1, 'group_by': [], 'group_by_no_leaf':1,}</field>
+        <field name="help">Moves Analysis allows you to easily check and analyse your company stock moves. Use this report when you want to analyse the different routes taken by your products and inventory management performance.</field>
+    </record>
+    <menuitem action="action_stock_affran_report"
+        id="menu_action_stock_affran_report"
+        parent="stock.next_id_61" sequence="4"/>
+
+
+</data>
+</openerp>

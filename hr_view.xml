@@ -135,21 +135,35 @@
                                 <label for="date_from" string="Timesheet Period"/>
                                 <div><field name="date_from" class="oe_inline" attrs="{'readonly': [('state','!=','new')]}"/> to <field name="date_to" class="oe_inline" attrs="{'readonly': [('state','!=','new')]}"/></div>
                                 <field name="name" invisible="1"/>
+                                <field name="last_date" invisible="1"/>
+                                <field name="last_hour_from" invisible="1"/>
+                                <field name="last_hour_to" invisible="1"/>
                             </group>
                         </group>
                         <notebook>
                             <page string="Details">
                                 <field name="id" invisible="1"/>
-                                <field name="last_hour_from" invisible="1"/>
-                                <field name="last_hour_to" invisible="1"/>
-                                <field name="last_date" invisible="1"/>
-                                <field context="{'timesheet_id': id, 'default_interimaire': True}" name="timesheet_ids" nolabel="1" attrs="{'readonly': [('state','!=','new')]}">
+<!--
+                                <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to, 'timesheet_id': id, 'default_interimaire': True, 'default_date':last_date,'default_hour_from':last_hour_from,'default_hour_to':last_hour_to}" 
+                                on_change="onchange_timesheet_ids(timesheet_ids)"
+-->
+                                <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to, 'timesheet_id': id, 'default_interimaire': True}" 
+                                name="timesheet_ids" nolabel="1"
+                                attrs="{'readonly': [('state','!=','new')]}">
+
                                     <tree editable="top" string="Timesheet Activities">
                                         <field name="date" on_change="onchange_date(date, context)"/>
+<!--
+                                        <field name="date"/>
+-->
                                         <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>
                                         <field name="name"/>
                                         <field name="hour_from" widget="float_time" on_change="onchange_hour_from(hour_from, context)"/>
                                         <field name="hour_to" widget="float_time" on_change="onchange_hour_to(hour_to, context)"/>
+<!--
+                                        <field name="hour_from" widget="float_time"/>
+                                        <field name="hour_to" widget="float_time"/>
+-->
                                         <field name="unit_amount" readonly="1" widget="float_time" string="Hours" sum="Hours"/>
                                         <field name="state"/>
                                         <field invisible="1" name="user_id"/>
@@ -184,6 +198,7 @@
                 <search string="Timesheet">
                     <field name="search_date_from" filter_domain="[('date','&gt;=',self)]"/>
                     <field name="search_date_to" filter_domain="[('date','&lt;=',self)]"/>
+                    <field name="employee_id"/>
                 </search>
             </field>
         </record>

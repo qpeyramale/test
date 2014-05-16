@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        
+         <record id="view_quotation_tree" model="ir.ui.view">
+            <field name="name">sale.order.tree.simpac</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree" />
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <field name="contrat_cadre"/>
+                </field>
+            </field>
+        </record>
+        
         <record id="view_order_form" model="ir.ui.view">
             <field name="name">sale.order.form.simpac</field>
             <field name="model">sale.order</field>
@@ -9,6 +22,9 @@
                 <field name="state" position="before">
                     <button name="%(action_view_configurator)d" string="Configurateur"
                     type="action" states="draft" class="oe_highlight" groups="base.group_user"/>
+                </field>
+                <field name="client_order_ref" position="after">
+                    <field name="contrat_cadre" on_change="onchange_contrat_cadre(contrat_cadre)"/>
                 </field>
                 <notebook position="inside">
                     <page string="Configurations">

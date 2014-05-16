@@ -1,0 +1,26 @@
+id,product_id/id,product_uom/id,routing_id/id,name,bom_lines/product_id/id,bom_lines/product_uom/id
+mrp_bom_env,product_product_env,product.product_uom_unit,mrp_routing_env,Impression enveloppes,product_product_53,product.product_uom_unit
+mrp_bom_imp,product_product_imp,product.product_uom_unit,mrp_routing_imp,Fabrication d'un imprimé,product_product_67,product.product_uom_unit
+,,,,,product_product_66,product.product_uom_unit
+mrp_bom_pap,product_product_pap,product.product_uom_unit,mrp_routing_pap,Impression papier,product_product_53,product.product_uom_unit
+mrp_bom_jet,product_product_jet,product.product_uom_unit,mrp_routing_jet,Impression jet d'encre sur enveloppes,,
+mrp_bom_email,product_product_email,product.product_uom_unit,mrp_routing_email,Campagne email,product_product_56,product.product_uom_unit
+mrp_bom_prepa,product_product_prepa,product.product_uom_unit,mrp_routing_prepa,Préparation fichier données,,
+mrp_bom_doc,product_product_doc,product.product_uom_unit,mrp_routing_doc,Personnalisation d’un document,product_product_67,product.product_uom_unit
+,,,,,product_product_66,product.product_uom_unit
+mrp_bom_npai,product_product_npai,product.product_uom_unit,mrp_routing_npai,Traitement NPAI,,
+mrp_bom_film,product_product_film,product.product_uom_unit,mrp_routing_film,Mise sous film,product_product_1,product.product_uom_unit
+,,,,,product_product_67,product.product_uom_unit
+,,,,,product_product_66,product.product_uom_unit
+,,,,,product_product_50,product.product_uom_unit
+mrp_bom_meca,product_product_meca,product.product_uom_unit,mrp_routing_meca,Insertion mécanisée sous enveloppe,,
+mrp_bom_manu,product_product_manu,product.product_uom_unit,mrp_routing_manu,Insertion manuelle sous enveloppe,,
+mrp_bom_col,product_product_col,product.product_uom_unit,mrp_routing_col,Collage de document,product_product_37,product.product_uom_unit
+,,,,,product_product_48,product.product_uom_hour
+mrp_bom_div,product_product_div,product.product_uom_unit,,Travaux divers,product_product_48,product.product_uom_hour
+mrp_bom_enc,product_product_enc,product.product_uom_unit,mrp_routing_enc,Encartage,product_product_37,product.product_uom_unit
+,,,,,product_product_51,product.product_uom_unit
+,,,,,product_product_48,product.product_uom_hour
+mrp_bom_livre,product_product_livre,product.product_uom_unit,mrp_routing_livre,Fabrication d'un livre relié dos carré,product_product_67,product.product_uom_unit
+,,,,,product_product_66,product.product_uom_unit
+,,,,,product_product_27,product.product_uom_unit

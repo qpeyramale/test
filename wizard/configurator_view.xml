@@ -189,34 +189,37 @@
                                     <field name="quantite_imp" colspan="4"
                                         on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
                                         style="width: 50%%" />
-                                    <field name="perso_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
-                                        />
-                                    <field name="perforation_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
-                                        />
-                                    <field name="mise_page_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
-                                        attrs="{'invisible': [('perso_imp', '=', 'sans')]}" />
-                                    <label string="" colspan="2" attrs="{'invisible': [('perso_imp', '!=', 'sans')]}"/>
-                                    <field name="rainage_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
-                                        />
-                                    <field name="impression_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
-                                        />
-                                    <field name="pliage_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
-                                        />
-                                    <label for="pose_l_imp" string="Longueur/Largeur"/>
-                                    <div colspan="3">
-                                        <field name="pose_l_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
-                                        class="oe_inline"/>x
-                                        <field name="pose_w_imp"
-                                        on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
-                                        class="oe_inline"/>
-                                    </div>
+                                    <group colspan="2">
+                                        <field name="perso_imp"
+                                            on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                            />
+                                        <field name="impression_imp"
+                                            on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                            />
+                                        <label for="pose_l_imp" string="Longueur/Largeur"/>
+                                        <div colspan="3">
+                                            <field name="pose_l_imp"
+                                            on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                            class="oe_inline"/>x
+                                            <field name="pose_w_imp"
+                                            on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                            class="oe_inline"/>
+                                        </div>
+                                    </group>
+                                    <group colspan="2">
+                                        <field name="mise_page_imp"
+                                            on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                            attrs="{'invisible': [('perso_imp', '=', 'sans')]}" />
+                                        <field name="perforation_imp"
+                                            on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                            />
+                                        <field name="rainage_imp"
+                                            on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                            />
+                                        <field name="pliage_imp"
+                                            on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
+                                            />
+                                    </group>
                                     <field name="produit_imp" colspan="4"
                                         on_change="onchange_imprime(quantite_imp, perso_imp, mise_page_imp, impression_imp, pose_l_imp, pose_w_imp, produit_imp, perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines)"
                                         domain="[('categ_id','=','Papier')]"/>
@@ -414,17 +417,17 @@
                                 <field name="quantite" invisible="1"/>
                                 <field name="name" colspan="4"/>
                                 <group class="oe_subtotal_footer oe_right" colspan="2" >
-                                    <field name="sale_id" readonly="1" invisible="1"/>
+                                    <field name="sale_id"  invisible="1"/>
                                     <group class="oe_subtotal_footer oe_right" colspan="4">
-                                        <field name="prix_revient" readonly="1"/>
+                                        <field name="prix_revient" readonly="0"/>
                                     </group>
                                     <group class="oe_subtotal_footer oe_right" colspan="4">
-                                        <field name="prix_theo" readonly="1"/>
-                                        <field name="prix_global_theo" readonly="1"/>
+                                        <field name="prix_theo" readonly="0"/>
+                                        <field name="prix_global_theo" readonly="0"/>
                                     </group>
                                     <group class="oe_subtotal_footer oe_right" colspan="4">
-                                        <field name="prix_marche" readonly="1"/>
-                                        <field name="prix_global_marche" readonly="1"/>
+                                        <field name="prix_marche" readonly="0"/>
+                                        <field name="prix_global_marche" readonly="0"/>
                                     </group>
                                     <group class="oe_subtotal_footer oe_right" colspan="4">
                                         <field name="prix_offert"/>

@@ -157,6 +157,19 @@ class hr_deputy_timesheet_sheet(osv.osv):
         (_sheet_date, 'You cannot have 2 timesheets that overlap!\nPlease use the menu \'My Current Timesheet\' to avoid this problem.', ['date_from','date_to']),
     ]
     
+    #~ def onchange_timesheet_ids(self, cr, uid, ids, lines, context=None):
+        #~ if context is None:
+            #~ context={}
+        #~ res={}
+        #~ for line in lines:
+            #~ print 'line',line
+            #~ if line[0]==0:
+                #~ res['last_hour_from']=line[2]['hour_from']
+                #~ res['last_hour_to']=line[2]['hour_to']
+                #~ res['last_date']=line[2]['date']
+                #~ break
+        #~ return {'value':res} 
+    
 hr_deputy_timesheet_sheet()
     
 class hr_deputy_analytic_timesheet(osv.osv):
@@ -247,22 +260,16 @@ class hr_deputy_analytic_timesheet(osv.osv):
     def onchange_hour_from(self, cr, uid, ids, hour_from, context=None):
         if context.get('timesheet_id') and context['timesheet_id']:
             self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_hour_from': hour_from})
-        else:
-            return {'value': {'last_hour_from': hour_from}}
         return {}
     
     def onchange_hour_to(self, cr, uid, ids, hour_to, context=None):
         if context.get('timesheet_id') and context['timesheet_id']:
             self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_hour_to': hour_to})
-        else:
-            return {'value': {'last_hour_to': hour_to}}
         return {}
     
     def onchange_date(self, cr, uid, ids, date, context=None):
         if context.get('timesheet_id') and context['timesheet_id']:
             self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_date': date})
-        else:
-            return {'value': {'last_date': date}}
         return {}
     
     def check_hours(self, cr, uid, ids, context=None):

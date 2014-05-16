@@ -12,7 +12,3 @@ class res_partner(osv.osv):
      
 res_partner()
 
-
-#~ class resource_resource(osv.osv):
-    #~ _inherit = "resource.resource"
-    #~ _order = "name asc"
