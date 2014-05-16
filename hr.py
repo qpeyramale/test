@@ -338,6 +338,7 @@ class hr_deputy_analytic_timesheet(osv.osv):
         return {}
     
     def onchange_date(self, cr, uid, ids, date, context=None):
+        print 'context',context
         if context.get('timesheet_id') and context['timesheet_id']:
             self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_date': date})
         return {}

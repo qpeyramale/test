@@ -6,6 +6,11 @@
             <field name="model">wizard_timesheet_invoice</field>
             <field name="arch" type="xml">
                 <form string="Facturation" version="7.0">
+                    <group>
+                        <field name="date_invoice" />
+                        <field name="reference" />
+                    </group>
+                  
                     <field name="state" invisible="1"/>
                     <div attrs="{'invisible': [('state','!=','ok')]}">Une facture sera créée pour chaque société d'intérimaires.</div>
                     <div attrs="{'invisible': [('state','!=','partially_invoiced')]}">

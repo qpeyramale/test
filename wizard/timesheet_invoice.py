@@ -11,6 +11,8 @@ class wizard_timesheet_invoice(osv.osv):
     _description = "Timesheet invoice"
     
     _columns = {
+        'date_invoice': fields.date('Date de facturation'),
+        'reference': fields.char(u'Référence facture société'),
         'state': fields.selection([
             ('ok', 'OK'),
             ('all_invoiced','All invoiced'),
@@ -133,6 +135,8 @@ class wizard_timesheet_invoice(osv.osv):
             'fiscal_position': obj_partner.property_account_position and obj_partner.property_account_position.id or False,
             'payment_term': obj_partner.property_supplier_payment_term.id or False,
             'company_id': obj_user.company_id.id,
+            'supplier_invoice_number': 'reference' in context and context.get('reference') or '',
+            'date_invoice': 'date_invoice' in context and context.get('date_invoice') or False,
         }
         inv_id = inv_obj.create(cr, uid, inv_data, context=context)
         
@@ -150,7 +154,8 @@ class wizard_timesheet_invoice(osv.osv):
         
     def create_invoices(self, cr, uid, ids, context=None):
         
-        #print context
+        data = self.read(cr, uid, ids, [], context=context)[0]
+        context.update({'date_invoice':data['date_invoice'],'reference':data['reference']})
         if context.has_key('active_ids'):
             partners = self.get_partners(cr, uid, context)
             for partner_id in partners:

@@ -7,8 +7,14 @@
             <field name="arch" type="xml">
                 <form string="Timesheet edition" version="7.0">
                     <group>
-                        <field name="partner_id"/>
-                        <field name="action" invisible="1"/>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="action" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="date_invoice" />
+                            <field name="reference" />
+                        </group>
                     </group>
                     <footer invisible="context.get('visible', True)">
                         <button name="print_report" string="Print" type="object" class="oe_highlight" attrs="{'invisible': [('action','=','invoice')]}"/>

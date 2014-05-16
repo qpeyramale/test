@@ -14,7 +14,9 @@ class wizard_timesheet(osv.osv):
         'partner_id': fields.many2one('res.partner', u"Société d'intérimaires",),
         'action': fields.selection([
             ('report', 'New'),
-            ('invoice','Open')], 'Action', select=True, required=True, readonly=True)
+            ('invoice','Open')], 'Action', select=True, required=True, readonly=True),
+        'date_invoice': fields.date('Date de facturation'),
+        'reference': fields.char(u'Référence facture société'),
     }
     
     def _action_get(obj, cr, uid, context=None):
@@ -165,6 +167,8 @@ class wizard_timesheet(osv.osv):
             'fiscal_position': obj_partner.property_account_position and obj_partner.property_account_position.id or False,
             'payment_term': obj_partner.property_supplier_payment_term.id or False,
             'company_id': timesheet_sheet.user_id.company_id.id,
+            'supplier_invoice_number': 'reference' in context and context.get('reference') or '',
+            'date_invoice': 'date_invoice' in context and context.get('date_invoice') or False,
         }
         inv_id = inv_obj.create(cr, uid, inv_data, context=context)
 
@@ -175,6 +179,7 @@ class wizard_timesheet(osv.osv):
         obj_timesheet_sheet = self.pool.get('hr_deputy_timesheet_sheet.sheet').browse(cr, uid, context.get('active_id'))
         
         data = self.read(cr, uid, ids, [], context=context)[0]
+        context.update({'date_invoice':data['date_invoice'],'reference':data['reference']})
         if not data['partner_id']:
             partners = self.get_partners(cr, uid, obj_timesheet_sheet)
             for partner_id in partners:

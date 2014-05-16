@@ -65,7 +65,8 @@ class stock_picking(osv.osv):
                                 value.update({'cumul_affran':cumul})
             self.write(cr, uid, picking.id, value)
         return True
-
+    
+    
 class stock_picking_out(osv.osv):
     _inherit = "stock.picking.out"
     _order = "index_affran_arrive, id desc"
@@ -89,6 +90,17 @@ class stock_picking_out(osv.osv):
         'type_affran': fields.selection([('devis', 'Devis'), ('mensuel', 'Mensuel'), ('seul', 'Seul')], 'Affranchissement Type'),
         'produit_machine': fields.function(_produit_machine, type='char', size=256, string="Produit"),
     }
+    
+    def create(self, cr, user, vals, context=None):
+        if ('affranchissement_machine' in vals and vals.get('affranchissement_machine'))\
+            or ('affranchissement_dispense' in vals and vals.get('affranchissement_dispense')):
+            if 'move_lines' in vals:
+                if len(vals.get('move_lines'))>1:
+                    raise osv.except_osv(_('Attention!'),_('Vous ne pouvez créer qu\'un seul BL par affranchissement.'))
+        
+        new_id = super(stock_picking_out, self).create(cr, user, vals, context)
+        return new_id
+
                             
 class stock_partial_picking(osv.osv_memory):
     _inherit = "stock.partial.picking"

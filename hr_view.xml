@@ -25,20 +25,21 @@
                 <notebook position="inside">
                     <page string="Informations" attrs="{'invisible': [('interimaire','=',False)]}">
                         <group>
-                            <field name="interimaire" invisible="1"/>
-                            <field name="active"/>
-                            <field name="partner_id" domain="[('interimaires','=',True)]" attrs="{'required': [('interimaire','=',True)]}"/>
-                        </group>
-                        <separator string="Personal Information"/>
-                        <group>
-                            <!--<field name="title"/>-->
-                            <field name="num_secu"/>
-                        </group>
-                        <separator string="Contact"/>
-                        <group>
-                            <field name="phone"/>
-                            <field name="mobile"/>
-                            <field name="phone2"/>
+                            <group>
+                                <field name="interimaire" invisible="1"/>
+                                <field name="active"/>
+                                <field name="partner_id" attrs="{'required': [('interimaire','=',True)]}"/>
+                            </group>
+                            <group></group>
+                            <group string="Personal Information">
+                                <!--<field name="title"/>-->
+                                <field name="num_secu"/>
+                            </group>
+                            <group string="Contact">
+                                <field name="phone"/>
+                                <field name="mobile"/>
+                                <field name="phone2"/>
+                            </group>
                         </group>
                          <separator string="Notes"/>
                         <field name="notes" placeholder="Other Information ..." colspan="4"/>
