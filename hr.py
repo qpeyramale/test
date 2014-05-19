@@ -57,6 +57,7 @@ class hr_employee(osv.osv):
 hr_employee()
 
 class hr_deputy_timesheet_previous(osv.osv_memory):
+    
     _name = 'hr.deputy.timesheet.previous'
     _description = 'hr.deputy.timesheet.previous'
 
@@ -72,8 +73,7 @@ class hr_deputy_timesheet_previous(osv.osv_memory):
         
         date_debut = datetime.strptime(time.strftime('%d/%m/%y',time.localtime()), '%d/%m/%y')
         duree = timedelta(7) 
-        date_fin = date_debut - duree_finale
-        
+        date_fin = date_debut - duree
         ids = ts.search(cr, uid, [('user_id','=',uid),('state','in',('draft','new')),('date_from','<=',date_fin.strftime('%Y-%m-%d')), ('date_to','>=',date_fin.strftime('%Y-%m-%d'))], context=context)
 
         if len(ids) > 1:
@@ -168,6 +168,94 @@ class hr_deputy_timesheet_sheet(osv.osv):
     }
     
     _order = 'date_from desc'
+    
+    def create(self, cr, uid, data, context=None):
+        if data.has_key('timesheet_ids'):
+            tmp = {}
+            employees = []
+            for timesheet in data['timesheet_ids']:
+                timesheet_data = timesheet[2]
+                if not tmp.has_key(timesheet_data['employee_id']):
+                    tmp[timesheet_data['employee_id']] = [[timesheet_data['hour_from'],timesheet_data['hour_to'],timesheet_data['date']]]
+                else:
+                    for plage in tmp[timesheet_data['employee_id']]:
+                        if timesheet_data['date'] == plage[2]:
+                            cas1 = timesheet_data['hour_from']>=plage[0] and timesheet_data['hour_from']<=plage[1]
+                            cas2 = timesheet_data['hour_to']>=plage[0] and timesheet_data['hour_to']<=plage[1]
+                            cas3 = timesheet_data['hour_from']<=plage[0] and timesheet_data['hour_to']>=plage[1]
+                            if cas1 or cas2 or cas3:
+                                obj_employee = self.pool.get('hr.employee').browse(cr, uid, timesheet_data['employee_id'])
+                                employees.append((obj_employee.prenom or '')+' '+obj_employee.name)
+
+            if len(employees) > 0:
+                employees_names = ''
+                for employee in employees:
+                    if employees_names != '':
+                        employees_names += ', '+employee
+                    else:
+                        employees_names += employee
+                raise osv.except_osv(_('Warning!'),_(u'Des heures se chevauchent pour les employés: %s !' %employees_names))
+        return super(hr_deputy_timesheet_sheet, self).create(cr, uid, data, context=context)
+    
+    def write(self, cr, uid, ids, data, context=None):
+        if data.has_key('timesheet_ids'):
+            tmp = {}
+            employees = []
+            for timesheet in data['timesheet_ids']:
+                if timesheet[0] != 2:
+                    timesheet_data = timesheet[2]
+                    #---------------------------------------------------------------
+                    if not timesheet[2]:
+                        obj_timesheet = self.pool.get('hr.deputy.analytic.timesheet').browse(cr, uid, timesheet[1])
+                        employee_id = obj_timesheet.employee_id.id
+                        hour_from = obj_timesheet.hour_from
+                        hour_to = obj_timesheet.hour_to
+                        date = obj_timesheet.date
+                    elif not timesheet[1]:
+                        employee_id = timesheet_data['employee_id']
+                        hour_from = timesheet_data['hour_from']
+                        hour_to = timesheet_data['hour_to']
+                        date = timesheet_data['date']
+                    else:
+                        obj_timesheet = self.pool.get('hr.deputy.analytic.timesheet').browse(cr, uid, timesheet[1])
+                        if timesheet_data.has_key('employee_id'):
+                            employee_id = timesheet_data['employee_id']
+                        else:
+                            employee_id = obj_timesheet.employee_id.id
+                        if timesheet_data.has_key('hour_from'):
+                            hour_from = timesheet_data['hour_from']
+                        else:
+                            hour_from = obj_timesheet.hour_from
+                        if timesheet_data.has_key('hour_to'):
+                            hour_to = timesheet_data['hour_to']
+                        else:
+                            hour_to = obj_timesheet.hour_to
+                        if timesheet_data.has_key('date'):
+                            date = timesheet_data['date']
+                        else:
+                            date = obj_timesheet.date
+                    #---------------------------------------------------------------
+                    if not tmp.has_key(employee_id):
+                        tmp[employee_id] = [[hour_from,hour_to,date]]
+                    else:
+                        for plage in tmp[employee_id]:
+                            if date == plage[2]:
+                                cas1 = hour_from >= plage[0] and hour_from <= plage[1]
+                                cas2 = hour_to >= plage[0] and hour_to <= plage[1]
+                                cas3 = hour_from <= plage[0] and hour_to >= plage[1]
+                                if cas1 or cas2 or cas3:
+                                    obj_employee = self.pool.get('hr.employee').browse(cr, uid, employee_id)
+                                    employees.append((obj_employee.prenom or '')+' '+obj_employee.name)
+
+            if len(employees) > 0:
+                employees_names = ''
+                for employee in employees:
+                    if employees_names != '':
+                        employees_names += ', '+employee
+                    else:
+                        employees_names += employee
+                raise osv.except_osv(_('Warning!'),_(u'Des heures se chevauchent pour les employés: %s !' %employees_names))
+        return super(hr_deputy_timesheet_sheet, self).write(cr, uid, ids, data, context=context)
     
     def button_confirm(self, cr, uid, ids, context=None):
         for sheet in self.browse(cr, uid, ids, context=context):
@@ -337,11 +425,14 @@ class hr_deputy_analytic_timesheet(osv.osv):
             self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_hour_to': hour_to})
         return {}
     
-    def onchange_date(self, cr, uid, ids, date, context=None):
-        print 'context',context
+    def onchange_date(self, cr, uid, ids, date, date_from, date_to, context=None):
+        #print 'context',context
+        res = {}
+        if date<date_from or date>date_to:
+            res['date'] = date_from
         if context.get('timesheet_id') and context['timesheet_id']:
             self.pool.get('hr_deputy_timesheet_sheet.sheet').write(cr, uid, context.get('timesheet_id'), {'last_date': date})
-        return {}
+        return {'value': res}
     
     def check_hours(self, cr, uid, ids, context=None):
          timesheet = self.read(cr, uid, ids[0], ['hour_from', 'hour_to'])

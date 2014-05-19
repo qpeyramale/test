@@ -151,16 +151,12 @@
                         <notebook>
                             <page string="Details">
                                 <field name="id" invisible="1"/>
-<!--
-                                <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to, 'timesheet_id': id, 'default_interimaire': True, 'default_date':last_date,'default_hour_from':last_hour_from,'default_hour_to':last_hour_to}" 
-                                on_change="onchange_timesheet_ids(timesheet_ids)"
--->
                                 <field context="{'timesheet_date_from': date_from, 'timesheet_date_to': date_to, 'timesheet_id': id, 'default_interimaire': True}" 
                                 name="timesheet_ids" nolabel="1"
                                 attrs="{'readonly': [('state','!=','new')]}">
 
                                     <tree editable="top" string="Timesheet Activities">
-                                        <field name="date" on_change="onchange_date(date, context)"/>
+                                        <field name="date" on_change="onchange_date(date, parent.date_from, parent.date_to, context)"/>
                                         <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>
                                         <field name="hour_from" widget="float_time"/>
                                         <field name="hour_to" widget="float_time"/>
@@ -169,7 +165,7 @@
                                         <field invisible="1" name="user_id"/>
                                     </tree>
                                     <form string="Timesheet Activities" version="7.0">
-                                        <field name="date"/>
+                                        <field name="date" on_change="onchange_date(date, parent.date_from, parent.date_to, context)"/>
                                         <field name="employee_id" domain="[('interimaire','=',True),('active','=',True)]"/>
                                         <field name="hour_from" widget="float_time"/>
                                         <field name="hour_to" widget="float_time"/>
