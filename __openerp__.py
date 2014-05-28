@@ -11,6 +11,8 @@
     'website': 'http://www.sudokeys.com',
     'depends': ['sale', 'hr', 'mrp','account', 'product', 'stock'],
     'data': [
+        'report/bdx_depot_courrier_en.xml',
+        'report/bdx_depot_destineo.xml',
         'security/ir.model.access.csv',
         'security/sale_security.xml',
         'wizard/configurator_view.xml',
@@ -30,14 +32,15 @@
         'data/simpac_data.xml',
         'report/report_stock_affran_view.xml',
         
+        
         #données
-        #~ 'product.category.csv',
-        #~ 'product.tags.csv',
-        #~ 'product.product.csv',
-        #~ 'mrp.workcenter.csv',
-        #~ 'mrp.routing.csv',
-        #~ 'mrp.routing.workcenter.csv',
-        #~ 'mrp.bom.xml',
+        'product.category.csv',
+        'product.tags.csv',
+        'product.product.csv',
+        'mrp.workcenter.csv',
+        'mrp.routing.csv',
+        'mrp.routing.workcenter.csv',
+        'mrp.bom.xml',
     ],
     'js': ['static/src/js/limit_search.js'],
     'demo': [],

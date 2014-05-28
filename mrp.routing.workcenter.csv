@@ -95,6 +95,7 @@ mrp_routing_workcenter_92,mrp_routing_doc,Routage : Pliage A4,mrp_workcenter_54
 mrp_routing_workcenter_93,mrp_routing_doc,Routage : Pliage A4 lourd,mrp_workcenter_55
 mrp_routing_workcenter_94,mrp_routing_doc,Routage : Pliage SRA3,mrp_workcenter_56
 mrp_routing_workcenter_95,mrp_routing_doc,Routage : Pliage SRA3 lourd,mrp_workcenter_57
+mrp_routing_workcenter_102,mrp_routing_doc,Numérique : Coupe,mrp_workcenter_10
 mrp_routing_workcenter_96,mrp_routing_livret,Editique : Data : Préparation simple,mrp_workcenter_2
 mrp_routing_workcenter_97,mrp_routing_livret,Numérique : Fusion paramétrée,mrp_workcenter_11
 mrp_routing_workcenter_98,mrp_routing_livret,Numérique : Sorties n:0 A4 <135g,mrp_workcenter_18

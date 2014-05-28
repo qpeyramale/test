@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            id="report_bdx_depot_courrier_en"
+            model="stock.picking.out"
+            name="bdx.depot.courrier.en"
+            string="Bordereau de dépôt courrier en nombre"
+            rml="sudokeys_simpac/report/bdx_depot_courrier_en.rml"
+            header="False" multi="True"/>
+    </data>
+</openerp>

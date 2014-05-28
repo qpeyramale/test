@@ -38,7 +38,7 @@ class hr_employee(osv.osv):
     def write(self, cr, uid, ids, data, context=None):
         if data.has_key('interimaire') and data['interimaire']:
             data['name'] = data['name'].upper()
-        elif not data.has_key('interimaire'):
+        elif not data.has_key('interimaire') and 'name' in data and data['name']:
             for obj_employee in self.browse(cr, uid, ids):
                 if obj_employee.interimaire:
                     data['name'] = data['name'].upper()
@@ -74,7 +74,7 @@ class hr_deputy_timesheet_previous(osv.osv_memory):
         date_debut = datetime.strptime(time.strftime('%d/%m/%y',time.localtime()), '%d/%m/%y')
         duree = timedelta(7) 
         date_fin = date_debut - duree
-        ids = ts.search(cr, uid, [('user_id','=',uid),('state','in',('draft','new')),('date_from','<=',date_fin.strftime('%Y-%m-%d')), ('date_to','>=',date_fin.strftime('%Y-%m-%d'))], context=context)
+        ids = ts.search(cr, uid, [('user_id','=',uid),('date_from','>=',date_fin.strftime('%Y-%m-%d')), ('date_to','<=',date_debut.strftime('%Y-%m-%d'))], context=context)
 
         if len(ids) > 1:
             view_type = 'tree,form'
@@ -85,7 +85,7 @@ class hr_deputy_timesheet_previous(osv.osv_memory):
             domain = "[('user_id', '=', uid)]"
         value = {
             'domain': domain,
-            'name': 'Nouveau',
+            'name': 'Semaine précédente',
             'view_type': 'form',
             'view_mode': view_type,
             'res_model': 'hr_deputy_timesheet_sheet.sheet',

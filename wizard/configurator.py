@@ -201,7 +201,8 @@ class configurator(osv.osv):
         'pages_couleur_liv': fields.integer('Nb de pages imprimées en couleur'),
         'produit_couleur_liv': fields.many2one('product.product','Papier pages couleur'),
         #ATELIER NUMERIQUE : Personnalisation d’un document
-        'quantite_doc': fields.integer(u'Quantité d\'imprimés à fabriquer'),
+        'quantite_doc': fields.integer(u'Qté de documents à personnaliser'),
+        'pose_doc': fields.integer(u'Nombre de poses par feuille reçue'),
         'mise_page_doc': fields.selection([
             ('simple', 'Simple'),
             ('complexe', 'Complexe'),
@@ -214,11 +215,14 @@ class configurator(osv.osv):
             ], u'Préparation données',
             help="Préparation données"),
         'perso_doc': fields.selection([
-            ('encre', 'Adressage jet d\'encre'),
-            ('couleur', 'Laser couleur'),
-            ('noir', 'Laser noir'),
-            ], u'Procédé de personnalisation',
-            help="Procédé de personnalisation"),
+            ('10', 'Laser 1:0'),
+            ('11', 'Laser 1:1'),
+            ('40', 'Laser 4:0'),
+            ('41', 'Laser 4:1'),
+            ('44', 'Laser 4:4'),
+            ('encre10', 'Jet d\'encre 1:0'),
+            ], u'Type de personnalisation',
+            help="Type de personnalisation"),
         'format_doc': fields.selection([
             ('infa4', '<=A4'),
             ('supa4', '>A4'),
@@ -308,6 +312,7 @@ class configurator(osv.osv):
         'prix_global_theo': fields.float(u'Prix à proposer sur base horaire'),
         'prix_global_marche': fields.float(u'Prix à proposer sur base marché'),
         'prix_offert': fields.float(u'Prix proposé'),
+        'prix_marge_theo': fields.float(u'Marge sur prix théorique horaire (%)'),
     }
     _defaults = {
         'impression_env': '40',
@@ -385,6 +390,12 @@ class configurator(osv.osv):
                     for workcenter_line in bom.routing_id.workcenter_lines:
                         conf_workcenter_lines.append({'workcenter_id':workcenter_line.workcenter_id.id})
                 v['conf_workcenter_lines'] = conf_workcenter_lines
+        return {'value': v}
+        
+    def onchange_prix_offert(self, cr, uid, ids, prix_offert, prix_global_marche, context=None):
+        v = {}
+        if prix_offert and prix_global_marche:
+            v['prix_marge_theo'] = ((float(prix_offert) / float(prix_global_marche))-1)*100
         return {'value': v}
     
     def _temps(self, cr, uid, quantite_env, capacity_per_hour, time_cycle, context=None):
@@ -1717,7 +1728,7 @@ class configurator(osv.osv):
         return {'value': v}
 
     #ATELIER NUMERIQUE : Personnalisation d’un document
-    def onchange_doc(self, cr, uid, ids, quantite_doc, mise_page_doc, prepa_doc, perso_doc,
+    def onchange_doc(self, cr, uid, ids, quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc,
         format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
@@ -1752,17 +1763,23 @@ class configurator(osv.osv):
                     prod=product_obj.browse(cr,uid,product[2]['product_id'])
                     #[Sor/Noir]
                     if prod.name==u'Sortie numérique noir':
-                        if perso_doc=='noir':
-                            product[2]['cout']=quantite_doc*prod.list_price
-                            product[2]['quantite']=quantite_doc
+                        if perso_doc in ('10','41'):
+                            product[2]['cout']=(quantite_doc/(pose_doc or 1.0))*prod.list_price
+                            product[2]['quantite']=(quantite_doc/(pose_doc or 1.0))
+                        elif perso_doc =='11':
+                            product[2]['cout']=2*(quantite_doc/(pose_doc or 1.0))*prod.list_price
+                            product[2]['quantite']=2*(quantite_doc/(pose_doc or 1.0))
                         else:
                             product[2]['cout']=0.0
                             product[2]['quantite']=0.0
                     #[Sor/Couleur]
                     if prod.name==u'Sortie numérique couleur':
-                        if perso_doc=='couleur':
-                            product[2]['cout']=quantite_doc*prod.list_price
-                            product[2]['quantite']=quantite_doc
+                        if perso_doc in ('40','41'):
+                            product[2]['cout']=(quantite_doc/(pose_doc or 1.0))*prod.list_price
+                            product[2]['quantite']=(quantite_doc/(pose_doc or 1.0))
+                        elif perso_doc=='44':
+                            product[2]['cout']=2*(quantite_doc/(pose_doc or 1.))*prod.list_price
+                            product[2]['quantite']=2*(quantite_doc/(pose_doc or 1.0))
                         else:
                             product[2]['cout']=0.0
                             product[2]['quantite']=0.0
@@ -1803,48 +1820,54 @@ class configurator(osv.osv):
                             workcenter[2]['quantite']=1
                             workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     #[Sorties numériques]
-                    if work.name==u'Numérique : Sorties n:0 A4 <135g':
-                        if format_doc=='infa4' and gram_doc=='inf135' and perso_doc!='encre':
-                            workcenter[2]['cout_theo']=quantite_doc*work.prix_theo_variable + work.prix_theo_fixe 
-                            workcenter[2]['cout_marche']=quantite_doc*work.prix_marche_variable + work.prix_marche_fixe 
-                            workcenter[2]['quantite']=quantite_doc
-                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
-                    if work.name==u'Numérique : Sorties n:0 A4 <176g':
-                        if format_doc=='infa4' and gram_doc=='inf176' and perso_doc!='encre':
-                            workcenter[2]['cout_theo']=quantite_doc*work.prix_theo_variable + work.prix_theo_fixe 
-                            workcenter[2]['cout_marche']=quantite_doc*work.prix_marche_variable + work.prix_marche_fixe 
-                            workcenter[2]['quantite']=quantite_doc
-                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
-                    if work.name==u'Numérique : Sorties n:0 A4 <300g':
-                        if format_doc=='infa4' and gram_doc=='inf300' and perso_doc!='encre':
-                            workcenter[2]['cout_theo']=quantite_doc*work.prix_theo_variable + work.prix_theo_fixe 
-                            workcenter[2]['cout_marche']=quantite_doc*work.prix_marche_variable + work.prix_marche_fixe 
-                            workcenter[2]['quantite']=quantite_doc
-                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
-                    if work.name==u'Numérique : Sorties n:0 SRA3 <135g':
-                        if format_doc=='supa4' and gram_doc=='inf135' and perso_doc!='encre':
-                            workcenter[2]['cout_theo']=quantite_doc*work.prix_theo_variable + work.prix_theo_fixe 
-                            workcenter[2]['cout_marche']=quantite_doc*work.prix_marche_variable + work.prix_marche_fixe 
-                            workcenter[2]['quantite']=quantite_doc
-                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
-                    if work.name==u'Numérique : Sorties n:0 SRA3 <176g':
-                        if format_doc=='supa4' and gram_doc=='inf176' and perso_doc!='encre':
-                            workcenter[2]['cout_theo']=quantite_doc*work.prix_theo_variable + work.prix_theo_fixe 
-                            workcenter[2]['cout_marche']=quantite_doc*work.prix_marche_variable + work.prix_marche_fixe 
-                            workcenter[2]['quantite']=quantite_doc
-                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
-                    if work.name==u'Numérique : Sorties n:0 SRA3 <300g':
-                        if format_doc=='supa4' and gram_doc=='inf300' and perso_doc!='encre':
-                            workcenter[2]['cout_theo']=quantite_doc*work.prix_theo_variable + work.prix_theo_fixe 
-                            workcenter[2]['cout_marche']=quantite_doc*work.prix_marche_variable + work.prix_marche_fixe 
-                            workcenter[2]['quantite']=quantite_doc
-                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                    quantite_doc2=0
+                    if perso_doc in ('10','40'):
+                        quantite_doc2=(quantite_doc/(pose_doc or 1.0))
+                    elif perso_doc in ('11','41','44'):
+                        quantite_doc2=2*(quantite_doc/(pose_doc or 1.0))
+                    if quantite_doc2:
+                        if work.name==u'Numérique : Sorties n:0 A4 <135g':
+                            if format_doc=='infa4' and gram_doc=='inf135':
+                                workcenter[2]['cout_theo']=quantite_doc2*work.prix_theo_variable + work.prix_theo_fixe 
+                                workcenter[2]['cout_marche']=quantite_doc2*work.prix_marche_variable + work.prix_marche_fixe 
+                                workcenter[2]['quantite']=quantite_doc2
+                                workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                        if work.name==u'Numérique : Sorties n:0 A4 <176g':
+                            if format_doc=='infa4' and gram_doc=='inf176':
+                                workcenter[2]['cout_theo']=quantite_doc2*work.prix_theo_variable + work.prix_theo_fixe 
+                                workcenter[2]['cout_marche']=quantite_doc2*work.prix_marche_variable + work.prix_marche_fixe 
+                                workcenter[2]['quantite']=quantite_doc2
+                                workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                        if work.name==u'Numérique : Sorties n:0 A4 <300g':
+                            if format_doc=='infa4' and gram_doc=='inf300':
+                                workcenter[2]['cout_theo']=quantite_doc2*work.prix_theo_variable + work.prix_theo_fixe 
+                                workcenter[2]['cout_marche']=quantite_doc2*work.prix_marche_variable + work.prix_marche_fixe 
+                                workcenter[2]['quantite']=quantite_doc2
+                                workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                        if work.name==u'Numérique : Sorties n:0 SRA3 <135g':
+                            if format_doc=='supa4' and gram_doc=='inf135':
+                                workcenter[2]['cout_theo']=quantite_doc2*work.prix_theo_variable + work.prix_theo_fixe 
+                                workcenter[2]['cout_marche']=quantite_doc2*work.prix_marche_variable + work.prix_marche_fixe 
+                                workcenter[2]['quantite']=quantite_doc2
+                                workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                        if work.name==u'Numérique : Sorties n:0 SRA3 <176g':
+                            if format_doc=='supa4' and gram_doc=='inf176':
+                                workcenter[2]['cout_theo']=quantite_doc2*work.prix_theo_variable + work.prix_theo_fixe 
+                                workcenter[2]['cout_marche']=quantite_doc2*work.prix_marche_variable + work.prix_marche_fixe 
+                                workcenter[2]['quantite']=quantite_doc2
+                                workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                        if work.name==u'Numérique : Sorties n:0 SRA3 <300g':
+                            if format_doc=='supa4' and gram_doc=='inf300':
+                                workcenter[2]['cout_theo']=quantite_doc2*work.prix_theo_variable + work.prix_theo_fixe 
+                                workcenter[2]['cout_marche']=quantite_doc2*work.prix_marche_variable + work.prix_marche_fixe 
+                                workcenter[2]['quantite']=quantite_doc2
+                                workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     #[Adressage]
                     if work.name==u'Routage : Adressage hors ligne':
-                        if perso_doc=='encre':
-                            workcenter[2]['cout_theo']=quantite_doc*work.prix_theo_variable + work.prix_theo_fixe
-                            workcenter[2]['cout_marche']=quantite_doc*work.prix_marche_variable + work.prix_marche_fixe
-                            workcenter[2]['quantite']=quantite_doc
+                        if perso_doc=='encre10':
+                            workcenter[2]['cout_theo']=(quantite_doc/(pose_doc or 1.0))*work.prix_theo_variable + work.prix_theo_fixe
+                            workcenter[2]['cout_marche']=(quantite_doc/(pose_doc or 1.0))*work.prix_marche_variable + work.prix_marche_fixe
+                            workcenter[2]['quantite']=(quantite_doc/(pose_doc or 1.0))
                             workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     #[Faconnage], [Rainage]
                     if work.name==u'Numérique : Perforation':
@@ -1884,6 +1907,22 @@ class configurator(osv.osv):
                             workcenter[2]['cout_marche']=quantite_doc*work.prix_marche_variable + work.prix_marche_fixe
                             workcenter[2]['quantite']=quantite_doc
                             workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                    #[Coupe]
+                    if work.name==u'Numérique : Coupe':
+                        if pose_doc>1:
+                            x=(quantite_doc/pose_doc/500)
+                            if x<1:
+                                x=1
+                            q=(4*pose_doc - 2)*math.ceil(x)
+                            workcenter[2]['cout_theo']=q*work.prix_theo_variable + work.prix_theo_fixe
+                            workcenter[2]['cout_marche']=q*work.prix_marche_variable + work.prix_marche_fixe
+                            workcenter[2]['quantite']=q
+                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                        else:
+                            workcenter[2]['cout_theo']=0.0
+                            workcenter[2]['cout_marche']=0.0
+                            workcenter[2]['quantite']=0.0
+                            workcenter[2]['temps']=0.0  
                     prix_marche+=workcenter[2]['cout_marche']
                     prix_theo+=workcenter[2]['cout_theo']
             
@@ -2349,10 +2388,11 @@ class configurator(osv.osv):
                             workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     #[Rou/Pli/Pliage feuilles A4]
                     if work.name=='Routage : Pliage A4':
-                        workcenter[2]['cout_theo']=(pliage_mec*quantite_mec)*work.prix_theo_variable + work.prix_theo_fixe 
-                        workcenter[2]['cout_marche']=(pliage_mec*quantite_mec)*work.prix_marche_variable + work.prix_marche_fixe 
-                        workcenter[2]['quantite']=(pliage_mec*quantite_mec)
-                        workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                        if pliage_mec>0:
+                            workcenter[2]['cout_theo']=(pliage_mec*quantite_mec)*work.prix_theo_variable + work.prix_theo_fixe 
+                            workcenter[2]['cout_marche']=(pliage_mec*quantite_mec)*work.prix_marche_variable + work.prix_marche_fixe 
+                            workcenter[2]['quantite']=(pliage_mec*quantite_mec)
+                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     #[Rou/Adr/Adressage en ligne]
                     if work.name=='Routage : Adressage en ligne':
                         if adressage_mec:
@@ -2372,7 +2412,7 @@ class configurator(osv.osv):
             
             a=quantite_mec
             b=produit_mec_browse and produit_mec_browse.name or 'N/A'
-            c=fournies_mec and 'vos soins' or 'ailleurs'
+            c=fournies_mec and 'ailleurs' or 'nos soins'
             d=documents_mec
             f=pliage_mec and ('\nPliage de ' + str(pliage_mec) + ' document(s)') or ''
             h=adressage_mec and '\nAdressage des enveloppes' or ''

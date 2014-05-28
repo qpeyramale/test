@@ -255,31 +255,34 @@
                                 </group>
                                 <group attrs="{'invisible': [('article_code', '!=', 'NUM04')]}" col="4">
                                     <field name="quantite_doc"
-                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_doc(quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
                                         style="width: 50%%" />
                                     <field name="perforation_doc"
-                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_doc(quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
                                         />
-                                    <field name="mise_page_doc"
-                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    <field name="pose_doc"
+                                        on_change="onchange_doc(quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
                                         style="width: 100%%" />
                                     <field name="rainage_doc"
-                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_doc(quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
                                         />
-                                    <field name="prepa_doc"
-                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                    <field name="mise_page_doc"
+                                        on_change="onchange_doc(quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
                                         style="width: 100%%" />
                                     <field name="pliage_doc"
-                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_doc(quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
                                         />
+                                    <field name="prepa_doc"
+                                        on_change="onchange_doc(quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        colspan="4" style="width: 50%%" />
                                     <field name="perso_doc"
-                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
-                                        colspan="4" />
+                                        on_change="onchange_doc(quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        colspan="4" style="width: 50%%"/>
                                     <field name="format_doc"
-                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_doc(quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
                                         />
                                     <field name="gram_doc"
-                                        on_change="onchange_doc(quantite_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
+                                        on_change="onchange_doc(quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
                                         />
                                 </group>
                                 <group attrs="{'invisible': [('article_code', '!=', 'NUM05')]}" col="4">
@@ -429,8 +432,9 @@
                                         <field name="prix_marche" readonly="0"/>
                                         <field name="prix_global_marche" readonly="0"/>
                                     </group>
-                                    <group class="oe_subtotal_footer oe_right" colspan="4">
-                                        <field name="prix_offert"/>
+                                    <group col="4" >
+                                        <field name="prix_marge_theo" />
+                                        <field name="prix_offert" on_change="onchange_prix_offert(prix_offert,prix_global_marche)"/>
                                     </group>
                                 </group>
                             </page>

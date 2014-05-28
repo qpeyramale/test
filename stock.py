@@ -110,11 +110,16 @@ class stock_partial_picking(osv.osv_memory):
         stock_picking = self.pool.get('stock.picking')
         stock_move = self.pool.get('stock.move')
         uom_obj = self.pool.get('product.uom')
+        prod_obj = self.pool.get('mrp.production')
         partial = self.browse(cr, uid, ids[0], context=context)
         partial_data = {
             'delivery_date' : partial.date
         }
         picking_type = partial.picking_id.type
+        partial_data_normal = {
+            'delivery_date' : partial.date
+        }
+        quantity_normal=0.0
         for wizard_line in partial.move_ids:
             line_uom = wizard_line.product_uom
             move_id = wizard_line.move_id.id
@@ -158,13 +163,30 @@ class stock_partial_picking(osv.osv_memory):
                 'product_uom': wizard_line.product_uom.id,
                 'prodlot_id': wizard_line.prodlot_id.id,
             }
+            quantity_normal=wizard_line.quantity
             if (picking_type == 'in') and (wizard_line.product_id.cost_method == 'average'):
                 partial_data['move%s' % (wizard_line.move_id.id)].update(product_price=wizard_line.cost,
                                                                   product_currency=wizard_line.currency.id)
+        if partial.picking_id.sale_id:
+            production_ids=self.pool.get('mrp.production').search(cr,uid,[('origin','=',partial.picking_id.sale_id.name)])
+            if production_ids:
+                prod_obj.action_produce(cr, uid, production_ids[0],
+                                                quantity_normal, 'consume_produce', context=context)
+            
+            picking_normal=self.pool.get('stock.picking').search(cr,uid,[('sale_id','=',partial.picking_id.sale_id.id),('affranchissement_machine','=',False),('affranchissement_dispense','=',False)])
+            if picking_normal and partial.picking_id.id not in picking_normal:
+                picking_normal_browse=self.pool.get('stock.picking').browse(cr,uid,picking_normal[-1])
+                for move in picking_normal_browse.move_lines:
+                    partial_data_normal['move%s' % (move.id)] = {
+                        'product_id': move.product_id.id,
+                        'product_qty': quantity_normal,
+                        'product_uom': move.product_uom.id,
+                        'prodlot_id': move.prodlot_id.id,
+                    }
+                stock_picking.do_partial(cr, uid, [picking_normal_browse.id], partial_data_normal, context=context)
+            
         picking=stock_picking.do_partial(cr, uid, [partial.picking_id.id], partial_data, context=context)
         backorder=stock_picking.read(cr,uid,picking.values()[0]['delivered_picking'],['backorder_id'])['backorder_id']
-        
-        
         return {
             #~ 'domain': "[('id', 'in', ["+str(new_picking)+"])]",
             #~ 'name': _('Returned Picking'),

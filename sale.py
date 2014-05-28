@@ -67,10 +67,11 @@ class sale_order(osv.osv):
                     elif line.affranchissement_dispense:
                         #~ if not picking_id_aff_dispense:
                         picking_id_aff_dispense = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
-                        if order.contrat_cadre:
-                            picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True,'type_affran':'mensuel'})
-                        else:
-                            picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True,'type_affran':'devis'})
+                        #~ if order.contrat_cadre:
+                            #~ picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True,'type_affran':'mensuel'})
+                        #~ else:
+                            #~ picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True,'type_affran':'devis'})
+                        picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True})
                         move_id_aff_dispense = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id_aff_dispense, date_planned, context=context))
                         move_id_aff_machine = False
                         move_id = False
@@ -160,6 +161,30 @@ class sale_order_line(osv.osv):
         'affranchissement_machine': fields.boolean('Affranchissement machine'),
         'affranchissement_dispense': fields.boolean('Affranchissement dispense'),
     }
+    
+    def create(self, cr, uid, vals, context=None):
+        if 'product_id' in vals:
+            product_id=self.pool.get('product.product').browse(cr,uid,vals.get('product_id'))
+            affran_machine=False
+            affran_dispense=False
+            if product_id.categ_id.parent_id.name==u'Machine à affranchir' or product_id.categ_id.name==u'Machine à affranchir':
+                affran_machine=True
+            if product_id.categ_id.parent_id.name==u'Dispense de timbrage' or product_id.categ_id.name==u'Dispense de timbrage':
+                affran_dispense=True
+            vals.update({'affranchissement_machine':affran_machine,'affranchissement_dispense':affran_dispense})
+        return super(sale_order_line, self).create(cr, uid, vals, context=context)
+    
+    def write(self, cr, uid, ids, vals, context=None):
+        if 'product_id' in vals:
+            product_id=self.pool.get('product.product').browse(cr,uid,vals.get('product_id'))
+            affran_machine=False
+            affran_dispense=False
+            if product_id.categ_id.parent_id.name==u'Machine à affranchir' or product_id.categ_id.name==u'Machine à affranchir':
+                affran_machine=True
+            if product_id.categ_id.parent_id.name==u'Dispense de timbrage' or product_id.categ_id.name==u'Dispense de timbrage':
+                affran_dispense=True
+            vals.update({'affranchissement_machine':affran_machine,'affranchissement_dispense':affran_dispense})
+        return super(sale_order_line, self).write(cr, uid, ids, vals, context=context)
     
     def _prepare_order_line_invoice_line(self, cr, uid, line, account_id=False, context=None):
         """Prepare the dict of values to create the new invoice line for a

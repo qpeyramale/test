@@ -7,6 +7,16 @@
             <field name="inherit_id" ref="stock.view_picking_out_form" />
             <field eval="100" name="priority"/>
             <field name="arch" type="xml">
+                <xpath expr="/form/sheet/h1" position="before">
+                    <div class="oe_right oe_button_box">
+                        <button name="%(report_bdx_depot_courrier_en)d" attrs="{'invisible': [('affranchissement_machine','=',False)]}" string="Bordereau courrier en nombre" type="action"/>
+                    </div>
+                </xpath>
+                <xpath expr="/form/sheet/h1" position="before">
+                    <div class="oe_right oe_button_box">
+                        <button name="%(report_bdx_depot_destineo)d" attrs="{'invisible': [('affranchissement_dispense','=',False)]}" string="Bordereau destineo" type="action"/>
+                    </div>
+                </xpath>
                 <notebook position="inside">
                     <page string="Produits finis" invisible="1">
                         <field name="order_line_ids" domain="[('produit_fini','=',True)]" nolabel="1"/>

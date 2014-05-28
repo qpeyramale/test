@@ -233,7 +233,7 @@
             <field name="model_id" ref="model_hr_deputy_timesheet_previous"/>
             <field name="code">action = pool.get('hr.deputy.timesheet.previous').open_timesheet(cr, uid, None, context)</field>
             <field name="condition">True</field>
-            <field name="name">Feuille de présence</field>
+            <field name="name">Feuille de présence précédente</field>
         </record>
 
         <menuitem name="Feuille de présence précédente" id="menu_deputy_current_timesheet2" parent="menu_hr_deputies_general" action="ir_actions_server_deputy_timesheet_sheet2" sequence="2"/>

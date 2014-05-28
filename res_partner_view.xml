@@ -10,6 +10,20 @@
                 <field name="email" position="after">
                     <field name="interimaires" attrs="{'invisible': [('is_company','=',False)]}"/>
                 </field>
+                <notebook position="inside">
+                    <page string="Affranchissement">
+                        <group>
+                            <group>
+                                <field name="n_contrat"/>
+                                <field name="n_courrier"/>
+                            </group>
+                            <group>
+                                <field name="n_siret"/>
+                                <field name="n_autorisation"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
             </field>
         </record>
         

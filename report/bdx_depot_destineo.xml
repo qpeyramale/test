@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            id="report_bdx_depot_destineo"
+            model="stock.picking.out"
+            name="bdx.depot.destineo"
+            string="Bordereau de dépôt destineo"
+            rml="sudokeys_simpac/report/bdx_depot_destineo.rml"
+            header="False" multi="True"/>
+    </data>
+</openerp>
