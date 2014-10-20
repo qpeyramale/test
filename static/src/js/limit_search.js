@@ -12,4 +12,11 @@ openerp.sudokeys_simpac = function(instance){
         },
     });
     
+    //~ instance.web.ListView = instance.web.ListView.extend( /** @lends instance.web.ListView# */ {
+        //~ init: function() {
+            //~ this._super.apply(this, arguments);
+            //~ var self=this;
+            //~ this.__limit = 200;
+        //~ },
+    //~ });
 }

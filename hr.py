@@ -71,10 +71,9 @@ class hr_deputy_timesheet_previous(osv.osv_memory):
         if not len(user_ids):
             raise osv.except_osv(_('Error!'), _('Please create an employee and associate it with this user.'))
         
-        date_debut = datetime.strptime(time.strftime('%d/%m/%y',time.localtime()), '%d/%m/%y')
-        duree = timedelta(7) 
-        date_fin = date_debut - duree
-        ids = ts.search(cr, uid, [('user_id','=',uid),('date_from','>=',date_fin.strftime('%Y-%m-%d')), ('date_to','<=',date_debut.strftime('%Y-%m-%d'))], context=context)
+        date_debut = datetime.strptime(ts._default_date_from(cr,uid), '%Y-%m-%d')-timedelta(7) 
+        date_fin = datetime.strptime(ts._default_date_to(cr,uid), '%Y-%m-%d')-timedelta(7) 
+        ids = ts.search(cr, uid, [('user_id','=',uid),('date_from','>=',date_debut.strftime('%Y-%m-%d')), ('date_to','<=',date_fin.strftime('%Y-%m-%d'))], context=context)
 
         if len(ids) > 1:
             view_type = 'tree,form'
@@ -83,8 +82,10 @@ class hr_deputy_timesheet_previous(osv.osv_memory):
             domain = "[('user_id', '=', uid)]"
         else:
             domain = "[('user_id', '=', uid)]"
+            #~ context = "{'date_from':%s,'date_to':%s}" % (date_debut.strftime('%Y-%m-%d'),date_fin.strftime('%Y-%m-%d'),)
         value = {
             'domain': domain,
+            'context': context,
             'name': 'Semaine précédente',
             'view_type': 'form',
             'view_mode': view_type,
@@ -107,7 +108,7 @@ class hr_deputy_timesheet_current_open(osv.osv_memory):
         if context is None:
             context = {}
         view_type = 'form,tree'
-
+        
         user_ids = self.pool.get('hr.employee').search(cr, uid, [('user_id','=',uid)], context=context)
         if not len(user_ids):
             raise osv.except_osv(_('Error!'), _('Please create an employee and associate it with this user.'))
@@ -441,8 +442,16 @@ class hr_deputy_analytic_timesheet(osv.osv):
                  return False
          return True
 
+    def check_hours_24(self, cr, uid, ids, context=None):
+         timesheet = self.read(cr, uid, ids[0], ['hour_from', 'hour_to'])
+         if timesheet['hour_from'] and timesheet['hour_to']:
+             if timesheet['hour_from'] >= 24 or timesheet['hour_to'] >= 24:
+                 return False
+         return True
+
     _constraints = [
-        (check_hours, "Erreur! l'heure d'entrée doit être inférieure à l'heure de sortie.", ['hour_from', 'hour_to'])
+        (check_hours, "Erreur! l'heure d'entrée doit être inférieure à l'heure de sortie.", ['hour_from', 'hour_to']),
+        (check_hours_24, "Erreur! l'heure d'entrée ou de sortie est incorrecte.", ['hour_from', 'hour_to'])
     ]
     
     _defaults = {

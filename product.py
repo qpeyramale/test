@@ -147,6 +147,16 @@ class product_product(osv.osv):
         'plis_maxi': fields.integer('Nombre de plis maxi'),
         'masse_mini': fields.integer('Masse d\'1 pli mini'),
         'masse_maxi': fields.integer('Masse d\'1 pli maxi'),
+        'delai': fields.integer(u'Délai'),
+        #surtaxe
+        #~ 'affran_surtaxe': fields.boolean('Surtaxe'),
+        #~ 'tarif10g_seuil1': fields.float('Tarif par tranche de 10g niv 1'),
+        #~ 'tarif10g_seuil2': fields.float('Tarif par tranche de 10g niv 2'),
+        #en nombre
+        'affran_en_nombre': fields.boolean('En nombre'),
+        'tarif35g': fields.float('Tarif 35g'),
+        'tarif_objet': fields.float('Tarif par objet'),
+        'tarif_kg': fields.float('Tarif au kg'),
         
     }
     
@@ -176,6 +186,14 @@ class product_category(osv.osv):
     _columns = {
         'taux': fields.integer('Taux'),
         'margin': fields.float('Marge sur les produits enfants',help="Ne s'applique seulement que pour la catégorie directement parente aux produit"),
+        #surtaxe
+        'poids_min': fields.integer('Poids minimal'),
+        'tarif10g_seuil1': fields.float('Tarif par tranche de 10g niv 1'),
+        'tarif10g_seuil2': fields.float('Tarif par tranche de 10g niv 2'),
+        #en nombre
+        'tarif35g': fields.float('Tarif 35g'),
+        'tarif_objet': fields.float('Tarif par objet'),
+        'tarif_kg': fields.float('Tarif au kg'),
     }
 class product_tags(osv.osv):
 

@@ -102,3 +102,10 @@ mrp_routing_workcenter_98,mrp_routing_livret,Numérique : Sorties n:0 A4 <135g,m
 mrp_routing_workcenter_99,mrp_routing_livret,Numérique : Sorties n:0 A4 <176g,mrp_workcenter_19
 mrp_routing_workcenter_100,mrp_routing_livret,Numérique : Coupe,mrp_workcenter_10
 mrp_routing_workcenter_101,mrp_routing_livret,Numérique : Piquage,mrp_workcenter_15
+mrp_routing_workcenter_102,mrp_routing_pvc,Impression PVC 1:0,mrp_workcenter_59
+mrp_routing_workcenter_103,mrp_routing_pvc,Impression PVC 1:1,mrp_workcenter_60
+mrp_routing_workcenter_104,mrp_routing_pvc,Impression PVC 4:0,mrp_workcenter_61
+mrp_routing_workcenter_105,mrp_routing_pvc,Impression PVC 4:1,mrp_workcenter_62
+mrp_routing_workcenter_106,mrp_routing_pvc,Impression PVC 4:4,mrp_workcenter_63
+mrp_routing_workcenter_107,mrp_routing_pvc,Editique : Data : Préparation simple,mrp_workcenter_2
+mrp_routing_workcenter_108,mrp_routing_pvc,Editique : Data : Préparation complexe,mrp_workcenter_1

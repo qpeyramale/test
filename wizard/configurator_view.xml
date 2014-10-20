@@ -253,6 +253,257 @@
                                         on_change="onchange_livre(quantite_liv, heures_liv, pose_l_liv, pose_w_liv, pages_noir_liv, produit_noir_liv, pages_couleur_liv, produit_couleur_liv,article_id,conf_product_lines,conf_workcenter_lines)"
                                         domain="[('categ_id','=','Papier'),('tag_ids_fnct','!=','ImpOff')]"/>
                                 </group>
+                                <group attrs="{'invisible': [('article_code', '!=', 'NUM03')]}" col="4">
+                                    <field name="quantite_pvc"
+                                        on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                        recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                        recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                        verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                        verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                        style="width: 50%%" />
+                                    <field name="perso_pvc"
+                                        on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                        recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                        recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                        verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                        verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <field name="prepa_pvc"
+                                        on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                        recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                        recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                        verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                        verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                        attrs="{'invisible': [('perso_pvc','=',False)]}"/>
+                                    <newline/>
+                                    <field name="produit_pvc"
+                                        on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                        recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                        recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                        verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                        verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                        colspan="4" domain="[('categ_id','=','PVC'),('name','ilike','Cartes%%')]"/>
+                                    <field name="porte_carte" invisible="1"/>
+                                    <field name="porte_carte_pvc"
+                                        on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                        recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                        recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                        verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                        verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                        attrs="{'invisible': [('porte_carte','=',False)]}"/>
+                                    <field name="impression_pvc"
+                                        on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                        recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                        recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                        verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                        verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                        />
+                                    <group colspan="4">
+                                        <label for="recto_pvc"/>
+                                        <div>
+                                            
+                                            <field name="recto_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <div attrs="{'invisible': [('recto_pvc','=',False)]}">
+                                            <field name="recto_verte_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="recto_verte_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('recto_pvc','=',False)]}">
+                                            <field name="recto_blanche_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="recto_blanche_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('recto_pvc','=',False)]}">
+                                            <field name="recto_noir_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="recto_noir_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('recto_pvc','=',False)]}">
+                                            <field name="recto_bleue_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="recto_bleue_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('recto_pvc','=',False)]}">
+                                            <field name="recto_rouge_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="recto_rouge_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('recto_pvc','=',False)]}">
+                                            <field name="recto_dore_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="recto_dore_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('recto_pvc','=',False)]}">
+                                            <field name="recto_argente_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="recto_argente_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('recto_pvc','=',False)]}">
+                                            <field name="recto_gratter_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="recto_gratter_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('recto_pvc','=',False)]}">
+                                            <field name="recto_signature_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="recto_signature_pvc"/>
+                                            </div>
+                                        </div>
+                                    </group>
+                                    <group colspan="4">
+                                        <label for="verso_pvc"/>
+                                        <div>
+                                            <field name="verso_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <div attrs="{'invisible': [('verso_pvc','=',False)]}">
+                                            <field name="verso_verte_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="verso_verte_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('verso_pvc','=',False)]}">
+                                            <field name="verso_blanche_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="verso_blanche_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('verso_pvc','=',False)]}">
+                                            <field name="verso_noir_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="verso_noir_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('verso_pvc','=',False)]}">
+                                            <field name="verso_bleue_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="verso_bleue_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('verso_pvc','=',False)]}">
+                                            <field name="verso_rouge_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="verso_rouge_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('verso_pvc','=',False)]}">
+                                            <field name="verso_dore_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="verso_dore_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('verso_pvc','=',False)]}">
+                                            <field name="verso_argente_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="verso_argente_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('verso_pvc','=',False)]}">
+                                            <field name="verso_gratter_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="verso_gratter_pvc"/>
+                                            </div>
+                                            <div attrs="{'invisible': [('verso_pvc','=',False)]}">
+                                            <field name="verso_signature_pvc"
+                                                on_change="onchange_pvc(quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                                                recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc, recto_dore_pvc,
+                                                recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc, verso_blanche_pvc,
+                                                verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc, verso_gratter_pvc,
+                                                verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines)"
+                                                />
+                                            <label for="verso_signature_pvc"/>
+                                            </div>
+                                        </div>
+                                    </group>
+                                </group>
                                 <group attrs="{'invisible': [('article_code', '!=', 'NUM04')]}" col="4">
                                     <field name="quantite_doc"
                                         on_change="onchange_doc(quantite_doc, pose_doc, mise_page_doc, prepa_doc, perso_doc, format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines)"
@@ -398,18 +649,39 @@
                                     />
                                 </group>
                                 <group attrs="{'invisible': [('article_code', '!=', 'ROU06')]}">
-                                    <field name="quantite_plis"
+                                    <group col="4">
+                                    <group colspan="4">
+                                    <field name="quantite_plis" on_change="onchange_affran(quantite_plis,quantite_plis_surtaxe,masse_plis,article_plis,seuil1,seuil2,affran_en_nombre)"
                                     style="width: 50%%"/>
-                                    <field name="masse_plis"
+                                    <field name="masse_plis" on_change="onchange_affran(quantite_plis,quantite_plis_surtaxe,masse_plis,article_plis,seuil1,seuil2,affran_en_nombre)"
                                     style="width: 50%%"/>
                                     <field name="category_plis" 
                                     domain="[('parent_id.parent_id','=',atelier_id)]"
                                     />
-                                    <field name="article_plis" on_change="onchange_affran(quantite_plis,masse_plis,article_plis)"
+                                    <field name="article_plis" on_change="onchange_affran(quantite_plis,quantite_plis_surtaxe,masse_plis,article_plis,seuil1,seuil2,affran_en_nombre)"
                                     domain="[('plis_mini','&lt;=',quantite_plis),('plis_maxi','&gt;=',quantite_plis)
                                             ,('masse_mini','&lt;=',masse_plis),('masse_maxi','&gt;=',masse_plis)
                                             ,'|',('categ_id.parent_id','=',category_plis),('categ_id','=',category_plis)]"
                                     />
+                                    <field name="affran_en_nombre" on_change="onchange_affran(quantite_plis,quantite_plis_surtaxe,masse_plis,article_plis,seuil1,seuil2,affran_en_nombre)"
+                                    />
+                                    <field name="quantite_plis_surtaxe" on_change="onchange_affran(quantite_plis,quantite_plis_surtaxe,masse_plis,article_plis,seuil1,seuil2,affran_en_nombre)"
+                                    style="width: 50%%"/>
+<!--
+                                    <field name="article_plis_surtaxe" on_change="onchange_affran(quantite_plis,quantite_plis_surtaxe,masse_plis,article_plis)"
+                                    domain="[('plis_mini','&lt;=',quantite_plis_surtaxe),('plis_maxi','&gt;=',quantite_plis_surtaxe)
+                                            ,('masse_mini','&lt;=',masse_plis),('masse_maxi','&gt;=',masse_plis)
+                                            ,'|',('categ_id.parent_id','=',category_plis),('categ_id','=',category_plis),('affran_surtaxe','=',True)]"
+                                    />
+-->
+                                    </group>
+                                        <group>
+                                            <field name="seuil1" on_change="onchange_affran(quantite_plis,quantite_plis_surtaxe,masse_plis,article_plis,seuil1,seuil2,affran_en_nombre)"/>
+                                        </group>
+                                        <group>
+                                            <field name="seuil2" on_change="onchange_affran(quantite_plis,quantite_plis_surtaxe,masse_plis,article_plis,seuil1,seuil2,affran_en_nombre)"/>
+                                        </group>
+                                    </group>
                                 </group>
                             </group>
                         </group>
@@ -422,18 +694,23 @@
                                 <group class="oe_subtotal_footer oe_right" colspan="2" >
                                     <field name="sale_id"  invisible="1"/>
                                     <group class="oe_subtotal_footer oe_right" colspan="4">
-                                        <field name="prix_revient" readonly="0"/>
+                                        <field name="prix_revient_hide" invisible="1"/>
+                                        <field name="prix_revient" readonly="1"/>
                                     </group>
                                     <group class="oe_subtotal_footer oe_right" colspan="4">
-                                        <field name="prix_theo" readonly="0"/>
-                                        <field name="prix_global_theo" readonly="0"/>
+                                        <field name="prix_theo_hide" invisible="1"/>
+                                        <field name="prix_theo" readonly="1"/>
+                                        <field name="prix_global_theo_hide" invisible="1"/>
+                                        <field name="prix_global_theo" readonly="1"/>
                                     </group>
                                     <group class="oe_subtotal_footer oe_right" colspan="4">
-                                        <field name="prix_marche" readonly="0"/>
-                                        <field name="prix_global_marche" readonly="0"/>
+                                        <field name="prix_marche_hide" invisible="1"/>
+                                        <field name="prix_marche" readonly="1"/>
+                                        <field name="prix_global_marche_hide" invisible="1"/>
+                                        <field name="prix_global_marche" readonly="1"/>
                                     </group>
                                     <group col="4" >
-                                        <field name="prix_marge_theo" />
+                                        <field name="prix_marge_theo" readonly="True"/>
                                         <field name="prix_offert" on_change="onchange_prix_offert(prix_offert,prix_global_marche)"/>
                                     </group>
                                 </group>

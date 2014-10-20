@@ -36,6 +36,7 @@ class stock_picking(osv.osv):
         'cumul_affran': fields.float('Cumul'),
         'type_affran': fields.selection([('devis', 'Devis'), ('mensuel', 'Mensuel'), ('seul', 'Seul')], 'Affranchissement Type'),
         'produit_machine': fields.function(_produit_machine, type='char', size=256, string="Produit"),
+        'configurator_id': fields.many2one('configurator',string='Configuration'),
     }
     
     def action_done(self, cr, uid, ids, context=None):
@@ -167,7 +168,7 @@ class stock_partial_picking(osv.osv_memory):
             if (picking_type == 'in') and (wizard_line.product_id.cost_method == 'average'):
                 partial_data['move%s' % (wizard_line.move_id.id)].update(product_price=wizard_line.cost,
                                                                   product_currency=wizard_line.currency.id)
-        if partial.picking_id.sale_id:
+        if partial.picking_id.sale_id and partial.picking_id.sale_id.contrat_cadre:
             production_ids=self.pool.get('mrp.production').search(cr,uid,[('origin','=',partial.picking_id.sale_id.name)])
             if production_ids:
                 prod_obj.action_produce(cr, uid, production_ids[0],

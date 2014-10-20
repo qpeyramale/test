@@ -11,6 +11,22 @@
                         <field name="taux"/>
                         <field name="margin"/>
                     </group>
+                    <group col="4" colspan="4">
+                        <group string="Surtaxe">
+                            <field name="poids_min" />
+                            <field name="tarif10g_seuil1" />
+                            <field name="tarif10g_seuil2" />
+                        </group>
+                        <group string="En nombre">
+                            <label string="Tarifs jusqu'à 35g" colspan="2"/>
+                            <newline/>
+                            <field name="tarif35g"/>
+                            <label string="Tarifs jusqu'à 250g" colspan="2"/>
+                            <newline/>
+                            <field name="tarif_objet" />
+                            <field name="tarif_kg" />
+                        </group>
+                    </group>
                 </group>
             </field>
         </record>
@@ -37,7 +53,9 @@
                             <field name="plis_maxi"/>
                             <field name="masse_mini"/>
                             <field name="masse_maxi"/>
+                            <field name="delai"/>
                         </group>
+                        
                     </page>
                 </notebook>
             </field>

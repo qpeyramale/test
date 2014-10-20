@@ -10,6 +10,7 @@ from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT, DATETIME_FORMATS_MAP, float_compare
 import openerp.addons.decimal_precision as dp
 from openerp import netsvc
+import inspect
 
 class configurator_edit(osv.osv_memory):
     _name = "configurator.edit"
@@ -79,7 +80,7 @@ class configurator(osv.osv):
         #ATELIER OFFSET : Impression offset sur papier
         'quantite_pap': fields.integer(u'Quantité de documents à imprimer'),
         'produit_pap': fields.many2one('product.product','Papier'),
-        'pose_l_pap': fields.integer('Longueur',help="Longueur<450 / Largeur<320"),
+        'pose_l_pap': fields.integer('Longueur',help="Longueur<320 / Largeur<225"),
         'pose_w_pap': fields.integer('Largeur'),
         'impression_pap': fields.selection([
             ('10', '1:0'),
@@ -132,7 +133,7 @@ class configurator(osv.osv):
             ('carton', 'Carton'),
             ], u'Stockage',
             help="Stockage"),
-        'cartons_col': fields.integer(u'Nombre de documents'),
+        'cartons_col': fields.integer(u'Nombre de documents par carton'),
         'realisation_col': fields.selection([
             ('interne', 'Interne'),
             ('interim', 'Intérimaires'),
@@ -174,9 +175,10 @@ class configurator(osv.osv):
             help="Personnalisation"),
         'mise_page_imp': fields.selection([
             ('simple', 'Simple'),
-            ('param', 'Paramétrée'),
-            ], u'Mise en page',
-            help="Mise en page"),
+            ('complexe', 'Complexe'),
+            ('par_ailleurs', 'Par ailleurs'),
+            ], u'Préparation fichier',
+            help="Préparation fichier"),
         'impression_imp': fields.selection([
             ('10', '1:0'),
             ('11', '1:1'),
@@ -194,7 +196,7 @@ class configurator(osv.osv):
         #ATELIER NUMERIQUE : Fabrication de livres reliés en dos carré
         'quantite_liv': fields.integer(u'Nombre de livres'),
         'heures_liv': fields.integer(u'Heures de remise en page nécessaires'),
-        'pose_l_liv': fields.integer('Longueur',help="Longueur<320 / Largeur<225"),
+        'pose_l_liv': fields.integer('Longueur',help="Longueur<420 / Largeur<320"),
         'pose_w_liv': fields.integer('Largeur'),
         'pages_noir_liv': fields.integer('Nb de pages imprimées en noir'),
         'produit_noir_liv': fields.many2one('product.product','Papier pages noir'),
@@ -205,7 +207,7 @@ class configurator(osv.osv):
         'pose_doc': fields.integer(u'Nombre de poses par feuille reçue'),
         'mise_page_doc': fields.selection([
             ('simple', 'Simple'),
-            ('complexe', 'Complexe'),
+            ('param', 'Paramétrée'),
             ], u'Mise en page',
             help="Mise en page"),
         'prepa_doc': fields.selection([
@@ -220,7 +222,7 @@ class configurator(osv.osv):
             ('40', 'Laser 4:0'),
             ('41', 'Laser 4:1'),
             ('44', 'Laser 4:4'),
-            ('encre10', 'Jet d\'encre 1:0'),
+            ('encre10', 'Jet d\'encre'),
             ], u'Type de personnalisation',
             help="Type de personnalisation"),
         'format_doc': fields.selection([
@@ -251,6 +253,46 @@ class configurator(osv.osv):
             ('couve', 'Couverture couleur et intérieur noir'),
             ], u'Type impression',
             help="Type impression"),
+        #ATELIER NUMERIQUE : Fabrication cartes PVC
+        'quantite_pvc': fields.integer(u'Quantité'),
+        'perso_pvc': fields.boolean('Personnalisation'),
+        'prepa_pvc': fields.selection([
+            ('simple', 'Simple'),
+            ('complexe', 'Complexe'),
+            ('par_ailleurs', 'Par ailleurs'),
+            ], u'Préparation données',
+            help="Préparation données"),
+        'produit_pvc': fields.many2one('product.product','Support'),
+        'porte_carte_pvc': fields.boolean(u'Porte carte troué'),
+        'porte_carte': fields.boolean('support troue'),
+        'impression_pvc': fields.selection([
+            ('10', '1:0'),
+            ('11', '1:1'),
+            ('40', '4:0'),
+            ('41', '4:1'),
+            ('44', '4:4'),
+            ], u'Type impression',
+            help="Type impression"),
+        'recto_pvc': fields.boolean(u'Finition spéciale recto'),
+        'recto_verte_pvc': fields.boolean('Impression verte'),
+        'recto_blanche_pvc': fields.boolean('Impression blanche'),
+        'recto_noir_pvc': fields.boolean('Impression noir verni'),
+        'recto_bleue_pvc': fields.boolean('Impression bleue'),
+        'recto_rouge_pvc': fields.boolean('Impression rouge'),
+        'recto_dore_pvc': fields.boolean(u'Impression doré'),
+        'recto_argente_pvc': fields.boolean(u'Impression argenté'),
+        'recto_gratter_pvc': fields.boolean(u'Dépose pellicule à gratter'),
+        'recto_signature_pvc': fields.boolean(u'Dépose pellicule signature'),
+        'verso_pvc': fields.boolean(u'Finition spéciale verso'),
+        'verso_verte_pvc': fields.boolean('Impression verte'),
+        'verso_blanche_pvc': fields.boolean('Impression blanche'),
+        'verso_noir_pvc': fields.boolean('Impression noir verni'),
+        'verso_bleue_pvc': fields.boolean('Impression bleue'),
+        'verso_rouge_pvc': fields.boolean('Impression rouge'),
+        'verso_dore_pvc': fields.boolean(u'Impression doré'),
+        'verso_argente_pvc': fields.boolean(u'Impression argenté'),
+        'verso_gratter_pvc': fields.boolean(u'Dépose pellicule à gratter'),
+        'verso_signature_pvc': fields.boolean(u'Dépose pellicule signature'),
         #ATELIER ROUTAGE : Insertion manuelle sous enveloppes
         'quantite_man': fields.integer(u'Nombre plis à produire'),
         'produit_man': fields.many2one('product.product','Enveloppes'),
@@ -303,16 +345,29 @@ class configurator(osv.osv):
         'masse_plis': fields.integer(u'Masse d\'1 pli'),
         'category_plis': fields.many2one('product.category',u'Catégorie'),
         'article_plis': fields.many2one('product.product',u'Article'),
+        'quantite_plis_surtaxe': fields.integer(u'Nombre de plis surtaxe'),
+        'article_plis_surtaxe': fields.many2one('product.product',u'Article surtaxe'),
+        'seuil1': fields.boolean('Niv 1'),
+        'seuil2': fields.boolean('Niv 2'),
+        'affran_en_nombre': fields.boolean('En nombre'),
         
         'conf_product_lines': fields.one2many('configurator.product.line','conf_id',u'Détails composants'),
         'conf_workcenter_lines': fields.one2many('configurator.workcenter.line','conf_id',u'Détails tâches'),
-        'prix_revient': fields.float('Revient des composants'),
-        'prix_theo': fields.float(u'Estimation des tâches sur base horaire'),
-        'prix_marche': fields.float(u'Estimation des tâches sur base marché'),
-        'prix_global_theo': fields.float(u'Prix à proposer sur base horaire'),
-        'prix_global_marche': fields.float(u'Prix à proposer sur base marché'),
+        
+        'prix_revient_hide': fields.float('Revient des composants'),
+        'prix_theo_hide': fields.float(u'Estimation des tâches sur base horaire'),
+        'prix_marche_hide': fields.float(u'Estimation des tâches sur base marché'),
+        'prix_global_theo_hide': fields.float(u'Prix à proposer sur base horaire'),
+        'prix_global_marche_hide': fields.float(u'Prix à proposer sur base marché'),
+        
+        'prix_revient': fields.related('prix_revient_hide',type='float',string='Revient des composants'),
+        'prix_theo': fields.related('prix_theo_hide',type='float',string=u'Estimation des tâches sur base horaire'),
+        'prix_marche': fields.related('prix_marche_hide',type='float',string=u'Estimation des tâches sur base marché'),
+        'prix_global_theo': fields.related('prix_global_theo_hide',type='float',string=u'Prix à proposer sur base horaire'),
+        'prix_global_marche': fields.related('prix_global_marche_hide',type='float',string=u'Prix à proposer sur base marché'),
+        
         'prix_offert': fields.float(u'Prix proposé'),
-        'prix_marge_theo': fields.float(u'Marge sur prix théorique horaire (%)'),
+        'prix_marge_theo': fields.float(u'Marge sur taux horaire (%)'),
     }
     _defaults = {
         'impression_env': '40',
@@ -339,7 +394,6 @@ class configurator(osv.osv):
         'stockage_enc': 'vrac',
         'realisation_enc': 'interim',
         'fermeture_man': 'bande',
-        'fournies_mec': True,
         'documents_mec': 1,
         'porte_fil': 'noir',
         'prepa_fil': 'simple',
@@ -396,6 +450,10 @@ class configurator(osv.osv):
         v = {}
         if prix_offert and prix_global_marche:
             v['prix_marge_theo'] = ((float(prix_offert) / float(prix_global_marche))-1)*100
+            self.write(cr,uid,ids,{'prix_marge_theo':v['prix_marge_theo']})
+        else:
+            v['prix_marge_theo'] = 0.0
+            self.write(cr,uid,ids,{'prix_marge_theo':v['prix_marge_theo']})
         return {'value': v}
     
     def _temps(self, cr, uid, quantite_env, capacity_per_hour, time_cycle, context=None):
@@ -508,12 +566,20 @@ class configurator(osv.osv):
                     #[Off/Rou/Offset:Roulage]
                     if work.name=='Offset : Roulage':
                         if produit_env_browse and 'grandes' not in [(x.name).lower() for x in produit_env_browse.tag_ids]:
-                            workcenter[2]['cout_theo']=work.prix_theo_variable*quantite_env + work.prix_theo_fixe 
-                            workcenter[2]['cout_marche']=work.prix_marche_variable*quantite_env + work.prix_marche_fixe 
-                            workcenter[2]['quantite']=quantite_env
+                            if impression_env in ('11','41','44'):
+                                q=2*quantite_env
+                            else:
+                                q=quantite_env
+                            workcenter[2]['cout_theo']=work.prix_theo_variable*q + work.prix_theo_fixe 
+                            workcenter[2]['cout_marche']=work.prix_marche_variable*q + work.prix_marche_fixe 
+                            workcenter[2]['quantite']=q
                             workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     if work.name=='Offset : Roulage grand format':
                         if produit_env_browse and 'grandes' in [(x.name).lower() for x in produit_env_browse.tag_ids]:
+                            if impression_env in ('11','41','44'):
+                                q=2*quantite_env
+                            else:
+                                q=quantite_env
                             workcenter[2]['cout_theo']=work.prix_theo_variable*quantite_env + work.prix_theo_fixe 
                             workcenter[2]['cout_marche']=work.prix_marche_variable*quantite_env + work.prix_marche_fixe 
                             workcenter[2]['quantite']=quantite_env
@@ -521,22 +587,27 @@ class configurator(osv.osv):
                     prix_marche+=workcenter[2]['cout_marche']
                     prix_theo+=workcenter[2]['cout_theo']
                   
-            a=quantite_env
+            a=quantite_env-150
             b=produit_env_browse and produit_env_browse.name or 'N/A'
-            c=env_fournies and '\nEnveloppes fournies par vos soins.' or ' - Enveloppes fournies par nos soins.'
+            c=env_fournies and '\nEnveloppes fournies par vos soins.' or ' '
             if impression_env:
                 d=impression_env[0] + ' couleur(s) recto et ' + impression_env[1] + ' couleur(s) verso'
             else: d='N/A'
             v['name'] = 'Fourniture de ' + str(a) + ' enveloppes ' + b + u' imprimées ' + d + c
                 
-            v['quantite'] = quantite_env
+            v['quantite'] = quantite_env-150
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
@@ -544,6 +615,8 @@ class configurator(osv.osv):
     def onchange_jet(self, cr, uid, ids, quantite_jet,produit_jet,jet_fournies,
         impression_jet, zone_jet,adressage_jet,article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
+        if not zone_jet:
+            raise osv.except_osv(_('Attention!'),_("La zone d'impression ne peut être vide."))
         if article_id:
             
             product_obj=self.pool.get('product.product')
@@ -637,7 +710,7 @@ class configurator(osv.osv):
                   
             a=quantite_jet
             b=produit_jet_browse and produit_jet_browse.name or 'N/A'
-            c=jet_fournies and '\nEnveloppes fournies par vos soins.' or '\nEnveloppes fournies par nos soins.'
+            c=jet_fournies and '\nEnveloppes fournies par vos soins.' or ' '
             if impression_jet=='recto':
                 d=' recto seul '
             elif impression_jet=='recto_verso':
@@ -650,10 +723,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
@@ -693,14 +771,14 @@ class configurator(osv.osv):
             if produit_pap and produit_pap not in [x[2] and x[2]['product_id'] for x in conf_product_lines]:
                 conf_product_lines.append([0,False,{'product_id':produit_pap}])
                 produit_pap_browse=product_obj.browse(cr,uid,produit_pap)
-            if pose_l_pap>450:
-                raise osv.except_osv(_('Attention!'),_("La longueur ne peut être supérieure à 450"))
-            if pose_w_pap>320:
-                raise osv.except_osv(_('Attention!'),_("La largeur ne peut être supérieure à 320"))
-            if (pose_l_pap==450 and pose_w_pap==320) or (pose_l_pap==0 and pose_w_pap==0):
+            if pose_l_pap>320:
+                raise osv.except_osv(_('Attention!'),_("La longueur ne peut être supérieure à 320"))
+            if pose_w_pap>225:
+                raise osv.except_osv(_('Attention!'),_("La largeur ne peut être supérieure à 225"))
+            if (pose_l_pap==320 and pose_w_pap==225) or (pose_l_pap==0 and pose_w_pap==0):
                 pose_pap=0
             else:
-                pose_pap=max(math.floor(450/(pose_l_pap+10)*320/(pose_w_pap+10)),math.floor(450/(pose_w_pap+10)*320/(pose_l_pap+10)))
+                pose_pap=max(math.floor(320/(pose_l_pap+10)*225/(pose_w_pap+10)),math.floor(320/(pose_w_pap+10)*225/(pose_l_pap+10)))
             for product in conf_product_lines:
                 if product[2]:
                     products.append(product[2]['product_id'])
@@ -770,9 +848,13 @@ class configurator(osv.osv):
                             workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     #[Off/Rou/Offset:Roulage]
                     if work.name=='Offset : Roulage grand format':
-                        workcenter[2]['cout_theo']=work.prix_theo_variable*(quantite_pap/(pose_pap or 1)) + work.prix_theo_fixe 
-                        workcenter[2]['cout_marche']=work.prix_marche_variable*(quantite_pap/(pose_pap or 1)) + work.prix_marche_fixe 
-                        workcenter[2]['quantite']=(quantite_pap/(pose_pap or 1))
+                        if impression_pap in ('11','41','44'):
+                            q=2*quantite_pap
+                        else:
+                            q=quantite_pap
+                        workcenter[2]['cout_theo']=work.prix_theo_variable*(q/(pose_pap or 1)) + work.prix_theo_fixe 
+                        workcenter[2]['cout_marche']=work.prix_marche_variable*(q/(pose_pap or 1)) + work.prix_marche_fixe 
+                        workcenter[2]['quantite']=(q/(pose_pap or 1))
                         workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     #[Coupe]
                     if work.name==u'Numérique : Coupe':
@@ -799,18 +881,18 @@ class configurator(osv.osv):
                             workcenter[2]['quantite']=quantite_pap
                             workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     #[Pliage]
-                    if work.name=='Routage : Pliage SRA3 lourd':
-                        if pliage_pap and pose_pap<2:
-                            workcenter[2]['cout_theo']=quantite_pap*work.prix_theo_variable + work.prix_theo_fixe
-                            workcenter[2]['cout_marche']=quantite_pap*work.prix_marche_variable + work.prix_marche_fixe
-                            workcenter[2]['quantite']=quantite_pap
-                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                    #~ if work.name=='Routage : Pliage SRA3 lourd':
+                        #~ if pliage_pap and pose_pap<2:
+                            #~ workcenter[2]['cout_theo']=quantite_pap*work.prix_theo_variable + work.prix_theo_fixe
+                            #~ workcenter[2]['cout_marche']=quantite_pap*work.prix_marche_variable + work.prix_marche_fixe
+                            #~ workcenter[2]['quantite']=quantite_pap
+                            #~ workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     if work.name=='Routage : Pliage A4 lourd':
-                        if pliage_pap and pose_pap>=2:
-                            workcenter[2]['cout_theo']=quantite_pap*work.prix_theo_variable + work.prix_theo_fixe
-                            workcenter[2]['cout_marche']=quantite_pap*work.prix_marche_variable + work.prix_marche_fixe
-                            workcenter[2]['quantite']=quantite_pap
-                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                        #~ if pliage_pap and pose_pap>=2:
+                        workcenter[2]['cout_theo']=quantite_pap*work.prix_theo_variable + work.prix_theo_fixe
+                        workcenter[2]['cout_marche']=quantite_pap*work.prix_marche_variable + work.prix_marche_fixe
+                        workcenter[2]['quantite']=quantite_pap
+                        workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     prix_marche+=workcenter[2]['cout_marche']
                     prix_theo+=workcenter[2]['cout_theo']
                   
@@ -829,10 +911,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
@@ -913,16 +1000,21 @@ class configurator(osv.osv):
                 c=''
             v['name'] = u'Campagne email envoyée à ' +\
             str(a) +\
-            u' destinataires.\nPréparation de la mise en page et tests de déliverabilité et de rendu inclus.' + c
+            u' destinataires.\nPréparation de la mise en page, tests de déliverabilité et de rendu.\nRestitution d’un rapport de campagne.' + c
                 
             v['quantite'] = quantite_email
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
         
@@ -976,10 +1068,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
@@ -1083,10 +1180,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
@@ -1160,10 +1262,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
@@ -1287,10 +1394,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
@@ -1529,10 +1641,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
 
@@ -1710,7 +1827,6 @@ class configurator(osv.osv):
             c=str(pose_l_liv)+'x'+str(pose_w_liv)
             e=produit_noir_liv_browse and produit_noir_liv_browse.name or 'N/A'
             f=produit_couleur_liv_browse and produit_couleur_liv_browse.name or 'N/A'
-            print str(pages_noir_liv),str(pages_couleur_liv)
             v['name'] = 'Fabrication de ' + str(a) + ' livres de ' + str(b) + u' pages reliés en dos carré collé.\nFormat fermé ' + str(c) +\
              '.\n' + str(pages_noir_liv) + u' pages intérieures imprimées noir sur papier ' + e +\
              '.\n' + str(pages_couleur_liv) + u' pages intérieures imprimées couleur sur papier ' + f +\
@@ -1720,10 +1836,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
 
@@ -1814,7 +1935,7 @@ class configurator(osv.osv):
                             workcenter[2]['quantite']=1
                             workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
                     if work.name==u'Numérique : Fusion paramétrée':
-                        if mise_page_doc=='complexe' and perso_doc!='encre':
+                        if mise_page_doc=='param' and perso_doc!='encre':
                             workcenter[2]['cout_theo']=work.prix_theo_variable + work.prix_theo_fixe
                             workcenter[2]['cout_marche']=work.prix_marche_variable + work.prix_marche_fixe
                             workcenter[2]['quantite']=1
@@ -1955,10 +2076,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
@@ -2140,10 +2266,341 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
+            v['prix_offert'] = prix_revient+prix_marche
+        return {'value': v}
+    
+    #ATELIER NUMERIQUE : Fabrication cartes PVC
+    def onchange_pvc(self, cr, uid, ids, quantite_pvc, perso_pvc, prepa_pvc, produit_pvc, porte_carte_pvc, impression_pvc,
+                        recto_pvc, recto_verte_pvc, recto_blanche_pvc, recto_noir_pvc, recto_bleue_pvc, recto_rouge_pvc,
+                        recto_dore_pvc, recto_argente_pvc, recto_gratter_pvc, recto_signature_pvc, verso_pvc, verso_verte_pvc,
+                        verso_blanche_pvc, verso_noir_pvc, verso_bleue_pvc, verso_rouge_pvc, verso_dore_pvc, verso_argente_pvc,
+                        verso_gratter_pvc, verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines, context=None):
+        v={}
+        if article_id:
+            product_obj=self.pool.get('product.product')
+            workcenter_obj=self.pool.get('mrp.workcenter')
+            products=[]
+            workcenters=[]
+            prix_revient=prix_theo=prix_marche=0.0
+            produit_pvc_browse=False
+            conf_product_lines=[]
+            conf_workcenter_lines=[]
+            if ids:
+                products=self.pool.get('configurator.product.line').search(cr,uid,[('conf_id','=',ids[0])])
+                if products:
+                    self.pool.get('configurator.product.line').unlink(cr,uid,products)
+                workcenters=self.pool.get('configurator.workcenter.line').search(cr,uid,[('conf_id','=',ids[0])])
+                if workcenters:
+                    self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
+            if article_id:
+                mrp_bom=self.pool.get('mrp.bom')
+                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
+                
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                if mrp_bom_id:
+                    bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
+                    for bom_line in bom.bom_lines:
+                        conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
+                    if bom.routing_id:
+                        for workcenter_line in bom.routing_id.workcenter_lines:
+                            conf_workcenter_lines.append([0,False,{'workcenter_id':workcenter_line.workcenter_id.id}])
+            if produit_pvc:
+                produit_pvc_browse=product_obj.browse(cr,uid,produit_pvc)
+                if 'Cartes PVC20 trou' in produit_pvc_browse.name:
+                    v['porte_carte']=True
+                else:
+                    v['porte_carte']=False
+            if produit_pvc and produit_pvc not in [x[2] and x[2]['product_id'] for x in conf_product_lines]:
+                conf_product_lines.append([0,False,{'product_id':produit_pvc}])
+                produit_pvc_browse=product_obj.browse(cr,uid,produit_pvc)
+            frame = inspect.currentframe()
+            args, _, _, values = inspect.getargvalues(frame)
+            
+            for product in conf_product_lines:
+                if product[2]:
+                    products.append(product[2]['product_id'])
+                    prod=product_obj.browse(cr,uid,product[2]['product_id'])
+                    #[Cartes/???]
+                    if product[2]['product_id']==produit_pvc:
+                        product[2]['cout']=quantite_pvc*prod.list_price
+                        product[2]['quantite']=quantite_pvc
+                    elif product[2]['product_id']==produit_pvc:
+                        product[2]['cout']=0.0
+                        product[2]['quantite']=0.0
+                    #[Cleaning kit]
+                    if prod.name==u'Cleaning kit':
+                        q=0.0
+                        if impression_pvc in ('10','40'):
+                            q=quantite_pvc
+                        elif impression_pvc in ('11','41','44'):
+                            q=quantite_pvc*2
+                        for j in args:
+                            if ('verso_' in j or 'recto_' in j) and j != 'recto_pvc' and j != 'verso_pvc':
+                                if values[j]:
+                                    q+=quantite_pvc
+                        product[2]['cout']=q*prod.list_price
+                        product[2]['quantite']=q
+                    #[Porte carte troué]
+                    if prod.name==u'Porte carte troué':
+                        if porte_carte_pvc:
+                            product[2]['cout']=quantite_pvc*prod.list_price
+                            product[2]['quantite']=quantite_pvc
+                        else:
+                            product[2]['cout']=0.0
+                            product[2]['quantite']=0.0
+                    #[RUBAN]
+                    if prod.name==u'Ruban mono BLACK':
+                        if impression_pvc == '10':
+                            product[2]['cout']=quantite_pvc*prod.list_price
+                            product[2]['quantite']=quantite_pvc
+                        elif impression_pvc == '11':
+                            product[2]['cout']=2*quantite_pvc*prod.list_price
+                            product[2]['quantite']=2*quantite_pvc
+                        else:
+                            product[2]['cout']=0.0
+                            product[2]['quantite']=0.0
+                    if prod.name==u'Ruban YMCKO':
+                        if impression_pvc == '40':
+                            product[2]['cout']=quantite_pvc*prod.list_price
+                            product[2]['quantite']=quantite_pvc
+                        elif impression_pvc == '44':
+                            product[2]['cout']=2*quantite_pvc*prod.list_price
+                            product[2]['quantite']=2*quantite_pvc
+                        else:
+                            product[2]['cout']=0.0
+                            product[2]['quantite']=0.0
+                    if prod.name==u'Ruban YMCKO-K':
+                        if impression_pvc == '41':
+                            product[2]['cout']=quantite_pvc*prod.list_price
+                            product[2]['quantite']=quantite_pvc
+                        else:
+                            product[2]['cout']=0.0
+                            product[2]['quantite']=0.0
+                    
+                    if not recto_pvc:
+                        v['recto_verte_pvc']=False
+                        v['recto_blanche_pvc']=False
+                        v['recto_noir_pvc']=False
+                        v['recto_bleue_pvc']=False
+                        v['recto_rouge_pvc']=False
+                        v['recto_dore_pvc']=False
+                        v['recto_argente_pvc']=False
+                        v['recto_gratter_pvc']=False
+                        v['recto_signature_pvc']=False
+                    if not verso_pvc:
+                        v['verso_verte_pvc']=False
+                        v['verso_blanche_pvc']=False
+                        v['verso_noir_pvc']=False
+                        v['verso_bleue_pvc']=False
+                        v['verso_rouge_pvc']=False
+                        v['verso_dore_pvc']=False
+                        v['verso_argente_pvc']=False
+                        v['verso_gratter_pvc']=False
+                        v['verso_signature_pvc']=False
+                            
+                    if prod.name==u'Ruban mono GREEN':
+                        q=0.0
+                        if recto_verte_pvc:
+                            q+=quantite_pvc
+                        if verso_verte_pvc:
+                            q+=quantite_pvc
+                        product[2]['cout']=q*prod.list_price
+                        product[2]['quantite']=q
+                    if prod.name==u'Ruban mono WHITE':
+                        q=0.0
+                        if recto_blanche_pvc:
+                            q+=quantite_pvc
+                        if verso_blanche_pvc:
+                            q+=quantite_pvc
+                        product[2]['cout']=q*prod.list_price
+                        product[2]['quantite']=q
+                    if prod.name==u'Ruban mono BLACK OVERLAY':
+                        q=0.0
+                        if recto_noir_pvc:
+                            q+=quantite_pvc
+                        if verso_noir_pvc:
+                            q+=quantite_pvc
+                        product[2]['cout']=q*prod.list_price
+                        product[2]['quantite']=q
+                    if prod.name==u'Ruban mono BLUE':
+                        q=0.0
+                        if recto_bleue_pvc:
+                            q+=quantite_pvc
+                        if verso_bleue_pvc:
+                            q+=quantite_pvc
+                        product[2]['cout']=q*prod.list_price
+                        product[2]['quantite']=q
+                    if prod.name==u'Ruban mono RED':
+                        q=0.0
+                        if recto_rouge_pvc:
+                            q+=quantite_pvc
+                        if verso_rouge_pvc:
+                            q+=quantite_pvc
+                        product[2]['cout']=q*prod.list_price
+                        product[2]['quantite']=q
+                    if prod.name==u'Ruban mono GOLD':
+                        q=0.0
+                        if recto_dore_pvc:
+                            q+=quantite_pvc
+                        if verso_dore_pvc:
+                            q+=quantite_pvc
+                        product[2]['cout']=q*prod.list_price
+                        product[2]['quantite']=q
+                    if prod.name==u'Ruban mono SILVER':
+                        q=0.0
+                        if recto_argente_pvc:
+                            q+=quantite_pvc
+                        if verso_argente_pvc:
+                            q+=quantite_pvc
+                        product[2]['cout']=q*prod.list_price
+                        product[2]['quantite']=q
+                    if prod.name==u'Ruban spe SCRATCH':
+                        q=0.0
+                        if recto_gratter_pvc:
+                            q+=quantite_pvc
+                        if verso_gratter_pvc:
+                            q+=quantite_pvc
+                        product[2]['cout']=q*prod.list_price
+                        product[2]['quantite']=q
+                    if prod.name==u'Ruban spe SIGNATURE':
+                        q=0.0
+                        if recto_signature_pvc:
+                            q+=quantite_pvc
+                        if verso_signature_pvc:
+                            q+=quantite_pvc
+                        product[2]['cout']=q*prod.list_price
+                        product[2]['quantite']=q
+                    prix_revient+=product[2]['cout']
+            for workcenter in conf_workcenter_lines:
+                if workcenter[2]:
+                    workcenters.append(workcenter[2]['workcenter_id'])
+                    work=workcenter_obj.browse(cr,uid,workcenter[2]['workcenter_id'])
+                    temps = (work.capacity_per_hour and (quantite_pvc/work.capacity_per_hour) or 0.0) + work.time_cycle
+                    workcenter[2]['cout_theo']=0.0
+                    workcenter[2]['cout_marche']=0.0
+                    workcenter[2]['quantite']=0.0
+                    workcenter[2]['temps']=0.0
+                    #[Impression PVC]
+                    if work.name==u'Numérique : Impression PVC 1:0':
+                        if impression_pvc=='10':
+                            workcenter[2]['cout_theo']=quantite_pvc*work.prix_theo_variable + work.prix_theo_fixe
+                            workcenter[2]['cout_marche']=quantite_pvc*work.prix_marche_variable + work.prix_marche_fixe
+                            workcenter[2]['quantite']=quantite_pvc
+                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                    if work.name==u'Numérique : Impression PVC 1:1':
+                        if impression_pvc=='11':
+                            workcenter[2]['cout_theo']=quantite_pvc*work.prix_theo_variable + work.prix_theo_fixe
+                            workcenter[2]['cout_marche']=quantite_pvc*work.prix_marche_variable + work.prix_marche_fixe
+                            workcenter[2]['quantite']=quantite_pvc
+                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                    if work.name==u'Numérique : Impression PVC 4:0':
+                        if impression_pvc=='40':
+                            workcenter[2]['cout_theo']=quantite_pvc*work.prix_theo_variable + work.prix_theo_fixe
+                            workcenter[2]['cout_marche']=quantite_pvc*work.prix_marche_variable + work.prix_marche_fixe
+                            workcenter[2]['quantite']=quantite_pvc
+                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                    if work.name==u'Numérique : Impression PVC 4:1':
+                        if impression_pvc=='41':
+                            workcenter[2]['cout_theo']=quantite_pvc*work.prix_theo_variable + work.prix_theo_fixe
+                            workcenter[2]['cout_marche']=quantite_pvc*work.prix_marche_variable + work.prix_marche_fixe
+                            workcenter[2]['quantite']=quantite_pvc
+                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                    if work.name==u'Numérique : Impression PVC 4:4':
+                        if impression_pvc=='44':
+                            workcenter[2]['cout_theo']=quantite_pvc*work.prix_theo_variable + work.prix_theo_fixe
+                            workcenter[2]['cout_marche']=quantite_pvc*work.prix_marche_variable + work.prix_marche_fixe
+                            workcenter[2]['quantite']=quantite_pvc
+                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                    #[Edi/Dat/Data : Préparation données simple]
+                    if work.name==u'Editique : Data : Préparation simple':
+                        if prepa_pvc=='simple':
+                            workcenter[2]['cout_theo']=quantite_pvc*work.prix_theo_variable + work.prix_theo_fixe
+                            workcenter[2]['cout_marche']=quantite_pvc*work.prix_marche_variable + work.prix_marche_fixe
+                            workcenter[2]['quantite']=quantite_pvc
+                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                    #[Edi/Dat/Data : Préparation données complexe]
+                    if work.name==u'Editique : Data : Préparation complexe':
+                        if prepa_pvc=='complexe':
+                            workcenter[2]['cout_theo']=quantite_pvc*work.prix_theo_variable + work.prix_theo_fixe
+                            workcenter[2]['cout_marche']=quantite_pvc*work.prix_marche_variable + work.prix_marche_fixe
+                            workcenter[2]['quantite']=quantite_pvc
+                            workcenter[2]['temps']=self._temps(cr,uid,workcenter[2]['quantite'],work.capacity_per_hour,work.time_cycle)
+                    prix_marche+=workcenter[2]['cout_marche']
+                    prix_theo+=workcenter[2]['cout_theo']
+            
+            model_obj = self.pool.get('ir.model')
+            imf_obj = self.pool.get('ir.model.fields')
+            field_label_list = {}
+            model_id = model_obj.search(cr, uid, [('model','=','configurator')], context=context)
+            if model_id:
+                field_ids = imf_obj.search(cr, uid, [('model_id','=',model_id[0]),('ttype','=','boolean')], context=context)
+                if field_ids:
+                    for field in imf_obj.browse(cr, uid, field_ids, context):
+                        field_label_list[field.name]=field.field_description
+            a=quantite_pvc
+            b=produit_pvc_browse and produit_pvc_browse.name or 'N/A'
+            c=perso_pvc  and u'personnalisées' or ' '
+            d=porte_carte_pvc and 'Fourniture d\'un porte carte avec chaque carte' or ' '
+            if impression_pvc:
+                if impression_pvc=='10':
+                    e='recto noir'
+                if impression_pvc=='11':
+                    e='recto noir - verso noir'
+                if impression_pvc=='40':
+                    e='recto couleur'
+                if impression_pvc=='41':
+                    e='recto couleur - verso noir'
+                if impression_pvc=='44':
+                    e='recto couleur - verso couleur'
+            else: e='N/A'
+            if recto_pvc:
+                f='Finition recto : '
+                tabf=[]
+                for j in args:
+                    if ('recto_' in j) and j != 'recto_pvc':
+                        if values[j]:
+                            tabf.append(field_label_list[j])
+                f=f+', '.join(tabf)
+            else:
+                f=' '
+            
+            if verso_pvc:
+                h='Finition verso : '
+                tabh=[]
+                for j in args:
+                    if ('verso_' in j) and j != 'verso_pvc':
+                        if values[j]:
+                            tabh.append(field_label_list[j])
+                h=h+', '.join(tabh)
+            else:
+                h=' '
+            v['name'] = 'Fourniture de ' + str(a) + ' ' + b + ' ' + c + '\n' + d +\
+             u'\nCartes imprimées ' + e +\
+             '\n'+ f +\
+             '\n'+ h 
+                
+            v['quantite'] = quantite_pvc
+            v['conf_product_lines'] = conf_product_lines
+            v['conf_workcenter_lines'] = conf_workcenter_lines
+            v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
+            v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
+            v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
+            v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
+            v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
@@ -2289,10 +2746,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
@@ -2423,10 +2885,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
@@ -2569,10 +3036,15 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
         
@@ -2627,20 +3099,64 @@ class configurator(osv.osv):
             v['conf_product_lines'] = conf_product_lines
             v['conf_workcenter_lines'] = conf_workcenter_lines
             v['prix_revient'] = prix_revient
+            v['prix_revient_hide'] = prix_revient
             v['prix_theo'] = prix_theo
+            v['prix_theo_hide'] = prix_theo
             v['prix_marche'] = prix_marche
+            v['prix_marche_hide'] = prix_marche
             v['prix_global_theo'] = prix_revient+prix_theo
+            v['prix_global_theo_hide'] = prix_revient+prix_theo
             v['prix_global_marche'] = prix_revient+prix_marche
+            v['prix_global_marche_hide'] = prix_revient+prix_marche
             v['prix_offert'] = prix_revient+prix_marche
         return {'value': v}
     
     #ATELIER ROUTAGE : Affranchissement
-    def onchange_affran(self, cr, uid, ids, quantite_plis,masse_plis,article_plis, context=None):
+    def onchange_affran(self, cr, uid, ids, quantite_plis,quantite_plis_surtaxe,masse_plis,article_plis,seuil1,seuil2,affran_en_nombre, context=None):
         v = {}
-        article=self.pool.get('product.product').browse(cr,uid,article_plis)
-        v['name'] = article and article.name or ''
+        if article_plis:
+            article=self.pool.get('product.product').browse(cr,uid,article_plis)
+            #~ article_surtaxe=self.pool.get('product.product').browse(cr,uid,article_plis_surtaxe)
+            a=article and article.name or ''
+            if article.delai:
+                c=str(article.delai)
+            else:
+                c='0'
+            b=u"\nDélai indiqué par LA POSTE : J+"+ c
+
+            v['name'] = a + b
+            prix_article=article.list_price
+            qty=quantite_plis
+            if (seuil1 or seuil2) and quantite_plis_surtaxe and masse_plis>=article.categ_id.poids_min:
+                qty=quantite_plis-quantite_plis_surtaxe
+            if affran_en_nombre:
+                if masse_plis<=35:
+                    prix_article = article.categ_id.tarif35g
+                elif masse_plis<=250:
+                    prix_article = (article.categ_id.tarif_objet + (article.categ_id.tarif_kg * (masse_plis/1000.0)))
+            v['prix_offert'] = prix_article*qty
+            
+            if (seuil1 or seuil2) and quantite_plis_surtaxe and masse_plis>=article.categ_id.poids_min:
+                if seuil1:
+                    v['prix_offert'] = prix_article*qty + (prix_article + round(masse_plis/10.0)*article.categ_id.tarif10g_seuil1)*quantite_plis_surtaxe 
+                if seuil2:
+                    v['prix_offert'] = prix_article*qty + (prix_article + round(masse_plis/10.0)*article.categ_id.tarif10g_seuil2)*quantite_plis_surtaxe 
+        if seuil1 and seuil2:
+            v['seuil1']=False
+            v['seuil2']=False
         return {'value': v}
     
+    def onchange_seuil1(self, cr, uid, ids, seuil1):
+        v={}
+        if seuil1:
+            v['seuil2']=False
+        return {'value': v}
+
+    def onchange_seuil2(self, cr, uid, ids, seuil2):
+        v={}
+        if seuil2:
+            v['seuil1']=False
+        return {'value': v}
 
     def make_order_line(self, cr, uid, ids, context=None):
         order_obj = self.pool.get('sale.order')
@@ -2690,12 +3206,22 @@ class configurator(osv.osv):
                 affran_machine=True
             if article_plis.categ_id.parent_id.name==u'Dispense de timbrage' or article_plis.categ_id.name==u'Dispense de timbrage':
                 affran_dispense=True
+            if data['quantite_plis'] and data['quantite_plis_surtaxe']:
+                qty=data['quantite_plis']-data['quantite_plis_surtaxe']
+            else:
+                qty=data['quantite_plis']
+            prix=article_plis.list_price
+            if data['affran_en_nombre']:
+                if data['masse_plis']<=35:
+                    prix = prix
+                elif data['masse_plis']<=250:
+                    prix = (article_plis.tarif_objet + (article_plis.tarif_kg * (data['masse_plis']/1000.0)))
             self.pool.get('sale.order.line').create(cr, uid, {
                 'order_id': sale_order.id,
                 'name': data['name'],
-                'price_unit': article_plis.list_price,
-                'product_uom_qty': data['quantite_plis'] or 1,
-                'product_uos_qty': data['quantite_plis'] or 1,
+                'price_unit': prix,
+                'product_uom_qty': qty or 1,
+                'product_uos_qty': qty or 1,
                 'configurator_id': ids[0],
                 'product_id': data['article_plis'][0],
                 'discount': False,
@@ -2705,6 +3231,31 @@ class configurator(osv.osv):
                 'affranchissement_machine': affran_machine,
                 'affranchissement_dispense': affran_dispense
             }, context)
+            if data['seuil1'] or data['seuil2']:
+                #~ article_plis_surtaxe=self.pool.get('product.product').browse(cr,uid,data['article_plis_surtaxe'][0])
+                prix_surtaxe=0.0
+                name=''
+                if data['seuil1'] and data['masse_plis']>=article_plis.categ_id.poids_min:
+                    prix_surtaxe=prix + round(data['masse_plis']/10.0)*article_plis.categ_id.tarif10g_seuil1
+                    name=' Niv 1'
+                if data['seuil2'] and data['masse_plis']>=article_plis.categ_id.poids_min:
+                    prix_surtaxe=prix + round(data['masse_plis']/10.0)*article_plis.categ_id.tarif10g_seuil2
+                    name=' Niv 2'
+                self.pool.get('sale.order.line').create(cr, uid, {
+                    'order_id': sale_order.id,
+                    'name': article_plis.name + name,
+                    'price_unit': prix_surtaxe,
+                    'product_uom_qty': data['quantite_plis_surtaxe'] or 1,
+                    'product_uos_qty': data['quantite_plis_surtaxe'] or 1,
+                    'configurator_id': ids[0],
+                    'product_id': data['article_plis'][0],
+                    'discount': False,
+                    'type': 'make_to_order',
+                    'delay':0,
+                    'state':'draft',
+                    'affranchissement_machine': affran_machine,
+                    'affranchissement_dispense': affran_dispense
+                }, context)
         else:
             self.pool.get('sale.order.line').create(cr, uid, {
                 'order_id': sale_order.id,

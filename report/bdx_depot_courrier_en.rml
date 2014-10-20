@@ -10,6 +10,16 @@
                     <para style="terp_header">[[ picking.partner_id and picking.partner_id.name ]] / [[ picking.origin or '' ]]</para>
                 </place>
                 
+                <place x="7cm" y="25.6cm" width="10cm" height="1cm">
+                    <para style="terp_header">[[ picking.move_lines and picking.move_lines[0].product_id.categ_id.name=='Lettre' and '(LETTRE PRIORITAIRE EN NOMBRE)' ]]</para>
+                </place>
+                <place x="7cm" y="25.6cm" width="10cm" height="1cm">
+                    <para style="terp_header">[[ picking.move_lines and picking.move_lines[0].product_id.categ_id.name=='Lettre verte' and '(LETTRE VERTE EN NOMBRE)' ]]</para>
+                </place>
+                <place x="7cm" y="25.6cm" width="10cm" height="1cm">
+                    <para style="terp_header">[[ picking.move_lines and picking.move_lines[0].product_id.categ_id.name=='Ecopli' and '(ECOPLI EN NOMBRE)' ]]</para>
+                </place>
+                
                 <place x="1.75cm" y="25.25cm" width="1cm" height="0.3cm">
                     <para style="terp_default_7">x</para>
                 </place>
@@ -46,39 +56,70 @@
                 </place>
                 
                 <place x="3.3cm" y="15.35cm" width="1cm" height="0.3cm">
-                    <para style="terp_default_7">X</para>
+                    <para style="terp_default_7">[[ picking.move_lines and picking.move_lines[0].product_id.categ_id.name=='Lettre' and 'X' ]]</para>
                 </place>
                 <place x="3.3cm" y="14.85cm" width="1cm" height="0.3cm">
-                    <para style="terp_default_7">X</para>
+                    <para style="terp_default_7">[[ picking.move_lines and picking.move_lines[0].product_id.categ_id.name=='Lettre verte' and 'X' ]]</para>
                 </place>
                 <place x="3.3cm" y="14.4cm" width="1cm" height="0.3cm">
-                    <para style="terp_default_7">X</para>
+                    <para style="terp_default_7">[[ picking.move_lines and picking.move_lines[0].product_id.categ_id.name=='Ecopli' and 'X' ]]</para>
                 </place>
                 
                 <place x="5.2cm" y="12.45cm" width="1.7cm" height="0.4cm">
-                    <para style="terp_default_Right_7">X</para>
+                    <para style="terp_default_Right_7">[[ picking.move_lines and \
+                    ( 0 &lt;= picking.move_lines[0].sale_line_id.configurator_id.masse_plis and \
+                    picking.move_lines[0].sale_line_id.configurator_id.masse_plis &lt;= 35) and \
+                    picking.move_lines[0].sale_line_id.configurator_id.masse_plis ]]</para>
                 </place>
                 <place x="12.5cm" y="12.45cm" width="1.7cm" height="0.4cm">
-                    <para style="terp_default_Right_7">X</para>
+                    <para style="terp_default_Right_7">[[ picking.move_lines and \
+                    ( 0 &lt;= picking.move_lines[0].sale_line_id.configurator_id.masse_plis and \
+                    picking.move_lines[0].sale_line_id.configurator_id.masse_plis &lt;= 35) and \
+                    formatLang(picking.move_lines[0].product_qty ,digits=0) ]]</para>
                 </place>
                 <place x="14.2cm" y="12.45cm" width="1.7cm" height="0.4cm">
-                    <para style="terp_default_Right_7">X</para>
+                    <para style="terp_default_Right_7">[[ picking.move_lines and \
+                    ( 0 &lt;= picking.move_lines[0].sale_line_id.configurator_id.masse_plis and \
+                    picking.move_lines[0].sale_line_id.configurator_id.masse_plis &lt;= 35) and \
+                    picking.move_lines[0].sale_line_id.price_unit ]]</para>
                 </place>
                 <place x="17.8cm" y="12.45cm" width="1.7cm" height="0.4cm">
-                    <para style="terp_default_Right_7">X</para>
+                    <para style="terp_default_Right_7">[[ picking.move_lines and \
+                    ( 0 &lt;= picking.move_lines[0].sale_line_id.configurator_id.masse_plis and \
+                    picking.move_lines[0].sale_line_id.configurator_id.masse_plis &lt;= 35) and \
+                    formatLang(picking.move_lines[0].product_qty * picking.move_lines[0].sale_line_id.price_unit) ]]</para>
                 </place>
                 
                 <place x="5.2cm" y="9.5cm" width="1.7cm" height="0.4cm">
-                    <para style="terp_default_Right_7">X</para>
+                    <para style="terp_default_Right_7">[[ picking.move_lines and \
+                    ( 36 &lt;= picking.move_lines[0].sale_line_id.configurator_id.masse_plis and \
+                    picking.move_lines[0].sale_line_id.configurator_id.masse_plis &lt;= 250) and \
+                    picking.move_lines[0].sale_line_id.configurator_id.masse_plis ]]</para>
                 </place>
                 <place x="12.5cm" y="9.5cm" width="1.7cm" height="0.4cm">
-                    <para style="terp_default_Right_7">X</para>
+                    <para style="terp_default_Right_7">[[ picking.move_lines and \
+                    ( 36 &lt;= picking.move_lines[0].sale_line_id.configurator_id.masse_plis and \
+                    picking.move_lines[0].sale_line_id.configurator_id.masse_plis &lt;= 250) and \
+                    formatLang(picking.move_lines[0].product_qty, digits=0) ]]</para>
                 </place>
                 <place x="14.2cm" y="9.5cm" width="1.7cm" height="0.4cm">
-                    <para style="terp_default_Right_7">X</para>
+                    <para style="terp_default_Right_7">[[ picking.move_lines and \
+                    ( 36 &lt;= picking.move_lines[0].sale_line_id.configurator_id.masse_plis and \
+                    picking.move_lines[0].sale_line_id.configurator_id.masse_plis &lt;= 250) and \
+                    picking.move_lines[0].sale_line_id.price_unit ]]</para>
                 </place>
                 <place x="17.8cm" y="9.5cm" width="1.7cm" height="0.4cm">
-                    <para style="terp_default_Right_7">X</para>
+                    <para style="terp_default_Right_7">[[ picking.move_lines and \
+                    ( 36 &lt;= picking.move_lines[0].sale_line_id.configurator_id.masse_plis and \
+                    picking.move_lines[0].sale_line_id.configurator_id.masse_plis &lt;= 250) and \
+                    formatLang(picking.move_lines[0].product_qty * picking.move_lines[0].sale_line_id.price_unit) ]]</para>
+                </place>
+                
+                <place x="1.5cm" y="1.5cm" width="3cm" height="1cm">
+                    <para style="terp_default_Right_7">[[ user.name ]]</para>
+                </place>
+                <place x="6cm" y="1.5cm" width="2cm" height="1cm">
+                    <para style="terp_default_Right_7">[[ user.name and user.name.split(' ')[0][0] ]][[ user.name and (user.name.split(' ')[1] and user.name.split(' ')[1][0]) ]]</para>
                 </place>
                 
             </pageGraphics>

@@ -8,7 +8,7 @@
                 <form string="Timesheet edition" version="7.0">
                     <group>
                         <group>
-                            <field name="partner_id"/>
+                            <field name="partner_id" domain="[('interimaires','=',True)]"/>
                             <field name="action" invisible="1"/>
                         </group>
                         <group>

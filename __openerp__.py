@@ -34,13 +34,13 @@
         
         
         #données
-        'product.category.csv',
-        'product.tags.csv',
-        'product.product.csv',
-        'mrp.workcenter.csv',
-        'mrp.routing.csv',
-        'mrp.routing.workcenter.csv',
-        'mrp.bom.xml',
+        #~ 'product.category.csv',
+        #~ 'product.tags.csv',
+        #~ 'product.product.csv',
+        #~ 'mrp.workcenter.csv',
+        #~ 'mrp.routing.csv',
+        #~ 'mrp.routing.workcenter.csv',
+        #~ 'mrp.bom.xml',
     ],
     'js': ['static/src/js/limit_search.js'],
     'demo': [],

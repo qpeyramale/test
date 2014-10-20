@@ -28,7 +28,7 @@
                             <group>
                                 <field name="interimaire" invisible="1"/>
                                 <field name="active"/>
-                                <field name="partner_id" attrs="{'required': [('interimaire','=',True)]}"/>
+                                <field name="partner_id" domain="[('interimaires','=',True)]" attrs="{'required': [('interimaire','=',True)]}"/>
                             </group>
                             <group></group>
                             <group string="Personal Information">

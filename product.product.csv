@@ -42,15 +42,18 @@ product_product_51,product_category_all_divers,Pastilles adhésives,,Stockable P
 product_product_53,product_category_all_offset,Plaque,Off/Plaque,Consumable,product.product_uom_unit,product.product_uom_unit,,5.0,False,,5.0,buy
 product_product_54,product_category_all_pvc,Porte carte troué,PVC/Porte carte troué,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
 product_product_56,product_category_atelier_editique_email,Routage emails,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.01,False,,,buy
-product_product_57,product_category_all_pvc,Ruban full 4:0,PVC/Ruban full 4:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
-product_product_58,product_category_all_pvc,Ruban full 4:1,PVC/Ruban full 4:1,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
-product_product_59,product_category_all_pvc,Ruban full G:0,PVC/Ruban full G:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
-product_product_60,product_category_all_pvc,Ruban full K:0,PVC/Ruban full K:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
-product_product_61,product_category_all_pvc,Ruban full K:0 vernis,PVC/Ruban full K:0 vernis,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
-product_product_62,product_category_all_pvc,Ruban full N:0,PVC/Ruban full N:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
-product_product_63,product_category_all_pvc,Ruban full S:0,PVC/Ruban full S:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
-product_product_64,product_category_all_pvc,Ruban half 4:0,PVC/Ruban half 4:0,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
-product_product_65,product_category_all_pvc,Ruban hologram,PVC/Ruban hologram,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_57,product_category_all_pvc,Ruban mono BLACK,PVC/Ruban mono BLACK,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_58,product_category_all_pvc,Ruban mono BLACK OVERLAY,PVC/Ruban mono BLACK OVERLAY,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_59,product_category_all_pvc,Ruban mono BLUE,PVC/Ruban mono BLUE,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_60,product_category_all_pvc,Ruban mono GOLD,PVC/Ruban mono GOLD,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_61,product_category_all_pvc,Ruban mono GREEN,PVC/Ruban mono GREEN,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_62,product_category_all_pvc,Ruban mono RED,PVC/Ruban mono RED,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_63,product_category_all_pvc,Ruban mono SILVER,PVC/Ruban mono SILVER,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_64,product_category_all_pvc,Ruban mono WHITE,PVC/Ruban mono WHITE,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_65,product_category_all_pvc,Ruban spe SCRATCH,PVC/Ruban spe SCRATCH,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_68,product_category_all_pvc,Ruban spe SIGNATURE,PVC/Ruban spe SIGNATURE,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_69,product_category_all_pvc,Ruban YMCKO,PVC/Ruban YMCKO,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
+product_product_70,product_category_all_pvc,Ruban YMCKO-K,PVC/Ruban YMCKO_K,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,buy
 product_product_66,product.product_category_all,Sortie numérique couleur,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.09,False,,,buy
 product_product_67,product.product_category_all,Sortie numérique noir,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.02,False,,,buy
 product_product_col,product_category_atelier_fac,Collage de document,FAC01,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
@@ -58,6 +61,7 @@ product_product_div,product_category_atelier_fac,Travaux divers,FAC02,Consumable
 product_product_enc,product_category_atelier_fac,Encartage,FAC03,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
 product_product_imp,product_category_atelier_num,Fabrication d'un imprimé,NUM01,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,,produce
 product_product_livre,product_category_atelier_num,Fabrication d'un livre relié dos carré,NUM02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
+product_product_pvc,product_category_atelier_num,Fabrication cartes PVC,NUM03,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
 product_product_doc,product_category_atelier_num,Personnalisation d’un document,NUM04,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
 product_product_livret,product_category_atelier_num,Fabrication d'un livret,NUM05,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,,produce
 product_product_env,product_category_atelier_offset,Impression enveloppes,OFF01,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,,produce

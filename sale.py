@@ -45,7 +45,6 @@ class sale_order(osv.osv):
         proc_ids = []
         picking_id_aff_machine=False
         picking_id_aff_dispense=False
-        print '_create_pickings_and_procurements'
         for line in order_lines:
             if line.state == 'done':
                 continue
@@ -55,8 +54,11 @@ class sale_order(osv.osv):
             if line.product_id:
                 if line.product_id.type in ('product', 'consu'):
                     if line.affranchissement_machine:
-                        #~ if not picking_id_aff_machine:
-                        picking_id_aff_machine = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                        if (line.configurator_id.seuil1 or line.configurator_id.seuil2) and not picking_id_aff_machine:
+                            picking_id_aff_machine = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                        elif not (line.configurator_id.seuil1 or line.configurator_id.seuil2):
+                            picking_id_aff_machine = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                        picking_obj.write(cr,uid,picking_id_aff_machine,{'configurator_id':line.configurator_id.id})
                         if order.contrat_cadre:
                             picking_obj.write(cr,uid,picking_id_aff_machine,{'affranchissement_machine':True,'type_affran':'mensuel'})
                         else:
@@ -65,13 +67,17 @@ class sale_order(osv.osv):
                         move_id_aff_dispense = False
                         move_id = False
                     elif line.affranchissement_dispense:
-                        #~ if not picking_id_aff_dispense:
-                        picking_id_aff_dispense = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                        if (line.configurator_id.seuil1 or line.configurator_id.seuil2) and not picking_id_aff_dispense:
+                            picking_id_aff_dispense = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                        elif not (line.configurator_id.seuil1 or line.configurator_id.seuil2):
+                            picking_id_aff_dispense = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                        picking_obj.write(cr,uid,picking_id_aff_machine,{'configurator_id':line.configurator_id.id})
                         #~ if order.contrat_cadre:
                             #~ picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True,'type_affran':'mensuel'})
                         #~ else:
                             #~ picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True,'type_affran':'devis'})
                         picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True})
+                        
                         move_id_aff_dispense = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id_aff_dispense, date_planned, context=context))
                         move_id_aff_machine = False
                         move_id = False

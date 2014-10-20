@@ -116,6 +116,13 @@
         <field name="routing_id" ref="mrp_routing_livret" />
         <field name="bom_id" ref="" />
     </record>
+    <record id="mrp_bom_pvc" model="mrp.bom">
+        <field name="name">Fabrication cartes PVC</field>
+        <field name="product_id" ref="product_product_pvc" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="mrp_routing_pvc" />
+        <field name="bom_id" ref="" />
+    </record>
 <!--
     COMPOSANTS
 -->
@@ -272,6 +279,104 @@
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="" />
         <field name="bom_id" ref="mrp_bom_livret" />
+    </record>
+    <record id="mrp_bom_line_28" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_57" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_29" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_58" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_30" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_59" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_31" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_60" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_32" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_61" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_33" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_62" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_34" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_63" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_35" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_64" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_36" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_65" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_37" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_68" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_38" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_69" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_39" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_70" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_40" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_38" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
+    </record>
+    <record id="mrp_bom_line_41" model="mrp.bom">
+        <field name="name" />
+        <field name="product_id" ref="product_product_54" />
+        <field name="product_uom" ref="product.product_uom_unit" />
+        <field name="routing_id" ref="" />
+        <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
     </data>
 </openerp>
