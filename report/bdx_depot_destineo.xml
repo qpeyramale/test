@@ -3,7 +3,7 @@
     <data>
         <report 
             id="report_bdx_depot_destineo"
-            model="stock.picking.out"
+            model="stock.picking"
             name="bdx.depot.destineo"
             string="Bordereau de dépôt destineo"
             rml="sudokeys_simpac/report/bdx_depot_destineo.rml"

@@ -20,7 +20,8 @@
 ##############################################################################
 
 import time
-from report import report_sxw
+from openerp.report import report_sxw
+from openerp.osv import osv
 
 class simpac_sale_report(report_sxw.rml_parse):
     

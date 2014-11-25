@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record id="view_picking_out_form" model="ir.ui.view">
-            <field name="name">stock.picking.out.form</field>
-            <field name="model">stock.picking.out</field>
-            <field name="inherit_id" ref="stock.view_picking_out_form" />
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
             <field eval="100" name="priority"/>
             <field name="arch" type="xml">
                 <xpath expr="/form/sheet/h1" position="before">
@@ -43,9 +43,9 @@
         <menuitem id="menu_action_picking_tree_affran_machine" name="BL affranchissement machine" parent="menu_stock_warehouse_mgmt_affran" sequence="1"/>
         <menuitem id="menu_action_picking_tree_affran_dispense" name="BL affranchissement dispense" parent="menu_stock_warehouse_mgmt_affran" sequence="2"/>
         
-        <record id="view_picking_out_tree_affran_machine" model="ir.ui.view">
-            <field name="name">stock.picking.out.tree.affran.machine</field>
-            <field name="model">stock.picking.out</field>
+        <record id="view_picking_tree_affran_machine" model="ir.ui.view">
+            <field name="name">stock.picking.tree.affran.machine</field>
+            <field name="model">stock.picking</field>
             <field name="arch" type="xml">
                 <tree colors="blue:state == 'draft';grey:state == 'cancel';red:state not in ('cancel', 'done') and min_date &lt; current_date" string="Delivery Orders" create="false">
                     <field name="name"/>
@@ -54,8 +54,6 @@
                     <field name="min_date"/>
                     <field name="date"/>
                     <field name="backorder_id"/>
-                    <field name="stock_journal_id" groups="account.group_account_user"/>
-                    <field name="invoice_state"/>
                     <field name="index_affran_arrive"/>
                     <field name="cumul_affran"/>
                     <field name="state"/>
@@ -65,13 +63,13 @@
         
         <record id="action_picking_tree_affran_machine" model="ir.actions.act_window">
             <field name="name">Tous</field>
-            <field name="res_model">stock.picking.out</field>
+            <field name="res_model">stock.picking</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,calendar</field>
-            <field name="domain">[('type','=','out'),('affranchissement_machine','=',True)]</field>
-            <field name="context">{'default_type': 'out', 'contact_display': 'partner_address','default_affranchissement_machine':True}</field>
-            <field name="search_view_id" ref="stock.view_picking_out_search"/>
+            <field name="domain">[('affranchissement_machine','=',True)]</field>
+            <field name="context">{ 'contact_display': 'partner_address','default_affranchissement_machine':True}</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to create a delivery order. 
@@ -82,30 +80,30 @@
               </p>
             </field>
         </record>
-        <record id="action_picking_tree_out_view1_waiting_affran_machine" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view1_waiting_affran_machine" model="ir.actions.act_window.view">
             <field eval="1" name="sequence"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_picking_out_tree_affran_machine"/>
+            <field name="view_id" ref="view_picking_tree_affran_machine"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine"/>
         </record>
-        <record id="action_picking_tree_out_view2_waiting_affran_machine" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view2_waiting_affran_machine" model="ir.actions.act_window.view">
             <field eval="2" name="sequence"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="stock.view_picking_out_form"/>
+            <field name="view_id" ref="stock.view_picking_form"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine"/>
         </record>
-        <record id="action_picking_tree_out_view2_waiting_cal_affran_machine" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view2_waiting_cal_affran_machine" model="ir.actions.act_window.view">
             <field eval="3" name="sequence"/>
             <field name="view_mode">calendar</field>
-            <field name="view_id" ref="stock.stock_picking_out_calendar"/>
+            <field name="view_id" ref="stock.stock_picking_calendar"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine"/>
         </record>
         
         <menuitem action="action_picking_tree_affran_machine" id="menu_action_picking_tree_affran_machine_tous" parent="menu_action_picking_tree_affran_machine" sequence="1"/>
         
-        <record id="view_picking_out_tree_affran_machine_devis" model="ir.ui.view">
-            <field name="name">stock.picking.out.tree.affran.machine.devis</field>
-            <field name="model">stock.picking.out</field>
+        <record id="view_picking_tree_affran_machine_devis" model="ir.ui.view">
+            <field name="name">stock.picking.tree.affran.machine.devis</field>
+            <field name="model">stock.picking</field>
             <field name="arch" type="xml">
                 <tree colors="blue:state == 'draft';grey:state == 'cancel';red:state not in ('cancel', 'done') and min_date &lt; current_date" string="Delivery Orders" create="false">
                     <field name="name"/>
@@ -114,8 +112,6 @@
                     <field name="min_date"/>
                     <field name="date"/>
                     <field name="backorder_id"/>
-                    <field name="stock_journal_id" groups="account.group_account_user"/>
-                    <field name="invoice_state"/>
                     <field name="index_affran_arrive"/>
                     <field name="cumul_affran"/>
                     <field name="state"/>
@@ -125,13 +121,13 @@
         
         <record id="action_picking_tree_affran_machine_devis" model="ir.actions.act_window">
             <field name="name">Devis</field>
-            <field name="res_model">stock.picking.out</field>
+            <field name="res_model">stock.picking</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,calendar</field>
-            <field name="domain">[('type','=','out'),('affranchissement_machine','=',True),('type_affran','=','devis')]</field>
-            <field name="context">{'default_type': 'out', 'contact_display': 'partner_address','default_affranchissement_machine':True,'default_type_affran':'devis'}</field>
-            <field name="search_view_id" ref="stock.view_picking_out_search"/>
+            <field name="domain">[('affranchissement_machine','=',True),('type_affran','=','devis')]</field>
+            <field name="context">{'contact_display': 'partner_address','default_affranchissement_machine':True,'default_type_affran':'devis'}</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to create a delivery order. 
@@ -142,30 +138,30 @@
               </p>
             </field>
         </record>
-        <record id="action_picking_tree_out_view1_waiting_affran_machine_devis" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view1_waiting_affran_machine_devis" model="ir.actions.act_window.view">
             <field eval="1" name="sequence"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_picking_out_tree_affran_machine_devis"/>
+            <field name="view_id" ref="view_picking_tree_affran_machine_devis"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine_devis"/>
         </record>
-        <record id="action_picking_tree_out_view2_waiting_affran_machine_devis" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view2_waiting_affran_machine_devis" model="ir.actions.act_window.view">
             <field eval="2" name="sequence"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="stock.view_picking_out_form"/>
+            <field name="view_id" ref="stock.view_picking_form"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine_devis"/>
         </record>
-        <record id="action_picking_tree_out_view2_waiting_cal_affran_machine_devis" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view2_waiting_cal_affran_machine_devis" model="ir.actions.act_window.view">
             <field eval="3" name="sequence"/>
             <field name="view_mode">calendar</field>
-            <field name="view_id" ref="stock.stock_picking_out_calendar"/>
+            <field name="view_id" ref="stock.stock_picking_calendar"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine_devis"/>
         </record>
         
         <menuitem action="action_picking_tree_affran_machine_devis" id="menu_action_picking_tree_affran_machine_devis" parent="menu_action_picking_tree_affran_machine" sequence="2"/>
        
-       <record id="view_picking_out_tree_affran_machine_mensuel" model="ir.ui.view">
-            <field name="name">stock.picking.out.tree.affran.machine.mensuel</field>
-            <field name="model">stock.picking.out</field>
+       <record id="view_picking_tree_affran_machine_mensuel" model="ir.ui.view">
+            <field name="name">stock.picking.tree.affran.machine.mensuel</field>
+            <field name="model">stock.picking</field>
             <field name="arch" type="xml">
                 <tree colors="blue:state == 'draft';grey:state == 'cancel';red:state not in ('cancel', 'done') and min_date &lt; current_date" string="Delivery Orders" create="false">
                     <field name="name"/>
@@ -175,8 +171,6 @@
                     <field name="min_date"/>
                     <field name="date"/>
                     <field name="backorder_id"/>
-                    <field name="stock_journal_id" groups="account.group_account_user"/>
-                    <field name="invoice_state"/>
                     <field name="index_affran_arrive"/>
                     <field name="cumul_affran"/>
                     <field name="state"/>
@@ -186,13 +180,13 @@
        
         <record id="action_picking_tree_affran_machine_mensuel" model="ir.actions.act_window">
             <field name="name">Mensuel</field>
-            <field name="res_model">stock.picking.out</field>
+            <field name="res_model">stock.picking</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,calendar</field>
-            <field name="domain">[('type','=','out'),('affranchissement_machine','=',True),('type_affran','=','mensuel')]</field>
-            <field name="context">{'default_type': 'out', 'contact_display': 'partner_address','default_affranchissement_machine':True,'default_type_affran':'mensuel','search_default_available':1}</field>
-            <field name="search_view_id" ref="stock.view_picking_out_search"/>
+            <field name="domain">[('affranchissement_machine','=',True),('type_affran','=','mensuel')]</field>
+            <field name="context">{'contact_display': 'partner_address','default_affranchissement_machine':True,'default_type_affran':'mensuel','search_default_available':1}</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to create a delivery order. 
@@ -203,30 +197,30 @@
               </p>
             </field>
         </record>
-        <record id="action_picking_tree_out_view1_waiting_affran_machine_mensuel" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view1_waiting_affran_machine_mensuel" model="ir.actions.act_window.view">
             <field eval="1" name="sequence"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_picking_out_tree_affran_machine_mensuel"/>
+            <field name="view_id" ref="view_picking_tree_affran_machine_mensuel"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine_mensuel"/>
         </record>
-        <record id="action_picking_tree_out_view2_waiting_affran_machine_mensuel" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view2_waiting_affran_machine_mensuel" model="ir.actions.act_window.view">
             <field eval="2" name="sequence"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="stock.view_picking_out_form"/>
+            <field name="view_id" ref="stock.view_picking_form"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine_mensuel"/>
         </record>
-        <record id="action_picking_tree_out_view2_waiting_cal_affran_machine_mensuel" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view2_waiting_cal_affran_machine_mensuel" model="ir.actions.act_window.view">
             <field eval="3" name="sequence"/>
             <field name="view_mode">calendar</field>
-            <field name="view_id" ref="stock.stock_picking_out_calendar"/>
+            <field name="view_id" ref="stock.stock_picking_calendar"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine_mensuel"/>
         </record>
         
         <menuitem action="action_picking_tree_affran_machine_mensuel" id="menu_action_picking_tree_affran_machine_mensuel" parent="menu_action_picking_tree_affran_machine" sequence="3"/>
 
-        <record id="view_picking_out_tree_affran_machine_seul" model="ir.ui.view">
-            <field name="name">stock.picking.out.tree.affran.seul</field>
-            <field name="model">stock.picking.out</field>
+        <record id="view_picking_tree_affran_machine_seul" model="ir.ui.view">
+            <field name="name">stock.picking.tree.affran.seul</field>
+            <field name="model">stock.picking</field>
             <field name="arch" type="xml">
                 <tree colors="blue:state == 'draft';grey:state == 'cancel';red:state not in ('cancel', 'done') and min_date &lt; current_date" string="Delivery Orders">
                     <field name="name"/>
@@ -235,8 +229,6 @@
                     <field name="min_date"/>
                     <field name="date"/>
                     <field name="backorder_id"/>
-                    <field name="stock_journal_id" groups="account.group_account_user"/>
-                    <field name="invoice_state"/>
                     <field name="index_affran_arrive"/>
                     <field name="cumul_affran"/>
                     <field name="state"/>
@@ -246,13 +238,13 @@
         
         <record id="action_picking_tree_affran_machine_seul" model="ir.actions.act_window">
             <field name="name">Seul</field>
-            <field name="res_model">stock.picking.out</field>
+            <field name="res_model">stock.picking</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,calendar</field>
-            <field name="domain">[('type','=','out'),('affranchissement_machine','=',True),('type_affran','=','seul')]</field>
-            <field name="context">{'default_type': 'out', 'contact_display': 'partner_address','default_affranchissement_machine':True,'default_type_affran':'seul'}</field>
-            <field name="search_view_id" ref="stock.view_picking_out_search"/>
+            <field name="domain">[('affranchissement_machine','=',True),('type_affran','=','seul')]</field>
+            <field name="context">{'contact_display': 'partner_address','default_affranchissement_machine':True,'default_type_affran':'seul'}</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to create a delivery order. 
@@ -263,22 +255,22 @@
               </p>
             </field>
         </record>
-        <record id="action_picking_tree_out_view1_waiting_affran_machine_seul" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view1_waiting_affran_machine_seul" model="ir.actions.act_window.view">
             <field eval="1" name="sequence"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_picking_out_tree_affran_machine_seul"/>
+            <field name="view_id" ref="view_picking_tree_affran_machine_seul"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine_seul"/>
         </record>
-        <record id="action_picking_tree_out_view2_waiting_affran_machine_seul" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view2_waiting_affran_machine_seul" model="ir.actions.act_window.view">
             <field eval="2" name="sequence"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="stock.view_picking_out_form"/>
+            <field name="view_id" ref="stock.view_picking_form"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine_seul"/>
         </record>
-        <record id="action_picking_tree_out_view2_waiting_cal_affran_machine_seul" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view2_waiting_cal_affran_machine_seul" model="ir.actions.act_window.view">
             <field eval="3" name="sequence"/>
             <field name="view_mode">calendar</field>
-            <field name="view_id" ref="stock.stock_picking_out_calendar"/>
+            <field name="view_id" ref="stock.stock_picking_calendar"/>
             <field name="act_window_id" ref="action_picking_tree_affran_machine_seul"/>
         </record>
         
@@ -306,13 +298,13 @@
         
         <record id="action_picking_tree_affran_dispense" model="ir.actions.act_window">
             <field name="name">BL affranchissement dispense</field>
-            <field name="res_model">stock.picking.out</field>
+            <field name="res_model">stock.picking</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,calendar</field>
-            <field name="domain">[('type','=','out'),('affranchissement_dispense','=',True)]</field>
-            <field name="context">{'default_type': 'out', 'contact_display': 'partner_address','default_affranchissement_dispense':True}</field>
-            <field name="search_view_id" ref="stock.view_picking_out_search"/>
+            <field name="domain">[('affranchissement_dispense','=',True)]</field>
+            <field name="context">{'contact_display': 'partner_address','default_affranchissement_dispense':True}</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                 Click to create a delivery order. 
@@ -323,28 +315,28 @@
               </p>
             </field>
         </record>
-        <record id="action_picking_tree_out_view1_waiting_affran_dispense" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view1_waiting_affran_dispense" model="ir.actions.act_window.view">
             <field eval="1" name="sequence"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="stock.view_picking_out_tree"/>
+            <field name="view_id" ref="stock.vpicktree"/>
             <field name="act_window_id" ref="action_picking_tree_affran_dispense"/>
         </record>
-        <record id="action_picking_tree_out_view2_waiting_affran_dispense" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view2_waiting_affran_dispense" model="ir.actions.act_window.view">
             <field eval="2" name="sequence"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="stock.view_picking_out_form"/>
+            <field name="view_id" ref="stock.view_picking_form"/>
             <field name="act_window_id" ref="action_picking_tree_affran_dispense"/>
         </record>
-        <record id="action_picking_tree_out_view2_waiting_cal_affran_dispense" model="ir.actions.act_window.view">
+        <record id="action_picking_tree_view2_waiting_cal_affran_dispense" model="ir.actions.act_window.view">
             <field eval="3" name="sequence"/>
             <field name="view_mode">calendar</field>
-            <field name="view_id" ref="stock.stock_picking_out_calendar"/>
+            <field name="view_id" ref="stock.stock_picking_calendar"/>
             <field name="act_window_id" ref="action_picking_tree_affran_dispense"/>
         </record>
         <menuitem action="action_picking_tree_affran_dispense" id="menu_action_picking_tree_affran_dispense" parent="menu_stock_warehouse_mgmt_affran" sequence="2"/>
         
         <record id="stock.action_picking_tree" model="ir.actions.act_window">
-            <field name="domain">[('type','=','out'),('affranchissement_machine','=',False),('affranchissement_dispense','=',False)]</field>
+            <field name="domain">[('affranchissement_machine','=',False),('affranchissement_dispense','=',False)]</field>
         </record>
         
     </data>

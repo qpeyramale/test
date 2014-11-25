@@ -1,0 +1,76 @@
+id,categ_id/id,name,default_code,type,uom_id/id,uom_po_id/id,tag_ids/id,list_price,margin_perso,margin,standard_price
+sudokeys_simpac.product_product_1,product_category_all_papier,090 gsm offset,Pap/OF 090g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_7,0.02,False,50.0,0.01
+sudokeys_simpac.product_product_2,product_category_all_env,110x220 AF 80grs,Env/110x220 AF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,28.75,False,15.0,25.0
+sudokeys_simpac.product_product_3,product_category_all_env,110x220 AF 90grs,Env/110x220 AF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,28.75,False,15.0,25.0
+sudokeys_simpac.product_product_4,product_category_all_env,110x220 SF 80grs,Env/110x220 SF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,27.6,False,15.0,24.0
+sudokeys_simpac.product_product_5,product_category_all_env,110x220 SF 90grs,Env/110x220 SF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,27.6,False,15.0,24.0
+sudokeys_simpac.product_product_6,product_category_all_env,114x229 AF 80grs : IM,Env/114x229 AF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,23.69,False,15.0,20.6
+sudokeys_simpac.product_product_7,product_category_all_env,114x229 SF 80grs : IM,Env/114x229 SF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,23.69,False,15.0,20.6
+sudokeys_simpac.product_product_8,product_category_all_papier,115 gsm couché brillant ,Pap/CB 115g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_7,,False,50.0,
+sudokeys_simpac.product_product_9,product_category_all_papier,115 gsm couché mat,Pap/CM 115g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_7,,False,50.0,
+sudokeys_simpac.product_product_10,product_category_all_papier,135 gsm couché brillant,Pap/CB 135g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_4,36.99,False,50.0,24.66
+sudokeys_simpac.product_product_11,product_category_all_papier,135 gsm couché mat,Pap/CM 135g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_4,,False,50.0,
+sudokeys_simpac.product_product_12,product_category_all_env,162x229 AF 80grs,Env/162x229 AF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,36.8,False,15.0,32.0
+sudokeys_simpac.product_product_13,product_category_all_env,162x229 AF 80grs : IM,Env/162x229 AF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,36.8,False,15.0,32.0
+sudokeys_simpac.product_product_14,product_category_all_env,162x229 AF 90grs,Env/162x229 AF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,36.8,False,15.0,32.0
+sudokeys_simpac.product_product_15,product_category_all_env,162x229 SF 80g,Env/162x229 SF 80grs,Consumable,product.product_uom_unit,product.product_uom_unit,,34.04,False,15.0,29.6
+sudokeys_simpac.product_product_16,product_category_all_env,162x229 SF 80grs : IM,Env/162x229 SF 80grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_1,33.35,False,15.0,29.0
+sudokeys_simpac.product_product_17,product_category_all_env,162x229 SF 90grs,Env/162x229 SF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,,36.8,False,15.0,32.0
+sudokeys_simpac.product_product_18,product_category_all_papier,170 gsm couché brillant,Pap/CB 170g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_4",15.0,False,50.0,10.0
+sudokeys_simpac.product_product_19,product_category_all_papier,170 gsm couché mat,Pap/CM 170g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_4",,False,50.0,
+sudokeys_simpac.product_product_20,product_category_all_env,190x190 SF 135grs,Env/190x190 SF 135grs,Consumable,product.product_uom_unit,product.product_uom_unit,,47.15,False,15.0,41.0
+sudokeys_simpac.product_product_21,product_category_all_env,229x324 AF 90grs,Env/229x324 AF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_6,72.335,False,15.0,62.9
+sudokeys_simpac.product_product_22,product_category_all_env,229x324 AF 90grs : IM,Env/229x324 AF 90grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_1,product_tags_6",72.335,False,15.0,62.9
+sudokeys_simpac.product_product_23,product_category_all_env,229x324 SF 90grs,Env/229x324 SF 90grs,Consumable,product.product_uom_unit,product.product_uom_unit,product_tags_6,64.4,False,15.0,56.0
+sudokeys_simpac.product_product_24,product_category_all_env,229x324 SF 90grs : IM,Env/229x324 SF 90grs : IM,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_1,product_tags_6",64.4,False,15.0,56.0
+sudokeys_simpac.product_product_25,product_category_all_papier,250 gsm couché brillant,Pap/CB 250g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",,False,50.0,
+sudokeys_simpac.product_product_26,product_category_all_papier,250 gsm couché mat,Pap/CM 250g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",0.05,False,50.0,0.025
+sudokeys_simpac.product_product_27,product_category_all_papier,300 gsm couché brillant,Pap/CB 300g : 640x450,Stockable Product,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",99.0,False,50.0,66.0
+sudokeys_simpac.product_product_28,product_category_all_papier,300 gsm couché mat,Pap/CM 300g : 640x450,Consumable,product.product_uom_unit,product.product_uom_unit,"product_tags_2,product_tags_3,product_tags_5",,False,50.0,
+sudokeys_simpac.product_product_30,product_category_all_pvc,Cartes PVC20,PVC/Cartes PVC20,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_31,product_category_all_pvc,Cartes PVC20 trouée,PVC/Cartes PVC20 trouée,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_32,product_category_all_pvc,Cartes PVC20 Verso inscr,PVC/Cartes PVC20 Verso inscr,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_33,product_category_all_pvc,Cartes PVC30,PVC/Cartes PVC30,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_34,product_category_all_pvc,Cartes PVC30 HiCo,PVC/Cartes PVC30 HiCo,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_35,product_category_all_pvc,Cartes PVC30 LoCo,PVC/Cartes PVC30 LoCo,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_36,product_category_all_pvc,Cartes PVC 3 elts,PVC/Cartes PVC 3 elts,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_37,product_category_all_divers,Carton 92,,Stockable Product,product.product_uom_unit,product.product_uom_unit,,0.8,False,,0.8
+sudokeys_simpac.product_product_38,product_category_all_pvc,Cleaning kit,PVC/Cleaning kit,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_48,product_category_all_mo,Intérimaires,,Service,product.product_uom_hour,product.product_uom_hour,,30.0,False,,30.0
+sudokeys_simpac.product_product_50,product_category_all_livraison,Palette,,Service,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_51,product_category_all_divers,Pastilles adhésives,,Stockable Product,product.product_uom_unit,product.product_uom_unit,,0.02,False,,0.02
+sudokeys_simpac.product_product_53,product_category_all_offset,Plaque,Off/Plaque,Consumable,product.product_uom_unit,product.product_uom_unit,,5.0,False,,5.0
+sudokeys_simpac.product_product_54,product_category_all_pvc,Porte carte troué,PVC/Porte carte troué,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_56,product_category_atelier_editique_email,Routage emails,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.01,False,,
+sudokeys_simpac.product_product_57,product_category_all_pvc,Ruban mono BLACK,PVC/Ruban mono BLACK,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_58,product_category_all_pvc,Ruban mono BLACK OVERLAY,PVC/Ruban mono BLACK OVERLAY,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_59,product_category_all_pvc,Ruban mono BLUE,PVC/Ruban mono BLUE,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_60,product_category_all_pvc,Ruban mono GOLD,PVC/Ruban mono GOLD,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_61,product_category_all_pvc,Ruban mono GREEN,PVC/Ruban mono GREEN,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_62,product_category_all_pvc,Ruban mono RED,PVC/Ruban mono RED,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_63,product_category_all_pvc,Ruban mono SILVER,PVC/Ruban mono SILVER,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_64,product_category_all_pvc,Ruban mono WHITE,PVC/Ruban mono WHITE,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_65,product_category_all_pvc,Ruban spe SCRATCH,PVC/Ruban spe SCRATCH,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_68,product_category_all_pvc,Ruban spe SIGNATURE,PVC/Ruban spe SIGNATURE,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_69,product_category_all_pvc,Ruban YMCKO,PVC/Ruban YMCKO,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_70,product_category_all_pvc,Ruban YMCKO-K,PVC/Ruban YMCKO_K,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_66,product.product_category_all,Sortie numérique couleur,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.09,False,,
+sudokeys_simpac.product_product_67,product.product_category_all,Sortie numérique noir,,Consumable,product.product_uom_unit,product.product_uom_unit,,0.02,False,,
+sudokeys_simpac.product_product_col,product_category_atelier_fac,Collage de document,FAC01,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_div,product_category_atelier_fac,Travaux divers,FAC02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_enc,product_category_atelier_fac,Encartage,FAC03,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_imp,product_category_atelier_num,Fabrication d'un imprimé,NUM01,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,
+sudokeys_simpac.product_product_livre,product_category_atelier_num,Fabrication d'un livre relié dos carré,NUM02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_pvc,product_category_atelier_num,Fabrication cartes PVC,NUM03,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_doc,product_category_atelier_num,Personnalisation d’un document,NUM04,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_livret,product_category_atelier_num,Fabrication d'un livret,NUM05,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_env,product_category_atelier_offset,Impression enveloppes,OFF01,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,
+sudokeys_simpac.product_product_jet,product_category_atelier_offset,Impression jet d'encre sur enveloppes,OFF02,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,
+sudokeys_simpac.product_product_pap,product_category_atelier_offset,Impression papier,OFF03,Consumable,product.product_uom_unit,product.product_uom_unit,,1.0,False,,
+sudokeys_simpac.product_product_manu,product_category_atelier_routage,Insertion manuelle sous enveloppe,ROU02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_meca,product_category_atelier_routage,Insertion mécanisée sous enveloppe,ROU03,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_film,product_category_atelier_routage,Mise sous film,ROU04,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_npai,product_category_atelier_routage,Traitement NPAI,ROU05,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,
+sudokeys_simpac.product_product_email,product_category_atelier_editique,Campagne email,EDI01,Consumable,product.product_uom_unit,product.product_uom_unit,,115.0,False,15.0,100.0
+sudokeys_simpac.product_product_prepa,product_category_atelier_editique,Préparation fichier données,EDI02,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,15.0,
+sudokeys_simpac.product_product_affranchissement,product_category_atelier_routage,Affranchissement,ROU06,Consumable,product.product_uom_unit,product.product_uom_unit,,,False,,

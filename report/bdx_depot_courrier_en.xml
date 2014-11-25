@@ -3,7 +3,7 @@
     <data>
         <report 
             id="report_bdx_depot_courrier_en"
-            model="stock.picking.out"
+            model="stock.picking"
             name="bdx.depot.courrier.en"
             string="Bordereau de dépôt courrier en nombre"
             rml="sudokeys_simpac/report/bdx_depot_courrier_en.rml"

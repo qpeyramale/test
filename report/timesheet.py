@@ -21,9 +21,8 @@
 
 from datetime import date, time, datetime, timedelta
 import time
-from report import report_sxw
-from osv import osv
-import pooler
+from openerp.report import report_sxw
+from openerp.osv import osv
 
 class simpac_timesheet(report_sxw.rml_parse):
     

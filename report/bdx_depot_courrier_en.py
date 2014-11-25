@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import time
-from report import report_sxw
-from osv import osv
-import pooler
+from openerp.report import report_sxw
+from openerp.osv import osv
 
 class bdx_depot_courrier_en(report_sxw.rml_parse):
     
@@ -18,7 +17,7 @@ class bdx_depot_courrier_en(report_sxw.rml_parse):
 
 report_sxw.report_sxw(
     'report.bdx_depot_courrier_en',
-    'stock.picking.out',
+    'stock.picking',
     'addons/sudokeys_simpac/report/bdx_depot_courrier_en.rml',
     parser=bdx_depot_courrier_en)
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

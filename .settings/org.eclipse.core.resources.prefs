@@ -1,4 +1,10 @@
 eclipse.preferences.version=1
+encoding//report/bdx_depot_courrier_en.py=utf-8
+encoding//report/bdx_depot_destineo.py=utf-8
+encoding//report/invoice.py=utf-8
+encoding//report/report_stock_affran.py=utf-8
+encoding//report/sale_report.py=utf-8
 encoding//report/timesheet.py=utf-8
 encoding/__openerp__.py=utf-8
 encoding/hr.py=utf-8
+encoding/stock.py=utf-8

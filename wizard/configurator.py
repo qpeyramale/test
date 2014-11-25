@@ -54,7 +54,7 @@ class configurator(osv.osv):
             ], 'Atelier',
             help="Famille d'articles"),
         'atelier_id': fields.many2one('product.category','Atelier'),
-        'article_id': fields.many2one('product.product','Article'),
+        'article_id': fields.many2one('product.template','Article'),
         'article_code': fields.char('Code article'),
         'name': fields.text('Nom',required=True),
         'quantite': fields.integer(u'Quantité'),
@@ -63,7 +63,7 @@ class configurator(osv.osv):
         
         #ATELIER OFFSET : Impression offset sur enveloppes
         'quantite_env': fields.integer(u'Quantité d\'enveloppes à fabriquer'),
-        'produit_env': fields.many2one('product.product','Enveloppes'),
+        'produit_env': fields.many2one('product.template','Enveloppes'),
         'env_fournies': fields.boolean('Enveloppes fournies par le client',help="Coché pour Oui"),
         'impression_env': fields.selection([
             ('10', '1:0'),
@@ -79,7 +79,7 @@ class configurator(osv.osv):
             help="Type d'impression"),
         #ATELIER OFFSET : Impression offset sur papier
         'quantite_pap': fields.integer(u'Quantité de documents à imprimer'),
-        'produit_pap': fields.many2one('product.product','Papier'),
+        'produit_pap': fields.many2one('product.template','Papier'),
         'pose_l_pap': fields.integer('Longueur',help="Longueur<320 / Largeur<225"),
         'pose_w_pap': fields.integer('Largeur'),
         'impression_pap': fields.selection([
@@ -99,7 +99,7 @@ class configurator(osv.osv):
         'pliage_pap': fields.boolean('Pliage',help="Coché pour Oui"),
         #ATELIER OFFSET : Impression jet d'encre
         'quantite_jet': fields.integer(u'Quantité d\'enveloppes à imprimer'),
-        'produit_jet': fields.many2one('product.product','Enveloppes'),
+        'produit_jet': fields.many2one('product.template','Enveloppes'),
         'zone_jet': fields.selection([
             ('petite', 'Petite'),
             ('grande', 'Grande'),
@@ -142,9 +142,9 @@ class configurator(osv.osv):
         #ATELIER FACONNAGE : Travaux divers
         'note_div': fields.text(u'Note calcul'),
         'heures_div': fields.integer(u'Nombre heures MO'),
-        'produit1_div': fields.many2one('product.product','Fourniture 1'),
+        'produit1_div': fields.many2one('product.template','Fourniture 1'),
         'quantite1_div': fields.integer(u'Quantité fourniture 1'),
-        'produit2_div': fields.many2one('product.product','Fourniture 2'),
+        'produit2_div': fields.many2one('product.template','Fourniture 2'),
         'quantite2_div': fields.integer(u'Quantité fourniture 2'),
         #ATELIER FACONNAGE : Encartage
         'quantite_enc': fields.integer(u'Nb pièces à encarter'),
@@ -189,7 +189,7 @@ class configurator(osv.osv):
             help="Type d'impression"),
         'pose_l_imp': fields.integer('Longueur',help="Longueur<450 / Largeur<320"),
         'pose_w_imp': fields.integer('Largeur'),
-        'produit_imp': fields.many2one('product.product','Papier'),
+        'produit_imp': fields.many2one('product.template','Papier'),
         'perforation_imp': fields.boolean('Perforation',help="Coché pour Oui"),
         'rainage_imp': fields.boolean('Rainage',help="Coché pour Oui"),
         'pliage_imp': fields.boolean('Pliage',help="Coché pour Oui"),
@@ -199,9 +199,9 @@ class configurator(osv.osv):
         'pose_l_liv': fields.integer('Longueur',help="Longueur<420 / Largeur<320"),
         'pose_w_liv': fields.integer('Largeur'),
         'pages_noir_liv': fields.integer('Nb de pages imprimées en noir'),
-        'produit_noir_liv': fields.many2one('product.product','Papier pages noir'),
+        'produit_noir_liv': fields.many2one('product.template','Papier pages noir'),
         'pages_couleur_liv': fields.integer('Nb de pages imprimées en couleur'),
-        'produit_couleur_liv': fields.many2one('product.product','Papier pages couleur'),
+        'produit_couleur_liv': fields.many2one('product.template','Papier pages couleur'),
         #ATELIER NUMERIQUE : Personnalisation d’un document
         'quantite_doc': fields.integer(u'Qté de documents à personnaliser'),
         'pose_doc': fields.integer(u'Nombre de poses par feuille reçue'),
@@ -245,8 +245,8 @@ class configurator(osv.osv):
         'pages_livret': fields.integer(u'Nb pages (y/c couverture)',help="Maximum 48"),
         'pose_l_livret': fields.integer('Longueur',help="Longueur<420 / Largeur<300"),
         'pose_w_livret': fields.integer('Largeur'),
-        'produit_inter_livret': fields.many2one('product.product','Papier intérieur souhaité'),
-        'produit_couve_livret': fields.many2one('product.product','Papier couverture souhaité'),
+        'produit_inter_livret': fields.many2one('product.template','Papier intérieur souhaité'),
+        'produit_couve_livret': fields.many2one('product.template','Papier couverture souhaité'),
         'type_livret': fields.selection([
             ('couleur', 'Couleur'),
             ('noire', 'Noire'),
@@ -262,7 +262,7 @@ class configurator(osv.osv):
             ('par_ailleurs', 'Par ailleurs'),
             ], u'Préparation données',
             help="Préparation données"),
-        'produit_pvc': fields.many2one('product.product','Support'),
+        'produit_pvc': fields.many2one('product.template','Support'),
         'porte_carte_pvc': fields.boolean(u'Porte carte troué'),
         'porte_carte': fields.boolean('support troue'),
         'impression_pvc': fields.selection([
@@ -295,7 +295,7 @@ class configurator(osv.osv):
         'verso_signature_pvc': fields.boolean(u'Dépose pellicule signature'),
         #ATELIER ROUTAGE : Insertion manuelle sous enveloppes
         'quantite_man': fields.integer(u'Nombre plis à produire'),
-        'produit_man': fields.many2one('product.product','Enveloppes'),
+        'produit_man': fields.many2one('product.template','Enveloppes'),
         'fournies_man': fields.boolean('Enveloppes fournies par le client',help="Coché pour Oui"),
         'documents_man': fields.integer(u'Nombre de documents à insérer'),
         'insertion_man': fields.boolean('Insertion avec concordance',help="Coché pour Oui"),
@@ -309,7 +309,7 @@ class configurator(osv.osv):
         'machine_man': fields.boolean(u'Passage machine à affranchir',help="Coché pour Oui"),
         #ATELIER ROUTAGE : Insertion mécanisée sous enveloppes
         'quantite_mec': fields.integer(u'Nombre plis à produire'),
-        'produit_mec': fields.many2one('product.product','Enveloppes porteuses'),
+        'produit_mec': fields.many2one('product.template','Enveloppes porteuses'),
         'fournies_mec': fields.boolean('Enveloppes fournies par ailleurs',help="Coché pour Oui"),
         'documents_mec': fields.integer(u'Nombre de documents à insérer'),
         'pliage_mec': fields.integer('Nombre de documents à plier'),
@@ -344,9 +344,9 @@ class configurator(osv.osv):
         'quantite_plis': fields.integer(u'Nombre de plis'),
         'masse_plis': fields.integer(u'Masse d\'1 pli'),
         'category_plis': fields.many2one('product.category',u'Catégorie'),
-        'article_plis': fields.many2one('product.product',u'Article'),
+        'article_plis': fields.many2one('product.template',u'Article'),
         'quantite_plis_surtaxe': fields.integer(u'Nombre de plis surtaxe'),
-        'article_plis_surtaxe': fields.many2one('product.product',u'Article surtaxe'),
+        'article_plis_surtaxe': fields.many2one('product.template',u'Article surtaxe'),
         'seuil1': fields.boolean('Niv 1'),
         'seuil2': fields.boolean('Niv 2'),
         'affran_en_nombre': fields.boolean('En nombre'),
@@ -375,7 +375,7 @@ class configurator(osv.osv):
         'impression_jet': 'recto',
         'zone_jet': 'petite',
         'mise_page_doc': 'simple',
-        'perso_doc': 'noir',
+        #~ 'perso_doc': 'noir',
         'format_doc': 'infa4',
         'gram_doc': 'inf135',
         'perso_imp': 'simple',
@@ -431,19 +431,20 @@ class configurator(osv.osv):
         conf_product_lines=[]
         conf_workcenter_lines=[]
         if article_id:
-            article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
+            article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
             if article.default_code:
                 v['article_code'] = article.default_code
-            mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+            mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
             if mrp_bom_id:
                 bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                for bom_line in bom.bom_lines:
+                for bom_line in bom.bom_line_ids:
                     conf_product_lines.append({'product_id':bom_line.product_id.id})
                 v['conf_product_lines'] = conf_product_lines
                 if bom.routing_id:
                     for workcenter_line in bom.routing_id.workcenter_lines:
                         conf_workcenter_lines.append({'workcenter_id':workcenter_line.workcenter_id.id})
                 v['conf_workcenter_lines'] = conf_workcenter_lines
+        print 'v',v
         return {'value': v}
         
     def onchange_prix_offert(self, cr, uid, ids, prix_offert, prix_global_marche, context=None):
@@ -465,7 +466,7 @@ class configurator(osv.osv):
         v = {}
         if article_id:
             quantite_env=quantite_env+150
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -482,11 +483,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -619,7 +620,7 @@ class configurator(osv.osv):
             raise osv.except_osv(_('Attention!'),_("La zone d'impression ne peut être vide."))
         if article_id:
             
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -636,11 +637,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -740,7 +741,7 @@ class configurator(osv.osv):
         impression_pap,perforation_pap,rainage_pap,pliage_pap,article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -757,11 +758,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -928,7 +929,7 @@ class configurator(osv.osv):
         article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -944,11 +945,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -1023,7 +1024,7 @@ class configurator(osv.osv):
         article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -1085,7 +1086,7 @@ class configurator(osv.osv):
         article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -1102,11 +1103,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -1197,7 +1198,7 @@ class configurator(osv.osv):
         article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -1215,11 +1216,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -1279,7 +1280,7 @@ class configurator(osv.osv):
         article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -1296,11 +1297,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -1411,7 +1412,7 @@ class configurator(osv.osv):
         perforation_imp, rainage_imp, pliage_imp,article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -1428,11 +1429,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -1658,7 +1659,7 @@ class configurator(osv.osv):
         pages_noir_liv, produit_noir_liv, pages_couleur_liv, produit_couleur_liv,article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -1677,11 +1678,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -1853,7 +1854,7 @@ class configurator(osv.osv):
         format_doc, gram_doc, perforation_doc, rainage_doc, pliage_doc,article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -1869,11 +1870,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -2093,7 +2094,7 @@ class configurator(osv.osv):
         produit_inter_livret, produit_couve_livret, type_livret,article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -2112,11 +2113,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -2286,7 +2287,7 @@ class configurator(osv.osv):
                         verso_gratter_pvc, verso_signature_pvc, article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v={}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -2303,12 +2304,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -2609,7 +2609,7 @@ class configurator(osv.osv):
         pliage_man,fermeture_man,adressage_man,machine_man,article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -2626,11 +2626,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -2763,7 +2763,7 @@ class configurator(osv.osv):
         pliage_mec,adressage_mec,machine_mec,article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -2780,11 +2780,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -2902,7 +2902,7 @@ class configurator(osv.osv):
         livraison_fil,palettes_fil,article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -2918,11 +2918,11 @@ class configurator(osv.osv):
                     self.pool.get('configurator.workcenter.line').unlink(cr,uid,workcenters)
             if article_id:
                 mrp_bom=self.pool.get('mrp.bom')
-                article = self.pool.get('product.product').browse(cr, uid, article_id, context=context)
-                mrp_bom_id=mrp_bom.search(cr,uid,[('product_id','=',article.id)])
+                article = self.pool.get('product.template').browse(cr, uid, article_id, context=context)
+                mrp_bom_id=mrp_bom.search(cr,uid,[('product_tmpl_id','=',article.id)])
                 if mrp_bom_id:
                     bom=mrp_bom.browse(cr,uid,mrp_bom_id[0])
-                    for bom_line in bom.bom_lines:
+                    for bom_line in bom.bom_line_ids:
                         conf_product_lines.append([0,False,{'product_id':bom_line.product_id.id,'cout':0.0}])
                     if bom.routing_id:
                         for workcenter_line in bom.routing_id.workcenter_lines:
@@ -3053,7 +3053,7 @@ class configurator(osv.osv):
         article_id,conf_product_lines,conf_workcenter_lines, context=None):
         v = {}
         if article_id:
-            product_obj=self.pool.get('product.product')
+            product_obj=self.pool.get('product.template')
             workcenter_obj=self.pool.get('mrp.workcenter')
             products=[]
             workcenters=[]
@@ -3115,8 +3115,8 @@ class configurator(osv.osv):
     def onchange_affran(self, cr, uid, ids, quantite_plis,quantite_plis_surtaxe,masse_plis,article_plis,seuil1,seuil2,affran_en_nombre, context=None):
         v = {}
         if article_plis:
-            article=self.pool.get('product.product').browse(cr,uid,article_plis)
-            #~ article_surtaxe=self.pool.get('product.product').browse(cr,uid,article_plis_surtaxe)
+            article=self.pool.get('product.template').browse(cr,uid,article_plis)
+            #~ article_surtaxe=self.pool.get('product.template').browse(cr,uid,article_plis_surtaxe)
             a=article and article.name or ''
             if article.delai:
                 c=str(article.delai)
@@ -3166,7 +3166,7 @@ class configurator(osv.osv):
         if context is None:
             context = {}
         data = self.read(cr, uid, ids)[0]
-        product_browse=self.pool.get('product.product').browse(cr,uid,data['article_id'][0])
+        product_browse=self.pool.get('product.template').browse(cr,uid,data['article_id'][0])
         if context.get('active_model',False)=='sale.order':
             sale_order=order_obj.browse(cr, uid, context.get(('active_ids'), []), context=context)[0]
         else:
@@ -3179,7 +3179,7 @@ class configurator(osv.osv):
         fpos = sale_order.fiscal_position and self.pool.get('account.fiscal.position').browse(cr, uid, fiscal_position) or False
         read_conf_product_lines=self.pool.get('configurator.product.line').read(cr,uid,data['conf_product_lines'],['cout','product_id','quantite'])
         #~ for composant in read_conf_product_lines:
-            #~ product=self.pool.get('product.product').browse(cr,uid,composant['product_id'][0])
+            #~ product=self.pool.get('product.template').browse(cr,uid,composant['product_id'][0])
             #~ if composant['cout']:
                 #~ self.pool.get('sale.order.line').create(cr, uid, {
                     #~ 'order_id': sale_order.id,
@@ -3199,7 +3199,7 @@ class configurator(osv.osv):
                     #~ 'composant':True
                 #~ }, context)
         if product_browse.name=='Affranchissement':
-            article_plis=self.pool.get('product.product').browse(cr,uid,data['article_plis'][0])
+            article_plis=self.pool.get('product.template').browse(cr,uid,data['article_plis'][0])
             affran_machine=False
             affran_dispense=False
             if article_plis.categ_id.parent_id.name==u'Machine à affranchir' or article_plis.categ_id.name==u'Machine à affranchir':
@@ -3232,7 +3232,7 @@ class configurator(osv.osv):
                 'affranchissement_dispense': affran_dispense
             }, context)
             if data['seuil1'] or data['seuil2']:
-                #~ article_plis_surtaxe=self.pool.get('product.product').browse(cr,uid,data['article_plis_surtaxe'][0])
+                #~ article_plis_surtaxe=self.pool.get('product.template').browse(cr,uid,data['article_plis_surtaxe'][0])
                 prix_surtaxe=0.0
                 name=''
                 if data['seuil1'] and data['masse_plis']>=article_plis.categ_id.poids_min:

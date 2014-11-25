@@ -10,7 +10,7 @@ from openerp.tools.translate import _
 
 import openerp.addons.decimal_precision as dp
 
-class product_product(osv.osv):
+class product_template(osv.osv):
     
     def _get_margin(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
@@ -43,7 +43,7 @@ class product_product(osv.osv):
             vals['list_price']=vals.get('standard_price')*(1.0+(categ_margin/100.0))
         elif vals.get('margin'):
             vals['list_price']=vals.get('standard_price')*(1.0+(vals.get('margin')/100.0))
-        return super(product_product, self).create(cr, uid, vals, context=context)
+        return super(product_template, self).create(cr, uid, vals, context=context)
     
     def write(self, cr, uid,ids, vals, context=None):
         if context is None:
@@ -71,49 +71,49 @@ class product_product(osv.osv):
                 vals['standard_price']=vals.get('list_price')*(1.0-(product.margin/100.0))
         elif 'list_price' in vals and 'standard_price' in vals:
             vals['list_price']=vals.get('standard_price')*(1.0+(product.margin/100.0))
-        return super(product_product,self).write(cr, uid, ids,vals, context=context)
+        return super(product_template,self).write(cr, uid, ids,vals, context=context)
     
-    def name_get(self, cr, user, ids, context=None):
-        if context is None:
-            context = {}
-        if isinstance(ids, (int, long)):
-            ids = [ids]
-        if not len(ids):
-            return []
-        def _name_get(d):
-            name = d.get('name','')
-            code = d.get('default_code',False)
-            if code:
-                #MODIF ORIGINAL
-                #~ name = '[%s] %s' % (code,name)
-                name = '%s' % (name,)
-            if d.get('variants'):
-                name = name + ' - %s' % (d['variants'],)
-            return (d['id'], name)
-
-        partner_id = context.get('partner_id', False)
-
-        result = []
-        for product in self.browse(cr, user, ids, context=context):
-            sellers = filter(lambda x: x.name.id == partner_id, product.seller_ids)
-            if sellers:
-                for s in sellers:
-                    mydict = {
-                              'id': product.id,
-                              'name': s.product_name or product.name,
-                              'default_code': s.product_code or product.default_code,
-                              'variants': product.variants
-                              }
-                    result.append(_name_get(mydict))
-            else:
-                mydict = {
-                          'id': product.id,
-                          'name': product.name,
-                          'default_code': product.default_code,
-                          'variants': product.variants
-                          }
-                result.append(_name_get(mydict))
-        return result
+    #~ def name_get(self, cr, user, ids, context=None):
+        #~ if context is None:
+            #~ context = {}
+        #~ if isinstance(ids, (int, long)):
+            #~ ids = [ids]
+        #~ if not len(ids):
+            #~ return []
+        #~ def _name_get(d):
+            #~ name = d.get('name','')
+            #~ code = d.get('default_code',False)
+            #~ if code:
+                #~ #MODIF ORIGINAL
+                #~ ##~ name = '[%s] %s' % (code,name)
+                #~ name = '%s' % (name,)
+            #~ if d.get('variants'):
+                #~ name = name + ' - %s' % (d['variants'],)
+            #~ return (d['id'], name)
+#~ 
+        #~ partner_id = context.get('partner_id', False)
+#~ 
+        #~ result = []
+        #~ for product in self.browse(cr, user, ids, context=context):
+            #~ sellers = filter(lambda x: x.name.id == partner_id, product.seller_ids)
+            #~ if sellers:
+                #~ for s in sellers:
+                    #~ mydict = {
+                              #~ 'id': product.id,
+                              #~ 'name': s.product_name or product.name,
+                              #~ 'default_code': s.product_code or product.default_code,
+                              #~ 'variants': product.variants
+                              #~ }
+                    #~ result.append(_name_get(mydict))
+            #~ else:
+                #~ mydict = {
+                          #~ 'id': product.id,
+                          #~ 'name': product.name,
+                          #~ 'default_code': product.default_code,
+                          #~ 'variants': product.variants
+                          #~ }
+                #~ result.append(_name_get(mydict))
+        #~ return result
     
     def _get_tags(self, cr, uid, ids, field_name, arg, context=None):
         res = {}
@@ -124,23 +124,23 @@ class product_product(osv.osv):
     def _get_tags_search(self, cr, uid, obj, name, domain, context=None):
         res=[]
         if domain==[('tag_ids_fnct', '!=', 'ImpOff')]:
-            cr.execute('''select id from product_product pp
+            cr.execute('''select id from product_template pp
                 where pp.id not in
                 (select distinct pp.id
-                from product_product pp
-                join product_product_product_tags_rel ppptr on ppptr.product_product_id=pp.id
+                from product_template pp
+                join product_tags_product_template_rel ppptr on ppptr.product_template_id=pp.id
                 join product_tags pt on pt.id=ppptr.product_tags_id and pt.name='ImpOff') ''')
             res = cr.fetchall()
         return [('id', 'in', map(lambda x: x[0], res))]
     
-    _inherit = "product.product"
+    _inherit = "product.template"
     _columns = {
         'tag_ids': fields.many2many('product.tags',string='Tags'),
         'tag_ids_fnct': fields.function(_get_tags,type='char',string='Tags fnct',fnct_search=_get_tags_search),
         'margin_perso': fields.boolean(u'Marge détaché de la famille'),
         'margin': fields.function(_get_margin,fnct_inv=_set_margin,string=u"Marge",digits=(12,2),type="float",
             store = {
-                'product.product': (lambda self,cr,uid,ids,c=None: ids, ['list_price','standard_price'], 10),
+                'product.template': (lambda self,cr,uid,ids,c=None: ids, ['list_price','standard_price'], 10),
                 #~ 'product.category': (_get_margin_category, ['margin'], 10),
             }),
         'plis_mini': fields.integer('Nombre de plis mini'),
@@ -160,7 +160,7 @@ class product_product(osv.osv):
         
     }
     
-    _order = 'name_template'
+    #~ _order = 'name_template'
 
 class product_category(osv.osv):
 

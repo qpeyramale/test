@@ -20,119 +20,177 @@ class sale_order(osv.osv):
         #~ 'order_line': fields.one2many('sale.order.line', 'order_id', 'Order Lines', readonly=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]}, domain=[('composant','=',False)]),
     }
     
-    def _create_pickings_and_procurements(self, cr, uid, order, order_lines, picking_id=False, context=None):
+    #~ def _create_pickings_and_procurements(self, cr, uid, order, order_lines, picking_id=False, context=None):
+        #~ """Create the required procurements to supply sales order lines, also connecting
+        #~ the procurements to appropriate stock moves in order to bring the goods to the
+        #~ sales order's requested location.
+#~ 
+        #~ If ``picking_id`` is provided, the stock moves will be added to it, otherwise
+        #~ a standard outgoing picking will be created to wrap the stock moves, as returned
+        #~ by :meth:`~._prepare_order_picking`.
+#~ 
+        #~ Modules that wish to customize the procurements or partition the stock moves over
+        #~ multiple stock pickings may override this method and call ``super()`` with
+        #~ different subsets of ``order_lines`` and/or preset ``picking_id`` values.
+#~ 
+        #~ :param browse_record order: sales order to which the order lines belong
+        #~ :param list(browse_record) order_lines: sales order line records to procure
+        #~ :param int picking_id: optional ID of a stock picking to which the created stock moves
+                               #~ will be added. A new picking will be created if ommitted.
+        #~ :return: True
+        #~ """
+        #~ move_obj = self.pool.get('stock.move')
+        #~ picking_obj = self.pool.get('stock.picking')
+        #~ procurement_obj = self.pool.get('procurement.order')
+        #~ proc_ids = []
+        #~ picking_id_aff_machine=False
+        #~ picking_id_aff_dispense=False
+        #~ for line in order_lines:
+            #~ if line.state == 'done':
+                #~ continue
+#~ 
+            #~ date_planned = self._get_date_planned(cr, uid, order, line, order.date_order, context=context)
+#~ 
+            #~ if line.product_id:
+                #~ if line.product_id.type in ('product', 'consu'):
+                    #~ if line.affranchissement_machine:
+                        #~ if (line.configurator_id.seuil1 or line.configurator_id.seuil2) and not picking_id_aff_machine:
+                            #~ picking_id_aff_machine = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                        #~ elif not (line.configurator_id.seuil1 or line.configurator_id.seuil2):
+                            #~ picking_id_aff_machine = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                        #~ picking_obj.write(cr,uid,picking_id_aff_machine,{'configurator_id':line.configurator_id.id})
+                        #~ if order.contrat_cadre:
+                            #~ picking_obj.write(cr,uid,picking_id_aff_machine,{'affranchissement_machine':True,'type_affran':'mensuel'})
+                        #~ else:
+                            #~ picking_obj.write(cr,uid,picking_id_aff_machine,{'affranchissement_machine':True,'type_affran':'devis'})
+                        #~ move_id_aff_machine = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id_aff_machine, date_planned, context=context))
+                        #~ move_id_aff_dispense = False
+                        #~ move_id = False
+                    #~ elif line.affranchissement_dispense:
+                        #~ if (line.configurator_id.seuil1 or line.configurator_id.seuil2) and not picking_id_aff_dispense:
+                            #~ picking_id_aff_dispense = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                        #~ elif not (line.configurator_id.seuil1 or line.configurator_id.seuil2):
+                            #~ picking_id_aff_dispense = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                        #~ picking_obj.write(cr,uid,picking_id_aff_machine,{'configurator_id':line.configurator_id.id})
+                        #~ picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True})
+                        #~ 
+                        #~ move_id_aff_dispense = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id_aff_dispense, date_planned, context=context))
+                        #~ move_id_aff_machine = False
+                        #~ move_id = False
+                    #~ else:
+                        #~ if not picking_id:
+                            #~ picking_id = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
+                        #~ move_id = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id, date_planned, context=context))
+                        #~ move_id_aff_machine = False
+                        #~ move_id_aff_dispense = False
+                #~ else:
+                    #~ # a service has no stock move
+                    #~ move_id = False
+                    #~ move_id_aff_machine = False
+                    #~ move_id_aff_dispense = False
+                #~ 
+                #~ if move_id:
+                    #~ proc_id = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id, date_planned, context=context))
+                    #~ proc_ids.append(proc_id)
+                    #~ line.write({'procurement_id': proc_id})
+                    #~ self.ship_recreate(cr, uid, order, line, move_id, proc_id)
+                #~ 
+                #~ if move_id_aff_machine:
+                    #~ proc_id_aff_machine = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id_aff_machine, date_planned, context=context))
+                    #~ proc_ids.append(proc_id_aff_machine)
+                    #~ line.write({'procurement_id': proc_id_aff_machine})
+                    #~ self.ship_recreate(cr, uid, order, line, move_id_aff_machine, proc_id_aff_machine)
+#~ 
+                #~ if move_id_aff_dispense:
+                    #~ proc_id_aff_dispense = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id_aff_dispense, date_planned, context=context))
+                    #~ proc_ids.append(proc_id_aff_dispense)
+                    #~ line.write({'procurement_id': proc_id_aff_dispense})
+                    #~ self.ship_recreate(cr, uid, order, line, move_id_aff_dispense, proc_id_aff_dispense)
+#~ 
+        #~ wf_service = netsvc.LocalService("workflow")
+        #~ if picking_id:
+            #~ wf_service.trg_validate(uid, 'stock.picking', picking_id, 'button_confirm', cr)
+        #~ if picking_id_aff_machine:
+            #~ wf_service.trg_validate(uid, 'stock.picking', picking_id_aff_machine, 'button_confirm', cr)
+        #~ if picking_id_aff_dispense:
+            #~ wf_service.trg_validate(uid, 'stock.picking', picking_id_aff_dispense, 'button_confirm', cr)
+        #~ for proc_id in proc_ids:
+            #~ wf_service.trg_validate(uid, 'procurement.order', proc_id, 'button_confirm', cr)
+#~ 
+        #~ val = {}
+        #~ if order.state == 'shipping_except':
+            #~ val['state'] = 'progress'
+            #~ val['shipped'] = False
+#~ 
+            #~ if (order.order_policy == 'manual'):
+                #~ for line in order.order_line:
+                    #~ if (not line.invoiced) and (line.state not in ('cancel', 'draft')):
+                        #~ val['state'] = 'manual'
+                        #~ break
+        #~ order.write(val)
+        #~ 
+        #~ return True
+    
+    def action_ship_create(self, cr, uid, ids, context=None):
         """Create the required procurements to supply sales order lines, also connecting
         the procurements to appropriate stock moves in order to bring the goods to the
         sales order's requested location.
 
-        If ``picking_id`` is provided, the stock moves will be added to it, otherwise
-        a standard outgoing picking will be created to wrap the stock moves, as returned
-        by :meth:`~._prepare_order_picking`.
-
-        Modules that wish to customize the procurements or partition the stock moves over
-        multiple stock pickings may override this method and call ``super()`` with
-        different subsets of ``order_lines`` and/or preset ``picking_id`` values.
-
-        :param browse_record order: sales order to which the order lines belong
-        :param list(browse_record) order_lines: sales order line records to procure
-        :param int picking_id: optional ID of a stock picking to which the created stock moves
-                               will be added. A new picking will be created if ommitted.
         :return: True
         """
-        move_obj = self.pool.get('stock.move')
-        picking_obj = self.pool.get('stock.picking')
         procurement_obj = self.pool.get('procurement.order')
-        proc_ids = []
-        picking_id_aff_machine=False
-        picking_id_aff_dispense=False
-        for line in order_lines:
-            if line.state == 'done':
-                continue
+        sale_line_obj = self.pool.get('sale.order.line')
+        for order in self.browse(cr, uid, ids, context=context):
+            proc_ids = []
+            proc_ids_machine = []
+            proc_ids_dispense = []
+            vals = self._prepare_procurement_group(cr, uid, order, context=context)
+            if not order.procurement_group_id:
+                group_id = self.pool.get("procurement.group").create(cr, uid, vals, context=context)
+                order.write({'procurement_group_id': group_id}, context=context)
 
-            date_planned = self._get_date_planned(cr, uid, order, line, order.date_order, context=context)
-
-            if line.product_id:
-                if line.product_id.type in ('product', 'consu'):
+            for line in order.order_line:
+                #Try to fix exception procurement (possible when after a shipping exception the user choose to recreate)
+                if line.procurement_ids:
+                    #first check them to see if they are in exception or not (one of the related moves is cancelled)
+                    procurement_obj.check(cr, uid, [x.id for x in line.procurement_ids if x.state not in ['cancel', 'done']])
+                    line.refresh()
+                    #run again procurement that are in exception in order to trigger another move
+                    proc_ids += [x.id for x in line.procurement_ids if x.state in ('exception', 'cancel')]
+                elif sale_line_obj.need_procurement(cr, uid, [line.id], context=context):
+                    if (line.state == 'done') or not line.product_id:
+                        continue
+                    vals = self._prepare_order_line_procurement(cr, uid, order, line, group_id=group_id, context=context)
+                    proc_id = procurement_obj.create(cr, uid, vals, context=context)
                     if line.affranchissement_machine:
-                        if (line.configurator_id.seuil1 or line.configurator_id.seuil2) and not picking_id_aff_machine:
-                            picking_id_aff_machine = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
-                        elif not (line.configurator_id.seuil1 or line.configurator_id.seuil2):
-                            picking_id_aff_machine = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
-                        picking_obj.write(cr,uid,picking_id_aff_machine,{'configurator_id':line.configurator_id.id})
-                        if order.contrat_cadre:
-                            picking_obj.write(cr,uid,picking_id_aff_machine,{'affranchissement_machine':True,'type_affran':'mensuel'})
-                        else:
-                            picking_obj.write(cr,uid,picking_id_aff_machine,{'affranchissement_machine':True,'type_affran':'devis'})
-                        move_id_aff_machine = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id_aff_machine, date_planned, context=context))
-                        move_id_aff_dispense = False
-                        move_id = False
+                        proc_ids_machine.append(proc_id)
                     elif line.affranchissement_dispense:
-                        if (line.configurator_id.seuil1 or line.configurator_id.seuil2) and not picking_id_aff_dispense:
-                            picking_id_aff_dispense = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
-                        elif not (line.configurator_id.seuil1 or line.configurator_id.seuil2):
-                            picking_id_aff_dispense = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
-                        picking_obj.write(cr,uid,picking_id_aff_machine,{'configurator_id':line.configurator_id.id})
-                        #~ if order.contrat_cadre:
-                            #~ picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True,'type_affran':'mensuel'})
-                        #~ else:
-                            #~ picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True,'type_affran':'devis'})
-                        picking_obj.write(cr,uid,picking_id_aff_dispense,{'affranchissement_dispense':True})
-                        
-                        move_id_aff_dispense = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id_aff_dispense, date_planned, context=context))
-                        move_id_aff_machine = False
-                        move_id = False
+                        proc_ids_dispense.append(proc_id)
                     else:
-                        if not picking_id:
-                            picking_id = picking_obj.create(cr, uid, self._prepare_order_picking(cr, uid, order, context=context))
-                        move_id = move_obj.create(cr, uid, self._prepare_order_line_move(cr, uid, order, line, picking_id, date_planned, context=context))
-                        move_id_aff_machine = False
-                        move_id_aff_dispense = False
-                else:
-                    # a service has no stock move
-                    move_id = False
-                    move_id_aff_machine = False
-                    move_id_aff_dispense = False
-                
-                if move_id:
-                    proc_id = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id, date_planned, context=context))
-                    proc_ids.append(proc_id)
-                    line.write({'procurement_id': proc_id})
-                    self.ship_recreate(cr, uid, order, line, move_id, proc_id)
-                
-                if move_id_aff_machine:
-                    proc_id_aff_machine = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id_aff_machine, date_planned, context=context))
-                    proc_ids.append(proc_id_aff_machine)
-                    line.write({'procurement_id': proc_id_aff_machine})
-                    self.ship_recreate(cr, uid, order, line, move_id_aff_machine, proc_id_aff_machine)
+                        proc_ids.append(proc_id)
+            #Confirm procurement order such that rules will be applied on it
+            #note that the workflow normally ensure proc_ids isn't an empty list
+            if proc_ids_machine:
+                context_machine=context.copy()
+                context_machine.update({'type_affr':'machine'})
+                procurement_obj.run(cr, uid, proc_ids_machine, context=context_machine)
+            if proc_ids_dispense:
+                context_dispense=context.copy()
+                context_dispense.update({'type_affr':'dispense'})
+                procurement_obj.run(cr, uid, proc_ids_dispense, context=context_dispense)
+            
+            procurement_obj.run(cr, uid, proc_ids, context=context)
 
-                if move_id_aff_dispense:
-                    proc_id_aff_dispense = procurement_obj.create(cr, uid, self._prepare_order_line_procurement(cr, uid, order, line, move_id_aff_dispense, date_planned, context=context))
-                    proc_ids.append(proc_id_aff_dispense)
-                    line.write({'procurement_id': proc_id_aff_dispense})
-                    self.ship_recreate(cr, uid, order, line, move_id_aff_dispense, proc_id_aff_dispense)
+            #if shipping was in exception and the user choose to recreate the delivery order, write the new status of SO
+            if order.state == 'shipping_except':
+                val = {'state': 'progress', 'shipped': False}
 
-        wf_service = netsvc.LocalService("workflow")
-        if picking_id:
-            wf_service.trg_validate(uid, 'stock.picking', picking_id, 'button_confirm', cr)
-        if picking_id_aff_machine:
-            wf_service.trg_validate(uid, 'stock.picking', picking_id_aff_machine, 'button_confirm', cr)
-        if picking_id_aff_dispense:
-            wf_service.trg_validate(uid, 'stock.picking', picking_id_aff_dispense, 'button_confirm', cr)
-        for proc_id in proc_ids:
-            wf_service.trg_validate(uid, 'procurement.order', proc_id, 'button_confirm', cr)
-
-        val = {}
-        if order.state == 'shipping_except':
-            val['state'] = 'progress'
-            val['shipped'] = False
-
-            if (order.order_policy == 'manual'):
-                for line in order.order_line:
-                    if (not line.invoiced) and (line.state not in ('cancel', 'draft')):
-                        val['state'] = 'manual'
-                        break
-        order.write(val)
-        
+                if (order.order_policy == 'manual'):
+                    for line in order.order_line:
+                        if (not line.invoiced) and (line.state not in ('cancel', 'draft')):
+                            val['state'] = 'manual'
+                            break
+                order.write(val)
         return True
     
     def print_quotation(self, cr, uid, ids, context=None):

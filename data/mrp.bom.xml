@@ -6,119 +6,119 @@
 -->
     <record id="mrp_bom_env" model="mrp.bom">
         <field name="name">Impression enveloppes</field>
-        <field name="product_id" ref="product_product_env" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_env_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_env" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_imp" model="mrp.bom">
         <field name="name">Fabrication d'un imprimé</field>
-        <field name="product_id" ref="product_product_imp" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_imp_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_imp" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_pap" model="mrp.bom">
         <field name="name">Impression papier</field>
-        <field name="product_id" ref="product_product_pap" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_pap_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_pap" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_jet" model="mrp.bom">
         <field name="name">Impression jet d'encre sur enveloppes</field>
-        <field name="product_id" ref="product_product_jet" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_jet" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_jet" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_email" model="mrp.bom">
         <field name="name">Campagne email</field>
-        <field name="product_id" ref="product_product_email" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_email" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_email" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_prepa" model="mrp.bom">
         <field name="name">Préparation fichier données</field>
-        <field name="product_id" ref="product_product_prepa" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_prepa" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_prepa" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_doc" model="mrp.bom">
         <field name="name">Personnalisation d’un document</field>
-        <field name="product_id" ref="product_product_doc" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_doc_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_doc" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_npai" model="mrp.bom">
         <field name="name">Traitement NPAI</field>
-        <field name="product_id" ref="product_product_npai" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_npai_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_npai" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_film" model="mrp.bom">
         <field name="name">Mise sous film</field>
-        <field name="product_id" ref="product_product_film" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_film_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_film" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_meca" model="mrp.bom">
         <field name="name">Insertion mécanisée sous enveloppe</field>
-        <field name="product_id" ref="product_product_meca" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_meca_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_meca" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_manu" model="mrp.bom">
         <field name="name">Insertion manuelle sous enveloppe</field>
-        <field name="product_id" ref="product_product_manu" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_manu_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_manu" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_col" model="mrp.bom">
         <field name="name">Collage de document</field>
-        <field name="product_id" ref="product_product_col" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_col_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_col" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_div" model="mrp.bom">
         <field name="name">Travaux divers</field>
-        <field name="product_id" ref="product_product_div" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_div_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_enc" model="mrp.bom">
         <field name="name">Encartage</field>
-        <field name="product_id" ref="product_product_enc" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_enc_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_enc" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_livre" model="mrp.bom">
         <field name="name">Fabrication d'un livre relié dos carré</field>
-        <field name="product_id" ref="product_product_livre" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_livre_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_livre" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_livret" model="mrp.bom">
         <field name="name">Fabrication d'un livret</field>
-        <field name="product_id" ref="product_product_livret" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_livret_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_livret" />
         <field name="bom_id" ref="" />
     </record>
     <record id="mrp_bom_pvc" model="mrp.bom">
         <field name="name">Fabrication cartes PVC</field>
-        <field name="product_id" ref="product_product_pvc" />
+        <field name="product_tmpl_id" ref="sudokeys_simpac.product_product_pvc_product_template" />
         <field name="product_uom" ref="product.product_uom_unit" />
         <field name="routing_id" ref="mrp_routing_pvc" />
         <field name="bom_id" ref="" />
@@ -126,256 +126,254 @@
 <!--
     COMPOSANTS
 -->
-    <record id="mrp_bom_line_1" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_53" />
+    <record id="mrp_bom_line_1" model="mrp.bom.line">
+        <field name="product_id" ref="sudokeys_simpac.product_product_53" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_env" />
     </record>
-    <record id="mrp_bom_line_2" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_67" />
+    <record id="mrp_bom_line_2" model="mrp.bom.line">
+        <field name="product_id" ref="sudokeys_simpac.product_product_67" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_imp" />
     </record>
-    <record id="mrp_bom_line_3" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_66" />
+    <record id="mrp_bom_line_3" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_66" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_imp" />
     </record>
-    <record id="mrp_bom_line_4" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_53" />
+    <record id="mrp_bom_line_4" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_53" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pap" />
     </record>
-    <record id="mrp_bom_line_6" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_56" />
+    <record id="mrp_bom_line_6" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_56" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_email" />
     </record>
-    <record id="mrp_bom_line_8" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_67" />
+    <record id="mrp_bom_line_8" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_67" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_doc" />
     </record>
-    <record id="mrp_bom_line_9" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_66" />
+    <record id="mrp_bom_line_9" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_66" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_doc" />
     </record>
-    <record id="mrp_bom_line_11" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_1" />
+    <record id="mrp_bom_line_11" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_1" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_film" />
     </record>
-    <record id="mrp_bom_line_12" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_67" />
+    <record id="mrp_bom_line_12" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_67" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_film" />
     </record>
-    <record id="mrp_bom_line_13" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_66" />
+    <record id="mrp_bom_line_13" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_66" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_film" />
     </record>
-    <record id="mrp_bom_line_14" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_50" />
+    <record id="mrp_bom_line_14" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_50" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_film" />
     </record>
-    <record id="mrp_bom_line_17" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_37" />
+    <record id="mrp_bom_line_17" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_37" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_col" />
     </record>
-    <record id="mrp_bom_line_18" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_48" />
+    <record id="mrp_bom_line_18" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_48" />
         <field name="product_uom" ref="product.product_uom_hour" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_col" />
     </record>
-    <record id="mrp_bom_line_19" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_48" />
+    <record id="mrp_bom_line_19" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_48" />
         <field name="product_uom" ref="product.product_uom_hour" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_div" />
     </record>
-    <record id="mrp_bom_line_20" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_37" />
+    <record id="mrp_bom_line_20" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_37" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_enc" />
     </record>
-    <record id="mrp_bom_line_21" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_51" />
+    <record id="mrp_bom_line_21" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_51" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_enc" />
     </record>
-    <record id="mrp_bom_line_22" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_48" />
+    <record id="mrp_bom_line_22" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_48" />
         <field name="product_uom" ref="product.product_uom_hour" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_enc" />
     </record>
-    <record id="mrp_bom_line_23" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_67" />
+    <record id="mrp_bom_line_23" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_67" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_livre" />
     </record>
-    <record id="mrp_bom_line_24" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_66" />
+    <record id="mrp_bom_line_24" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_66" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_livre" />
     </record>
-    <record id="mrp_bom_line_25" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_27" />
+    <record id="mrp_bom_line_25" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_27" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_livre" />
     </record>
-    <record id="mrp_bom_line_26" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_66" />
+    <record id="mrp_bom_line_26" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_66" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_livret" />
     </record>
-    <record id="mrp_bom_line_27" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_67" />
+    <record id="mrp_bom_line_27" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_67" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_livret" />
     </record>
-    <record id="mrp_bom_line_28" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_57" />
+    <record id="mrp_bom_line_28" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_57" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_29" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_58" />
+    <record id="mrp_bom_line_29" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_58" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_30" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_59" />
+    <record id="mrp_bom_line_30" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_59" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_31" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_60" />
+    <record id="mrp_bom_line_31" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_60" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_32" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_61" />
+    <record id="mrp_bom_line_32" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_61" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_33" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_62" />
+    <record id="mrp_bom_line_33" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_62" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_34" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_63" />
+    <record id="mrp_bom_line_34" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_63" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_35" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_64" />
+    <record id="mrp_bom_line_35" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_64" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_36" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_65" />
+    <record id="mrp_bom_line_36" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_65" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_37" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_68" />
+    <record id="mrp_bom_line_37" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_68" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_38" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_69" />
+    <record id="mrp_bom_line_38" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_69" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_39" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_70" />
+    <record id="mrp_bom_line_39" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_70" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_40" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_38" />
+    <record id="mrp_bom_line_40" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_38" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
-    <record id="mrp_bom_line_41" model="mrp.bom">
-        <field name="name" />
-        <field name="product_id" ref="product_product_54" />
+    <record id="mrp_bom_line_41" model="mrp.bom.line">
+        
+        <field name="product_id" ref="sudokeys_simpac.product_product_54" />
         <field name="product_uom" ref="product.product_uom_unit" />
-        <field name="routing_id" ref="" />
+        
         <field name="bom_id" ref="mrp_bom_pvc" />
     </record>
     </data>

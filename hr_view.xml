@@ -271,7 +271,8 @@
         <record id="hr_deputy_timesheet_sheet_employee_extd_form" model="ir.ui.view">
             <field name="name">hr.deputy.timesheet.sheet.employee.extd_form</field>
             <field name="model">hr.employee</field>
-            <field name="inherit_id" ref="hr_timesheet_sheet.hr_timesheet_sheet_employee_extd_form"/>
+            <field eval="100" name="priority"/>
+            <field name="inherit_id" ref="view_deputy_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='button_box2']" position="inside">
                     <button name="%(act_deputy_employee_2_hr_timesheet)d" string="Timesheets" type="action" groups="base.group_hr_manager"/>

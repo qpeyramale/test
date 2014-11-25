@@ -7,4 +7,3 @@ access_hr_deputy_timesheet_sheet_sheet,hr_deputy_timesheet_sheet.sheet,model_hr_
 access_hr_deputy_analytic_timesheet,hr.deputy.analytic.timesheet,model_hr_deputy_analytic_timesheet,,1,1,1,1
 access_wizard_timesheet,wizard_timesheet,model_wizard_timesheet,,1,1,1,1
 access_wizard_timesheet_invoice,access_wizard_timesheet_invoice,model_wizard_timesheet_invoice,,1,1,1,1
-access_report_stock_affran,access_report_stock_affran,model_report_stock_affran,,1,1,1,1
